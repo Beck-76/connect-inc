@@ -37,7 +37,6 @@
       margin: 0;
     }
 
-    /* Top-right menu */
     nav.menu {
       position: absolute;
       top: 15px;
@@ -114,46 +113,54 @@
     }
   </style>
   <script>
-    const apiKey = 'y8qkZHP97Jchrz3MAH4z0EcWhmRrpXbN2vQvcbzM';
-    const url = 'https://api.congress.gov/v3/bill?congress=118&chamber=senate&format=json';
+    document.addEventListener("DOMContentLoaded", async () => {
+      const apiKey = 'y8qkZHP97Jchrz3MAH4z0EcWhmRrpXbN2vQvcbzM';
+      const url = 'https://api.congress.gov/v3/bill?congress=118&chamber=senate&format=json';
 
-    async function loadBills() {
       try {
         const res = await fetch(url, {
           headers: { 'X-API-Key': apiKey }
         });
+
         if (!res.ok) throw new Error('API request failed');
+
         const data = await res.json();
-        const bills = data.bills.slice(0, 5);
+        const bills = data.bills || [];
 
         const container = document.getElementById("billList");
         container.innerHTML = '';
-        bills.forEach(bill => {
+
+        if (bills.length === 0) {
+          container.innerHTML = '<p>No recent bills available.</p>';
+          return;
+        }
+
+        bills.slice(0, 5).forEach(bill => {
           const box = document.createElement("div");
           box.className = 'bill-box';
-          box.onclick = () => window.open(bill.url, '_blank');
+          box.onclick = () => window.open(bill.url || '#', '_blank');
           box.tabIndex = 0;
           box.setAttribute('role', 'button');
-          box.setAttribute('aria-label', `Open details for bill: ${bill.title}`);
+          box.setAttribute('aria-label', `Open details for bill: ${bill.title || 'No title'}`);
           box.onkeypress = (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
-              window.open(bill.url, '_blank');
+              window.open(bill.url || '#', '_blank');
             }
           };
+
           box.innerHTML = `
-            <strong>${bill.title}</strong><br>
-            <small>Introduced: ${bill.introducedDate}</small><br>
+            <strong>${bill.title || 'Untitled Bill'}</strong><br>
+            <small>Introduced: ${bill.introducedDate || 'N/A'}</small><br>
             <p>${bill.summary || 'No summary available.'}</p>
           `;
+
           container.appendChild(box);
         });
       } catch (error) {
         console.error('Error fetching bills:', error);
         document.getElementById("billList").innerHTML = '<p>Error loading bills.</p>';
       }
-    }
-
-    document.addEventListener("DOMContentLoaded", loadBills);
+    });
   </script>
 </head>
 <body>
