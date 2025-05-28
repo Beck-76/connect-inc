@@ -2,54 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Connect Inc. - Home</title>
+  <title>Connect Inc.</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet" />
   <style>
     body {
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+      background: linear-gradient(to bottom, #fff, #f0f0f0);
+      margin: 0;
+      padding: 0;
+      color: #333;
       display: flex;
       flex-direction: column;
+      height: 100vh;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      color: #002868;
       text-align: center;
     }
     h1 {
       font-family: 'Bebas Neue', cursive;
       font-size: 4rem;
-      margin-bottom: 2rem;
       color: #b22234;
+      margin-bottom: 1rem;
+      letter-spacing: 4px;
+      text-shadow: 1px 1px #002868;
     }
-    .button-container {
+    .options {
       display: flex;
-      gap: 3rem;
+      gap: 2rem;
+      margin-top: 2rem;
     }
-    a.button {
-      background: #b22234;
+    .option-btn {
+      background: linear-gradient(135deg, #b22234, #002868);
+      border: none;
       color: white;
-      font-size: 2rem;
-      padding: 2rem 4rem;
-      border-radius: 15px;
+      font-size: 1.5rem;
+      padding: 1rem 3rem;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease;
       text-decoration: none;
-      box-shadow: 0 6px 12px rgba(178, 34, 52, 0.5);
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      font-weight: 700;
+      font-weight: bold;
       user-select: none;
     }
-    a.button:hover {
-      background: #7f191f;
+    .option-btn:hover {
       transform: scale(1.05);
+      background: linear-gradient(135deg, #002868, #b22234);
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #002868;
+      color: white;
+      text-align: center;
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
   <h1>Connect Inc.</h1>
-  <div class="button-container">
-    <a href="house.html" class="button">House of Representatives</a>
-    <a href="senate.html" class="button">Senate</a>
+  <div class="options">
+    <a href="house.html" class="option-btn" role="button" tabindex="0">House</a>
+    <a href="senate.html" class="option-btn" role="button" tabindex="0">Senate</a>
   </div>
+
+  <footer>
+    Connect Inc. • Powered by Democracy ✨
+  </footer>
 </body>
 </html>
