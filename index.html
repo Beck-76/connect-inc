@@ -3,28 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <title>Connect Inc. - Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom, #ffffff, #f5f7fa);
-      color: #333;
+      background: linear-gradient(to bottom, #ffffff, #f4f6f8);
+      color: #222;
     }
 
     header {
-      background: #002868;
+      background-color: #002868;
       color: white;
-      padding: 2rem;
       text-align: center;
+      padding: 2rem 1rem;
       position: relative;
     }
 
     header h1 {
       font-family: 'Bebas Neue', cursive;
-      font-size: 3.5rem;
+      font-size: 3rem;
       margin: 0;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
+    }
+
+    .flag {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      height: 45px;
     }
 
     nav {
@@ -36,21 +43,13 @@
     nav a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
       margin-left: 20px;
+      font-weight: bold;
       font-size: 1rem;
-      transition: color 0.2s ease;
     }
 
     nav a:hover {
-      color: #ffcc00;
-    }
-
-    .flag {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      height: 50px;
+      text-decoration: underline;
     }
 
     main {
@@ -60,7 +59,7 @@
 
     .intro {
       max-width: 800px;
-      margin: 0 auto 3rem auto;
+      margin: 0 auto 3rem;
       font-size: 1.2rem;
       line-height: 1.6;
     }
@@ -68,7 +67,7 @@
     .leaders {
       display: flex;
       justify-content: center;
-      gap: 4rem;
+      gap: 3rem;
       flex-wrap: wrap;
     }
 
@@ -79,13 +78,14 @@
 
     .leader img {
       width: 100%;
+      max-width: 200px;
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .leader h3 {
       margin-top: 1rem;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #002868;
     }
 
@@ -101,7 +101,7 @@
 </head>
 <body>
   <header>
-    <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="US Flag" />
+    <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag">
     <h1>Connect Inc.</h1>
     <nav>
       <a href="index.html">Home</a>
@@ -111,23 +111,21 @@
   </header>
 
   <main>
-    <section class="intro">
-      <p><strong>Welcome to Connect Inc.</strong> – A new way to stay informed and connected with your government. Explore recent legislation, congressional maps, and learn more about who represents you in Washington.</p>
-    </section>
+    <div class="intro">
+      <p><strong>Welcome to Connect Inc.</strong> — a civic tech platform helping you stay up to date on U.S. government, bills, and your representatives. Explore legislation, maps, and more!</p>
+    </div>
 
-    <section>
-      <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color: #b22234;">Current Administration</h2>
-      <div class="leaders">
-        <div class="leader">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Joe_Biden_presidential_portrait.jpg" alt="President Joe Biden" />
-          <h3>President Joe Biden</h3>
-        </div>
-        <div class="leader">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Kamala_Harris_Vice_Presidential_Portrait.jpg" alt="Vice President Kamala Harris" />
-          <h3>Vice President Kamala Harris</h3>
-        </div>
+    <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.3rem; color: #b22234;">Current Administration</h2>
+    <div class="leaders">
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Joe_Biden_presidential_portrait.jpg" alt="President Joe Biden">
+        <h3>President Joe Biden</h3>
       </div>
-    </section>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Kamala_Harris_Vice_Presidential_Portrait.jpg" alt="Vice President Kamala Harris">
+        <h3>Vice President Kamala Harris</h3>
+      </div>
+    </div>
   </main>
 
   <footer>
