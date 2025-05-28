@@ -3,19 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <title>Senate - Connect Inc.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #efe;
-      text-align: center;
-      padding-top: 100px;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #fdf5e6);
+      color: #333;
     }
-    h1 {
-      font-size: 3em;
+
+    header {
+      background: #b22234;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    header img {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      height: 50px;
+    }
+
+    header h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 3rem;
+      letter-spacing: 2px;
+    }
+
+    .content {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .content h2 {
+      font-size: 2rem;
+      color: #002868;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      background: #b22234;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    .stars {
+      font-size: 1.2rem;
+      letter-spacing: 4px;
+      color: #ffffffaa;
     }
   </style>
 </head>
 <body>
-  <h1>Senate Page</h1>
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="US Flag">
+    <h1>U.S. Senate</h1>
+    <div class="stars">★ ★ ★</div>
+  </header>
+
+  <div class="content">
+    <h2>What is the Senate?</h2>
+    <p>This is where you can describe the Senate. It’s the upper chamber of Congress with 100 Senators, two from each state, responsible for confirming appointments and passing federal laws.</p>
+  </div>
+
+  <footer>
+    Connect Inc. • Speak Loud. Lead Proud. 🗽
+  </footer>
 </body>
 </html>
