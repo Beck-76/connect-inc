@@ -16,9 +16,10 @@
     header {
       background-color: #002868;
       color: white;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 6rem;
       position: relative;
       text-align: center;
+      overflow: hidden;
     }
 
     header img.flag {
@@ -51,6 +52,28 @@
 
     nav a:hover {
       text-decoration: underline;
+    }
+
+    .scroll-arrow {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.8rem;
+      color: white;
+      animation: bounce 1.5s infinite;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+      40% { transform: translate(-50%, -10px); }
+      60% { transform: translate(-50%, -5px); }
+    }
+
+    .scroll-arrow.hidden {
+      display: none;
     }
 
     main {
@@ -147,6 +170,7 @@
       <a href="house.html">House</a>
       <a href="senate.html">Senate</a>
     </nav>
+    <div class="scroll-arrow" id="scrollArrow">⬇️</div>
   </header>
 
   <main>
@@ -186,5 +210,16 @@
   <footer>
     Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
+
+  <script>
+    window.addEventListener("scroll", () => {
+      const arrow = document.getElementById("scrollArrow");
+      if (window.scrollY > 100) {
+        arrow.classList.add("hidden");
+      } else {
+        arrow.classList.remove("hidden");
+      }
+    });
+  </script>
 </body>
 </html>
