@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Power to the People 🗽</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -14,71 +14,48 @@
     }
 
     header {
-      background-color: #002868;
+      background: linear-gradient(to right, #b22234, #ffffff, #3c3b6e);
       color: white;
       padding: 2rem 1rem 5rem;
-      position: relative;
       text-align: center;
-      overflow: hidden;
-    }
-
-    header img.flag {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      height: 50px;
+      position: relative;
     }
 
     header h1 {
       font-family: 'Bebas Neue', cursive;
-      font-size: 2.8rem;
+      font-size: 3rem;
       margin: 0;
       letter-spacing: 1px;
     }
 
     .quote {
-      margin-top: 1rem;
       font-style: italic;
-      font-size: 1rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      color: #f0f0f0;
-    }
-
-    nav {
-      position: absolute;
-      top: 15px;
-      right: 50px;
-    }
-
-    .party-initial {
-      position: absolute;
-      top: 18px;
-      right: 20px;
-      font-weight: bold;
+      font-family: Georgia, serif;
+      margin-top: 1rem;
       font-size: 1.1rem;
-      color: gold;
+      color: #fefefe;
     }
 
     .dropdown {
-      position: relative;
-      display: inline-block;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .dropdown button {
-      background-color: #002868;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 1.1rem;
+    .party-initial {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
       right: 0;
-      background-color: white;
+      background-color: #ffffff;
       color: black;
       min-width: 120px;
       box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
@@ -87,7 +64,7 @@
 
     .dropdown-content a {
       color: black;
-      padding: 10px 14px;
+      padding: 10px 16px;
       text-decoration: none;
       display: block;
     }
@@ -100,6 +77,14 @@
       display: block;
     }
 
+    .dropbtn {
+      font-size: 1.5rem;
+      background: none;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
     .scroll-arrow {
       position: absolute;
       bottom: 10px;
@@ -108,19 +93,18 @@
       font-size: 2rem;
       color: white;
       animation: bounce 1.5s infinite;
-      cursor: pointer;
       transition: opacity 0.3s ease;
+    }
+
+    .scroll-arrow.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
 
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
       40% { transform: translate(-50%, -10px); }
       60% { transform: translate(-50%, -5px); }
-    }
-
-    .scroll-arrow.hidden {
-      opacity: 0;
-      pointer-events: none;
     }
 
     main {
@@ -130,31 +114,29 @@
 
     .leaders {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 3rem;
-      flex-wrap: wrap;
-      margin-top: 2rem;
     }
 
     .leader {
-      max-width: 250px;
+      max-width: 200px;
+      text-align: center;
     }
 
     .leader img {
       width: 100%;
-      max-width: 200px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .leader h3 {
       margin-top: 0.5rem;
-      font-size: 1.1rem;
       color: #002868;
     }
 
     .leader p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #444;
     }
 
@@ -162,8 +144,8 @@
       margin-top: 8rem;
       padding: 4rem 2rem;
       background-color: #fefefe;
-      border-top: 2px solid #ccc;
       text-align: center;
+      border-top: 2px solid #ccc;
     }
 
     .creators-section h2 {
@@ -183,7 +165,6 @@
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      color: #666;
       font-family: Georgia, serif;
     }
 
@@ -202,145 +183,135 @@
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
-      margin-top: 3rem;
     }
 
-    /* Popups */
-    .popup-overlay {
+    .popup, .account-popup {
       position: fixed;
       top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-color: rgba(0,0,0,0.6);
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       z-index: 10;
     }
 
-    .popup {
+    .popup-content, .account-popup-content {
       background: white;
       padding: 2rem;
       border-radius: 10px;
-      max-width: 350px;
       text-align: center;
+      max-width: 300px;
       position: relative;
     }
 
-    .popup h2 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
+    .popup-content h2, .account-popup-content h2 {
+      margin-top: 0;
+      color: #002868;
     }
 
-    .popup button {
+    .popup-content button {
       margin: 0.5rem;
       padding: 0.5rem 1rem;
       border: none;
       border-radius: 5px;
-      font-weight: bold;
       cursor: pointer;
-      font-size: 1rem;
+      color: white;
     }
 
-    .dem { background: #0015BC; color: white; }
-    .rep { background: #E9141D; color: white; }
-    .ind { background: #444; color: white; }
+    .popup-content .democrat { background: #0015bc; }
+    .popup-content .republican { background: #ff0000; }
+    .popup-content .independent { background: #228b22; }
+
+    .account-popup-content input, .account-popup-content label {
+      display: block;
+      margin: 0.5rem auto;
+      width: 80%;
+    }
 
     .close-btn {
       position: absolute;
-      top: 5px;
-      right: 10px;
-      font-size: 1.2rem;
-      background: none;
-      border: none;
+      top: 8px;
+      right: 12px;
       cursor: pointer;
-    }
-
-    input[type="text"], input[type="email"] {
-      width: 90%;
-      margin: 0.5rem auto;
-      padding: 0.4rem;
-      border: 1px solid #aaa;
-      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
-  <div class="popup-overlay" id="partyPopup">
-    <div class="popup">
+  <div class="popup" id="partyPopup">
+    <div class="popup-content">
       <h2>What Political Party are you?</h2>
-      <button class="dem" onclick="selectParty('D')">Democrat</button>
-      <button class="rep" onclick="selectParty('R')">Republican</button>
-      <button class="ind" onclick="selectParty('I')">Independent</button>
+      <button class="democrat" onclick="selectParty('D')">Democrat</button>
+      <button class="republican" onclick="selectParty('R')">Republican</button>
+      <button class="independent" onclick="selectParty('I')">Independent</button>
     </div>
   </div>
 
-  <div class="popup-overlay" id="signupPopup" style="display:none;">
-    <div class="popup">
-      <button class="close-btn" onclick="document.getElementById('signupPopup').style.display='none'">✕</button>
+  <div class="account-popup" id="accountPopup" style="display:none;">
+    <div class="account-popup-content">
+      <span class="close-btn" onclick="closeAccountPopup()">✖</span>
       <h2>Create an Account</h2>
-      <input type="text" placeholder="Your Name" />
-      <input type="email" placeholder="Your Email" />
-      <label><input type="checkbox"/> Receive email updates</label><br><br>
-      <button style="background-color:#002868; color:white;">Submit</button>
+      <input type="text" placeholder="Name" />
+      <input type="email" placeholder="Email" />
+      <label><input type="checkbox" /> Receive Email Updates</label>
+      <button onclick="closeAccountPopup()">Submit</button>
     </div>
   </div>
 
   <header>
-    <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" />
     <h1>Power to the People 🗽</h1>
-    <div class="quote">“The strength of a democracy lies in the ability of its citizens to question, engage, and actively participate in shaping its future.”<br><em>– Barack Obama</em></div>
-    <div class="party-initial" id="partyInitial"></div>
-    <nav class="dropdown">
-      <button>☰</button>
+    <p class="quote">“The strength of a democracy lies in the ability of its citizens to question, engage, and actively participate in shaping its future.” – Barack Obama</p>
+    <div class="dropdown">
+      <div class="party-initial" id="partyInitial"></div>
+      <button class="dropbtn">☰</button>
       <div class="dropdown-content">
         <a href="index.html">Home</a>
         <a href="house.html">House</a>
         <a href="senate.html">Senate</a>
         <a href="chat.html">Chat</a>
       </div>
-    </nav>
+    </div>
     <div class="scroll-arrow" id="scrollArrow">⬇️</div>
   </header>
 
   <main>
-    <h2 style="font-family: 'Bebas Neue'; color: #b22234;">Current Administration</h2>
+    <h2 style="font-family: 'Bebas Neue'; color: #b22234;">Current Leaders</h2>
     <div class="leaders">
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Donald_Trump_official_portrait_%28cropped%29.jpg" alt="President Donald Trump"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Donald_Trump_official_portrait.jpg" alt="President Donald Trump" />
         <h3>President Donald Trump</h3>
-        <p>45th and 47th President of the United States.</p>
+        <p>45th & 47th President of the United States</p>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/J.D._Vance_118th_Congress_portrait.jpg" alt="Vice President JD Vance"/>
-        <h3>Vice President J.D. Vance</h3>
-        <p>Current Vice President of the United States.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/J._D._Vance_117th_Congress_portrait.jpg" alt="Vice President JD Vance" />
+        <h3>Vice President JD Vance</h3>
+        <p>Serving since 2025</p>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Speaker_Mike_Johnson.jpg" alt="Speaker Mike Johnson"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Mike_Johnson_official_photo.jpg" alt="Speaker Mike Johnson" />
         <h3>Speaker Mike Johnson</h3>
-        <p>Speaker of the House of Representatives.</p>
+        <p>Speaker of the House since 2023</p>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Official_roberts_CJ.jpg" alt="Chief Justice John Roberts"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/John_Roberts_2010.jpg" alt="Chief Justice John Roberts" />
         <h3>Chief Justice John Roberts</h3>
-        <p>Chief Justice of the Supreme Court.</p>
+        <p>Chief Justice of the Supreme Court</p>
       </div>
     </div>
   </main>
 
-  <!-- Creators Section -->
   <section class="creators-section">
     <h2>Creators</h2>
-    <div class="creator-photo">
-      Photo Coming Soon
-    </div>
+    <div class="creator-photo">Photo Coming Soon</div>
     <div class="creator-text">
       <p>
-        Meet the Creators, Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for the citizens of The United States to come together and talk about these issues and make their voice heard in legislation.
+        Meet the Creators: Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever.
       </p>
       <p>
-        The people have forgotten the fact that the congressmen and women in D.C. work for the people, not for their own interests. We want the everyday voter to connect with their elected official, publicly or anonymously, and give the power of this great country back to the PEOPLE!
+        Our goal is to create an area for the citizens of the United States to come together, discuss issues, and make their voices heard in legislation. Congress works for the people—not the other way around. Let’s connect the everyday voter with their elected officials and return the power to the people.
       </p>
     </div>
   </section>
@@ -350,10 +321,14 @@
   </footer>
 
   <script>
-    function selectParty(letter) {
-      document.getElementById('partyPopup').style.display = 'none';
-      document.getElementById('partyInitial').textContent = letter;
-      document.getElementById('signupPopup').style.display = 'flex';
+    function selectParty(initial) {
+      document.getElementById("partyInitial").textContent = initial;
+      document.getElementById("partyPopup").style.display = "none";
+      document.getElementById("accountPopup").style.display = "flex";
+    }
+
+    function closeAccountPopup() {
+      document.getElementById("accountPopup").style.display = "none";
     }
 
     window.addEventListener("scroll", () => {
