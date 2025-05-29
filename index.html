@@ -184,4 +184,75 @@
     <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" />
     <h1>Power to the People 🗽</h1>
 
-    <button class="menu
+    <button class="menu-button" id="menuButton" aria-label="Open menu">☰</button>
+    <div class="dropdown" id="dropdownMenu">
+      <a href="index.html">Home</a>
+      <a href="house.html">House</a>
+      <a href="senate.html">Senate</a>
+      <a href="chat.html">Chat</a>
+    </div>
+
+    <div class="scroll-arrow" id="scrollArrow">⬇️</div>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p><strong>Welcome to Connect Inc.</strong> — a civic tech platform helping you stay informed on U.S. government activity, legislation, and leadership. Stay engaged and empowered.</p>
+    </div>
+
+    <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Current Administration</h2>
+    <div class="leaders">
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Joe_Biden_presidential_portrait.jpg" alt="President Joe Biden" />
+        <h3>President Joe Biden</h3>
+      </div>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Kamala_Harris_Vice_Presidential_Portrait.jpg" alt="Vice President Kamala Harris" />
+        <h3>Vice President Kamala Harris</h3>
+      </div>
+    </div>
+  </main>
+
+  <section class="creators-section">
+    <h2>Creators</h2>
+    <div class="creator-photo">
+      Photo Coming Soon
+    </div>
+    <div class="creator-text">
+      <p>
+        Meet the Creators, Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for the citizens of The United States to come together and talk about these issues and make their voice heard in legislation.
+      </p>
+      <p>
+        The people have forgotten the fact that the congressmen and women in D.C. work for the people, not for their own interests. We want the everyday voter to connect with their elected official, publicly or anonymously, and give the power of this great country back to the PEOPLE!
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Connect Inc. • Powered by Civic Engagement 🇺🇸
+  </footer>
+
+  <script>
+    // Hide scroll arrow on scroll
+    const arrow = document.getElementById("scrollArrow");
+    window.addEventListener("scroll", () => {
+      arrow.classList.toggle("hidden", window.scrollY > 100);
+    });
+
+    // Toggle dropdown menu
+    const menuBtn = document.getElementById("menuButton");
+    const dropdown = document.getElementById("dropdownMenu");
+
+    menuBtn.addEventListener("click", () => {
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
