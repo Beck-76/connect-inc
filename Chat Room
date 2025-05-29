@@ -77,4 +77,140 @@
     border-radius: 20px;
     font-size: 1rem;
     line-height: 1.4;
-    word-wrap
+    word-wrap: break-word;
+  }
+
+  .message.user {
+    background-color: #002868;
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 2px;
+  }
+
+  .message.partner {
+    background-color: #b22234;
+    color: white;
+    margin-right: auto;
+    border-bottom-left-radius: 2px;
+  }
+
+  form {
+    display: flex;
+    padding: 12px 16px;
+    border-top: 2px solid #b22234;
+    background: #fff;
+  }
+
+  input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 30px;
+    border: 1.5px solid #ccc;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  input[type="text"]:focus {
+    border-color: #002868;
+  }
+
+  button {
+    background-color: #002868;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 0 1.2rem;
+    margin-left: 12px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #b22234;
+  }
+
+  /* Scrollbar styling */
+  #chat::-webkit-scrollbar {
+    width: 8px;
+  }
+  #chat::-webkit-scrollbar-thumb {
+    background-color: #b22234;
+    border-radius: 4px;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    main {
+      margin: 1rem;
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<header>Chat Room — Power to the People 🗽</header>
+<main>
+  <div id="chat" aria-live="polite" aria-label="Chat messages"></div>
+  <form id="chatForm" aria-label="Send a message">
+    <input
+      type="text"
+      id="messageInput"
+      placeholder="Type your message here..."
+      autocomplete="off"
+      required
+      aria-required="true"
+      aria-describedby="inputHelp"
+    />
+    <button type="submit" aria-label="Send message">Send</button>
+  </form>
+</main>
+
+<script>
+  const chat = document.getElementById('chat');
+  const form = document.getElementById('chatForm');
+  const input = document.getElementById('messageInput');
+
+  // Function to append messages
+  function appendMessage(text, sender) {
+    const msg = document.createElement('div');
+    msg.textContent = text;
+    msg.className = 'message ' + sender;
+    chat.appendChild(msg);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  // Simulated partner replies (optional fun)
+  const partnerReplies = [
+    "Hello!",
+    "Thanks for sharing.",
+    "Interesting point!",
+    "Could you tell me more?",
+    "I agree with that.",
+    "Let's keep the conversation respectful.",
+    "What do you think about the current administration?",
+    "The people have the power!",
+    "Stay informed and engaged!",
+  ];
+
+  // Append a welcome message from partner
+  appendMessage("Welcome to the chat! Feel free to say hello.", "partner");
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+
+    appendMessage(text, 'user');
+    input.value = '';
+
+    // Simulate a partner reply after a delay
+    setTimeout(() => {
+      const reply = partnerReplies[Math.floor(Math.random() * partnerReplies.length)];
+      appendMessage(reply, 'partner');
+    }, 1200);
+  });
+</script>
+</body>
+</html>
