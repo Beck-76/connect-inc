@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Power to the People 🗽</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
@@ -36,49 +36,57 @@
       letter-spacing: 1px;
     }
 
-    .dropdown {
+    /* Dropdown menu styles */
+    nav {
       position: absolute;
       top: 20px;
       right: 20px;
     }
 
-    .dropdown button {
-      background: white;
-      color: #002868;
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background: none;
       border: none;
-      padding: 0.5rem 1rem;
-      font-weight: bold;
-      font-size: 1rem;
-      border-radius: 5px;
+      color: white;
+      font-size: 1.5rem;
       cursor: pointer;
+      font-weight: bold;
+      user-select: none;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
       right: 0;
-      top: 40px;
-      background-color: white;
-      min-width: 160px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      background-color: #004080;
+      min-width: 140px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+      border-radius: 6px;
       z-index: 1;
     }
 
     .dropdown-content a {
-      color: #002868;
-      padding: 12px 16px;
+      color: white;
+      padding: 10px 14px;
       text-decoration: none;
       display: block;
+      font-weight: 600;
+      font-size: 1rem;
     }
 
     .dropdown-content a:hover {
-      background-color: #f1f1f1;
+      background-color: #003060;
     }
 
     .dropdown:hover .dropdown-content {
       display: block;
     }
 
+    /* Scroll arrow */
     .scroll-arrow {
       position: absolute;
       bottom: 10px;
@@ -124,6 +132,7 @@
 
     .leader {
       max-width: 250px;
+      text-align: center;
     }
 
     .leader img {
@@ -140,9 +149,10 @@
     }
 
     .leader p {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: #444;
-      margin-top: 0.3rem;
+      margin-top: 0.4rem;
+      font-style: italic;
     }
 
     .creators-section {
@@ -197,17 +207,17 @@
   <header>
     <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" />
     <h1>Power to the People 🗽</h1>
-
-    <div class="dropdown">
-      <button>☰ Options</button>
-      <div class="dropdown-content">
-        <a href="index.html">Home</a>
-        <a href="house.html">House</a>
-        <a href="senate.html">Senate</a>
-        <a href="chat.html">Chat Room</a>
+    <nav>
+      <div class="dropdown">
+        <button class="dropbtn" aria-label="Options menu">&#8942;</button>
+        <div class="dropdown-content" role="menu" aria-label="Dropdown menu">
+          <a href="index.html" role="menuitem">Home</a>
+          <a href="house.html" role="menuitem">House</a>
+          <a href="senate.html" role="menuitem">Senate</a>
+          <a href="chat.html" role="menuitem">Chat Room</a>
+        </div>
       </div>
-    </div>
-
+    </nav>
     <div class="scroll-arrow" id="scrollArrow">⬇️</div>
   </header>
 
@@ -219,14 +229,14 @@
     <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Current Administration</h2>
     <div class="leaders">
       <div class="leader">
-        <img src="https://i.imgur.com/BB3ZS3S.jpg" alt="President Joe Biden AI portrait" />
-        <h3>President Joe Biden</h3>
-        <p>46th President of the United States since 2021.</p>
+        <img src="https://www.whitehouse.gov/wp-content/uploads/2025/01/President-Donald-J-Trump.jpg" alt="President Donald J. Trump" />
+        <h3>President Donald J. Trump</h3>
+        <p>47th President of the United States since January 20, 2025.</p>
       </div>
       <div class="leader">
-        <img src="https://i.imgur.com/Lxljrf3.jpg" alt="Vice President Kamala Harris AI portrait" />
-        <h3>Vice President Kamala Harris</h3>
-        <p>First female Vice President of the U.S.</p>
+        <img src="https://www.whitehouse.gov/wp-content/uploads/2025/01/Vice-President-JD-Vance.jpg" alt="Vice President JD Vance" />
+        <h3>Vice President JD Vance</h3>
+        <p>50th Vice President of the United States since January 20, 2025.</p>
       </div>
     </div>
   </main>
@@ -234,7 +244,9 @@
   <!-- Creators Section -->
   <section class="creators-section">
     <h2>Creators</h2>
-    <div class="creator-photo">Photo Coming Soon</div>
+    <div class="creator-photo">
+      Photo Coming Soon
+    </div>
     <div class="creator-text">
       <p>
         Meet the Creators, Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for the citizens of The United States to come together and talk about these issues and make their voice heard in legislation.
