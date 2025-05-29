@@ -2,42 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>United States House of Representatives</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>U.S. House – Connect Inc.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom, #ffffff, #f4f6f8);
+      background: linear-gradient(to bottom, #f9fafc, #ffffff);
       color: #222;
     }
 
     header {
       background-color: #002868;
       color: white;
-      padding: 2rem 1rem;
-      position: relative;
+      padding: 2rem 1rem 4rem;
       text-align: center;
+      position: relative;
     }
 
-    header h1 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 2.5rem;
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
       margin: 0;
     }
 
     .dropdown {
       position: absolute;
       top: 20px;
-      right: 20px;
+      right: 30px;
     }
 
-    .dropbtn {
-      background: none;
+    .dropdown button {
+      background-color: #002868;
       color: white;
-      font-size: 1.5rem;
       border: none;
+      font-size: 1.5rem;
       cursor: pointer;
     }
 
@@ -45,7 +45,7 @@
       display: none;
       position: absolute;
       right: 0;
-      background-color: #f9f9f9;
+      background-color: white;
       min-width: 160px;
       box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
       z-index: 1;
@@ -67,72 +67,66 @@
     }
 
     main {
-      display: flex;
-      flex-wrap: wrap;
       padding: 2rem;
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
     }
 
-    .sidebar {
+    .left-section {
       flex: 1;
       max-width: 300px;
-      margin-right: 2rem;
     }
 
-    .sidebar img {
+    .left-section img {
       width: 100%;
       border-radius: 8px;
-      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
-    .sidebar h2 {
-      font-size: 1.5rem;
+    .left-section h3 {
+      margin-top: 1rem;
+      font-size: 1.2rem;
       color: #002868;
     }
 
-    .content {
-      flex: 2;
-      max-width: 700px;
+    .left-section p {
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
 
-    .bill-box {
-      background: #ffffff;
-      border-left: 5px solid #002868;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+    .right-section {
+      flex: 3;
     }
 
-    .bill-box:hover {
-      background-color: #f9f9f9;
+    .right-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #b22234;
+      margin-top: 0;
     }
 
-    iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
+    .bill-list ul {
+      padding-left: 1.2rem;
+    }
+
+    .contact-section {
       margin-top: 2rem;
-      border-radius: 8px;
     }
 
-    .contact {
-      margin-top: 3rem;
-    }
-
-    .contact a {
+    .contact-section a {
       display: inline-block;
+      margin-top: 1rem;
+      padding: 0.7rem 1.2rem;
       background-color: #002868;
       color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 5px;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 1rem;
+      border-radius: 4px;
     }
 
-    .contact a:hover {
-      background-color: #001f4d;
+    .contact-section a:hover {
+      background-color: #001b4f;
     }
 
     footer {
@@ -146,10 +140,11 @@
   </style>
 </head>
 <body>
+
   <header>
     <h1>United States House of Representatives</h1>
     <div class="dropdown">
-      <button class="dropbtn">☰</button>
+      <button>☰</button>
       <div class="dropdown-content">
         <a href="index.html">Home</a>
         <a href="house.html">House</a>
@@ -160,64 +155,34 @@
   </header>
 
   <main>
-    <div class="sidebar">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Speaker_Mike_Johnson_official_photo.jpg" alt="Speaker Mike Johnson" />
-      <h2>Speaker Mike Johnson</h2>
-      <p>Mike Johnson is the 56th Speaker of the U.S. House of Representatives. A Republican from Louisiana, he assumed office in October 2023. Known for his conservative views, Johnson is focused on constitutional governance and fiscal responsibility.</p>
-    </div>
+    <section class="left-section">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Mike_Johnson_118th_Congress_portrait.jpg" alt="Mike Johnson">
+      <h3>Speaker Mike Johnson</h3>
+      <p>Mike Johnson is the 56th Speaker of the U.S. House of Representatives. A Republican from Louisiana, he is known for his strong constitutional conservatism and focus on legislative reform and fiscal responsibility. As Speaker, he plays a pivotal role in leading the House and shaping national policy.</p>
+    </section>
 
-    <div class="content">
-      <h2>Recent House Bills</h2>
-      <div id="billList">Loading bills...</div>
-
-      <div class="contact">
-        <h2>Contact Your Representative</h2>
-        <p>You can contact your member of the House of Representatives via the official U.S. House website.</p>
-        <a href="https://www.house.gov/representatives/find-your-representative" target="_blank">Find Your Representative</a>
+    <section class="right-section">
+      <h2>Current House Bills</h2>
+      <div class="bill-list">
+        <ul>
+          <li>H.R.1001 – Affordable Housing Modernization Act</li>
+          <li>H.R.2025 – Student Loan Relief Extension Act</li>
+          <li>H.R.3050 – Small Business Innovation Fund</li>
+          <li>H.R.4044 – Public Lands and Wildlife Protection Act</li>
+        </ul>
       </div>
-    </div>
+
+      <div class="contact-section">
+        <h2>Contact Your Representative</h2>
+        <p>Visit the official U.S. House website to locate and contact your congressional representative.</p>
+        <a href="https://www.house.gov/representatives/find-your-representative" target="_blank">Visit Contact Page</a>
+      </div>
+    </section>
   </main>
 
   <footer>
-    Connect Inc. • Powered by Democracy ✨
+    Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-      const apiKey = 'y8qkZHP97Jchrz3MAH4z0EcWhmRrpXbN2vQvcbzM';
-      const url = 'https://api.congress.gov/v3/bill?congress=118&chamber=house&format=json';
-
-      try {
-        const res = await fetch(url, {
-          headers: { 'X-API-Key': apiKey }
-        });
-
-        const data = await res.json();
-        const bills = data.bills || [];
-        const container = document.getElementById("billList");
-        container.innerHTML = '';
-
-        if (bills.length === 0) {
-          container.innerHTML = '<p>No recent bills available.</p>';
-          return;
-        }
-
-        bills.slice(0, 5).forEach(bill => {
-          const box = document.createElement("div");
-          box.className = 'bill-box';
-          box.onclick = () => window.open(bill.url || '#', '_blank');
-          box.innerHTML = `
-            <strong>${bill.title || 'Untitled Bill'}</strong><br>
-            <small>Introduced: ${bill.introducedDate || 'N/A'}</small><br>
-            <p>${bill.summary || 'No summary available.'}</p>
-          `;
-          container.appendChild(box);
-        });
-      } catch (error) {
-        document.getElementById("billList").innerHTML = '<p>Error loading bills.</p>';
-        console.error(error);
-      }
-    });
-  </script>
 </body>
 </html>
