@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Power to the People 🗽 - Connect Inc.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -17,30 +17,85 @@
       background-color: #002868;
       color: white;
       padding: 2rem 1rem 5rem;
-      position: relative;
       text-align: center;
+      position: relative;
       overflow: hidden;
     }
 
-    header img.flag {
+    header h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+
+    .flag {
       position: absolute;
       top: 15px;
       left: 15px;
       height: 50px;
     }
 
-    header h1 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 2.8rem;
-      margin: 0;
-      letter-spacing: 1px;
+    .nav-wrapper {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .quote {
-      font-style: italic;
-      font-size: 1.1rem;
-      margin-top: 0.5rem;
-      color: #ddd;
+    .party-letter {
+      font-size: 1.2rem;
+      font-weight: bold;
+      background-color: white;
+      color: #002868;
+      border-radius: 50%;
+      padding: 5px 10px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: #002868;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      min-width: 140px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: #002868;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
     }
 
     .scroll-arrow {
@@ -51,8 +106,12 @@
       font-size: 2rem;
       color: white;
       animation: bounce 1.5s infinite;
-      cursor: pointer;
       transition: opacity 0.3s ease;
+    }
+
+    .scroll-arrow.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
 
     @keyframes bounce {
@@ -61,73 +120,36 @@
       60% { transform: translate(-50%, -5px); }
     }
 
-    .scroll-arrow.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .dropdown {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      z-index: 1000;
-    }
-
-    .dropdown select {
-      padding: 0.4rem;
-      border-radius: 4px;
-      font-weight: bold;
-    }
-
-    .party-initial {
-      color: white;
-      font-weight: bold;
-      position: absolute;
-      top: 15px;
-      right: 90px;
-      font-size: 1.1rem;
-    }
-
     main {
       padding: 2rem;
       text-align: center;
     }
 
-    .intro {
-      max-width: 800px;
-      margin: 0 auto 3rem;
-      font-size: 1.2rem;
-      line-height: 1.6;
-    }
-
     .leaders {
       display: flex;
       justify-content: center;
-      gap: 3rem;
+      gap: 2rem;
       flex-wrap: wrap;
       margin-top: 2rem;
     }
 
     .leader {
-      max-width: 250px;
-      text-align: center;
+      max-width: 200px;
     }
 
     .leader img {
       width: 100%;
-      max-width: 200px;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     .leader h3 {
-      margin-top: 1rem;
-      font-size: 1.1rem;
+      margin: 0.5rem 0 0.2rem;
       color: #002868;
     }
 
     .leader p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #444;
     }
 
@@ -175,99 +197,91 @@
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
-      margin-top: 3rem;
     }
 
-    /* Popup styles */
-    .popup-overlay {
+    /* Party Popup */
+    .party-popup {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       background: rgba(0,0,0,0.7);
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       z-index: 9999;
     }
 
-    .popup {
+    .popup-content {
       background: white;
       padding: 2rem;
-      border-radius: 8px;
       text-align: center;
-      max-width: 400px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      width: 300px;
     }
 
-    .popup h2 {
-      margin-bottom: 1.5rem;
+    .popup-content h3 {
+      margin-bottom: 1rem;
+      color: #002868;
     }
 
-    .popup button {
-      padding: 0.6rem 1.2rem;
+    .popup-content button {
       margin: 0.5rem;
+      padding: 0.5rem 1rem;
       font-size: 1rem;
       border: none;
-      border-radius: 5px;
       cursor: pointer;
+      border-radius: 5px;
     }
 
-    .popup button:hover {
-      opacity: 0.9;
+    .popup-content button:hover {
+      background-color: #eee;
     }
-
-    .democrat { background-color: #0015bc; color: white; }
-    .republican { background-color: #e9141d; color: white; }
-    .independent { background-color: #666; color: white; }
-
   </style>
 </head>
 <body>
   <header>
-    <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" />
+    <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag">
     <h1>Power to the People 🗽</h1>
-    <div class="quote">“The strength of a democracy lies in the ability of its citizens to question, engage, and actively participate in shaping its future.” — Barack Obama</div>
+    <p class="quote">“The strength of a democracy lies in the ability of its citizens to question, engage, and actively participate in shaping its future.” – Barack Obama</p>
 
-    <div class="party-initial" id="partyInitial"></div>
-    <div class="dropdown">
-      <select onchange="location = this.value;">
-        <option selected disabled>☰ Menu</option>
-        <option value="index.html">Home</option>
-        <option value="house.html">House</option>
-        <option value="senate.html">Senate</option>
-        <option value="chat.html">Chat</option>
-      </select>
+    <div class="nav-wrapper">
+      <div id="partyLetter" class="party-letter" style="display:none;">D</div>
+      <div class="dropdown">
+        <button class="dropbtn">☰</button>
+        <div class="dropdown-content">
+          <a href="index.html">Home</a>
+          <a href="house.html">House</a>
+          <a href="senate.html">Senate</a>
+          <a href="chat.html">Chat</a>
+        </div>
+      </div>
     </div>
 
     <div class="scroll-arrow" id="scrollArrow">⬇️</div>
   </header>
 
   <main>
-    <div class="intro">
-      <p><strong>Welcome to Connect Inc.</strong> — a civic tech platform helping you stay informed on U.S. government activity, legislation, and leadership. Stay engaged and empowered.</p>
-    </div>
-
-    <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Current Leadership</h2>
+    <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Current Administration</h2>
     <div class="leaders">
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Joe_Biden_presidential_portrait.jpg" alt="President Joe Biden" />
-        <h3>President Joe Biden</h3>
-        <p>46th President of the United States, leading since 2021.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Donald_Trump_official_portrait.jpg" alt="President Donald Trump">
+        <h3>President Donald Trump</h3>
+        <p>45th President of the United States, elected again in 2024.</p>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Kamala_Harris_Vice_Presidential_Portrait.jpg" alt="Vice President Kamala Harris" />
-        <h3>Vice President Kamala Harris</h3>
-        <p>First female Vice President, serving since 2021.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/JD_Vance_official_portrait_118th_Congress_%28cropped%29.jpg" alt="Vice President JD Vance">
+        <h3>Vice President JD Vance</h3>
+        <p>Former Senator from Ohio, now serving as Vice President.</p>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Speaker_Mike_Johnson_official_photo.jpg" alt="Speaker Mike Johnson" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Speaker_Mike_Johnson_official_photo.jpg" alt="Speaker Mike Johnson">
         <h3>Speaker Mike Johnson</h3>
-        <p>Speaker of the House, elected in 2023.</p>
+        <p>Presiding officer of the House of Representatives.</p>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/John_Roberts_2021.jpg" alt="Chief Justice John Roberts" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Official_roberts_CJ.jpg" alt="Chief Justice John Roberts">
         <h3>Chief Justice John Roberts</h3>
-        <p>Chief Justice of the Supreme Court since 2005.</p>
+        <p>Head of the U.S. Supreme Court since 2005.</p>
       </div>
     </div>
   </main>
@@ -277,12 +291,8 @@
     <h2>Creators</h2>
     <div class="creator-photo">Photo Coming Soon</div>
     <div class="creator-text">
-      <p>
-        Meet the Creators, Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for the citizens of The United States to come together and talk about these issues and make their voice heard in legislation.
-      </p>
-      <p>
-        The people have forgotten the fact that the congressmen and women in D.C. work for the people, not for their own interests. We want the everyday voter to connect with their elected official, publicly or anonymously, and give the power of this great country back to the PEOPLE!
-      </p>
+      <p>Meet the Creators, Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for the citizens of The United States to come together and talk about these issues and make their voice heard in legislation.</p>
+      <p>The people have forgotten the fact that the congressmen and women in D.C. work for the people, not for their own interests. We want the everyday voter to connect with their elected official, publicly or anonymously, and give the power of this great country back to the PEOPLE!</p>
     </div>
   </section>
 
@@ -290,29 +300,29 @@
     Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
 
-  <!-- Party Selection Popup -->
-  <div class="popup-overlay" id="partyPopup">
-    <div class="popup">
-      <h2>What Political Party are you?</h2>
-      <button class="democrat" onclick="setParty('D')">Democrat</button>
-      <button class="republican" onclick="setParty('R')">Republican</button>
-      <button class="independent" onclick="setParty('I')">Independent</button>
+  <!-- Scroll arrow logic -->
+  <script>
+    window.addEventListener("scroll", () => {
+      const arrow = document.getElementById("scrollArrow");
+      arrow.classList.toggle("hidden", window.scrollY > 100);
+    });
+  </script>
+
+  <!-- Political party popup -->
+  <div class="party-popup" id="partyPopup">
+    <div class="popup-content">
+      <h3>What Political Party are you?</h3>
+      <button onclick="selectParty('D')">Democrat</button>
+      <button onclick="selectParty('R')">Republican</button>
+      <button onclick="selectParty('I')">Independent</button>
     </div>
   </div>
 
   <script>
-    window.addEventListener("scroll", () => {
-      const arrow = document.getElementById("scrollArrow");
-      if (window.scrollY > 100) {
-        arrow.classList.add("hidden");
-      } else {
-        arrow.classList.remove("hidden");
-      }
-    });
-
-    function setParty(letter) {
-      document.getElementById("partyInitial").textContent = `(${letter})`;
-      document.getElementById("partyPopup").style.display = "none";
+    function selectParty(letter) {
+      document.getElementById('partyLetter').textContent = letter;
+      document.getElementById('partyLetter').style.display = 'inline-block';
+      document.getElementById('partyPopup').style.display = 'none';
     }
   </script>
 </body>
