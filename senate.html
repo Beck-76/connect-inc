@@ -3,42 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Senate - Connect Inc.</title>
+  <title>Power to the People 🗽 - Senate - Connect Inc.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet" />
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #f0f2f5;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #f4f6f8);
       color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
       background-color: #002868;
       color: white;
-      padding: 1.5rem 1rem;
+      padding: 1.5rem 1rem 3rem;
       position: relative;
+      text-align: center;
+      font-family: 'Bebas Neue', cursive;
+      overflow: visible;
     }
 
-    nav {
+    header img.flag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      height: 50px;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    /* Dropdown menu styles */
+    .dropdown {
       position: absolute;
       top: 20px;
       right: 20px;
     }
 
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-    }
-
     .dropbtn {
-      font-size: 1.5rem;
-      color: white;
-      user-select: none;
-      background: none;
+      background: transparent;
       border: none;
-      padding: 0;
-      margin: 0;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      font-family: 'Roboto', sans-serif;
     }
 
     .dropdown-content {
@@ -46,70 +62,193 @@
       position: absolute;
       right: 0;
       background-color: #f9f9f9;
-      min-width: 160px;
+      min-width: 140px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 6px;
-      z-index: 100;
-      text-align: left;
+      border-radius: 5px;
+      z-index: 1000;
+      font-family: 'Roboto', sans-serif;
     }
 
     .dropdown-content a {
       color: #002868;
-      padding: 12px 16px;
+      padding: 10px 14px;
       text-decoration: none;
       display: block;
-      font-weight: 700;
-      border-bottom: 1px solid #ddd;
-      font-family: Arial, sans-serif;
-    }
-
-    .dropdown-content a:last-child {
-      border-bottom: none;
+      font-weight: 600;
     }
 
     .dropdown-content a:hover {
       background-color: #b22234;
       color: white;
+      border-radius: 5px;
     }
 
-    .dropdown:hover .dropdown-content {
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
       display: block;
     }
 
-    main {
+    main.content {
       padding: 2rem;
-      max-width: 900px;
-      margin: 3rem auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgb(0 0 0 / 0.1);
+      max-width: 1000px;
+      margin: 0 auto;
+      flex-grow: 1;
     }
 
-    h1 {
-      color: #002868;
-      font-family: 'Bebas Neue', cursive;
-      font-size: 2.8rem;
+    main.content h2 {
+      font-size: 2rem;
+      color: #b22234;
       margin-bottom: 1rem;
+      font-family: 'Bebas Neue', cursive;
+    }
+
+    #billList {
+      margin-bottom: 3rem;
+    }
+
+    .bill-box {
+      background: #ffffff;
+      border: 1px solid #ccc;
+      border-left: 5px solid #002868;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 6px;
+    }
+
+    .bill-box:hover {
+      transform: scale(1.02);
+      background-color: #f9f9f9;
+    }
+
+    iframe.congress-map {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background-color: #002868;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Senate</h1>
-    <nav>
-      <div class="dropdown" aria-label="Menu options">
-        <button class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu">&#x2630;</button>
-        <div id="dropdown-menu" class="dropdown-content" role="menu" aria-hidden="true">
-          <a href="index.html" role="menuitem">Home</a>
-          <a href="house.html" role="menuitem">House</a>
-          <a href="senate.html" role="menuitem">Senate</a>
-          <a href="chat.html" role="menuitem">Chat Room</a>
-        </div>
+    <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" />
+    <h1>Power to the People 🗽</h1>
+
+    <nav class="dropdown" aria-label="Navigation menu">
+      <button class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu">☰</button>
+      <div id="dropdown-menu" class="dropdown-content" role="menu" aria-hidden="true">
+        <a href="index.html" role="menuitem">Home</a>
+        <a href="house.html" role="menuitem">House</a>
+        <a href="senate.html" role="menuitem" aria-current="page">Senate</a>
+        <a href="chat.html" role="menuitem">Chat Room</a>
       </div>
     </nav>
   </header>
-  <main>
-    <p>Content about the Senate will go here.</p>
+
+  <main class="content" role="main">
+    <h2>New Bills in the Senate</h2>
+    <div id="billList">
+      <p>Loading recent bills...</p>
+    </div>
+
+    <h2>Congressional Map</h2>
+    <iframe
+      class="congress-map"
+      src="https://www.c-span.org/congress/directory/"
+      title="Senate Congressional Map"
+      aria-label="Senate Congressional Map"
+      loading="lazy"
+    ></iframe>
   </main>
+
+  <footer>
+    Connect Inc. • Powered by Civic Engagement 🇺🇸
+  </footer>
+
+  <script>
+    // Dropdown ARIA toggle (optional for better accessibility)
+    const dropbtn = document.querySelector('.dropbtn');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    dropbtn.addEventListener('click', () => {
+      const expanded = dropbtn.getAttribute('aria-expanded') === 'true';
+      dropbtn.setAttribute('aria-expanded', !expanded);
+      dropdownMenu.style.display = expanded ? 'none' : 'block';
+      dropdownMenu.setAttribute('aria-hidden', expanded);
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', e => {
+      if (!dropbtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropbtn.setAttribute('aria-expanded', 'false');
+        dropdownMenu.style.display = 'none';
+        dropdownMenu.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Fetch recent bills from the congress.gov API
+    document.addEventListener("DOMContentLoaded", async () => {
+      const apiKey = 'y8qkZHP97Jchrz3MAH4z0EcWhmRrpXbN2vQvcbzM'; // Your API key here
+      const url = 'https://api.congress.gov/v3/bill?congress=118&chamber=senate&format=json';
+
+      try {
+        const res = await fetch(url, {
+          headers: { 'X-API-Key': apiKey }
+        });
+
+        if (!res.ok) throw new Error('API request failed');
+
+        const data = await res.json();
+        const bills = data.bills || [];
+
+        const container = document.getElementById("billList");
+        container.innerHTML = '';
+
+        if (bills.length === 0) {
+          container.innerHTML = '<p>No recent bills available.</p>';
+          return;
+        }
+
+        bills.slice(0, 5).forEach(bill => {
+          const box = document.createElement("div");
+          box.className = 'bill-box';
+          box.onclick = () => window.open(bill.url || '#', '_blank');
+          box.tabIndex = 0;
+          box.setAttribute('role', 'button');
+          box.setAttribute('aria-label', `Open details for bill: ${bill.title || 'No title'}`);
+          box.onkeypress = (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              window.open(bill.url || '#', '_blank');
+            }
+          };
+
+          box.innerHTML = `
+            <strong>${bill.title || 'Untitled Bill'}</strong><br>
+            <small>Introduced: ${bill.introducedDate || 'N/A'}</small><br>
+            <p>${bill.summary || 'No summary available.'}</p>
+          `;
+
+          container.appendChild(box);
+        });
+      } catch (error) {
+        console.error('Error fetching bills:', error);
+        document.getElementById("billList").innerHTML = '<p>Error loading bills.</p>';
+      }
+    });
+  </script>
 </body>
 </html>
