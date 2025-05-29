@@ -2,284 +2,203 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Power to the People 🗽</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Power to the People 🗽 - Connect Inc.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom, #ffffff, #f4f6f8);
-      color: #222;
+      background: linear-gradient(to bottom, #fdfdfd, #f1f3f5);
+      color: #1a1a1a;
     }
 
     header {
-      background-color: #002868;
+      background-color: #1b365d;
       color: white;
       padding: 2rem 1rem 5rem;
-      position: relative;
       text-align: center;
-      overflow: hidden;
+      position: relative;
     }
 
-    header img.flag {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      height: 50px;
-    }
-
-    header h1 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 2.8rem;
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
       margin: 0;
-      letter-spacing: 1px;
-    }
-
-    /* Dropdown menu styles */
-    nav {
-      position: absolute;
-      top: 20px;
-      right: 20px;
     }
 
     .dropdown {
-      position: relative;
-      display: inline-block;
+      position: absolute;
+      top: 20px;
+      right: 30px;
     }
 
-    .dropbtn {
-      background: none;
-      border: none;
+    .dropdown button {
+      background-color: #1b365d;
       color: white;
+      border: none;
       font-size: 1.5rem;
       cursor: pointer;
-      font-weight: bold;
-      user-select: none;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
       right: 0;
-      background-color: #004080;
-      min-width: 140px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
-      border-radius: 6px;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
       z-index: 1;
     }
 
     .dropdown-content a {
-      color: white;
-      padding: 10px 14px;
+      color: #1b365d;
+      padding: 12px 16px;
       text-decoration: none;
       display: block;
-      font-weight: 600;
-      font-size: 1rem;
     }
 
     .dropdown-content a:hover {
-      background-color: #003060;
+      background-color: #ddd;
     }
 
     .dropdown:hover .dropdown-content {
       display: block;
     }
 
-    /* Scroll arrow */
-    .scroll-arrow {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2rem;
-      color: white;
-      animation: bounce 1.5s infinite;
-      cursor: pointer;
-      transition: opacity 0.3s ease;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
-      40% { transform: translate(-50%, -10px); }
-      60% { transform: translate(-50%, -5px); }
-    }
-
-    .scroll-arrow.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    main {
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .intro {
-      max-width: 800px;
-      margin: 0 auto 3rem;
-      font-size: 1.2rem;
-      line-height: 1.6;
-    }
-
     .leaders {
       display: flex;
-      justify-content: center;
-      gap: 3rem;
       flex-wrap: wrap;
+      justify-content: center;
       margin-top: 2rem;
+      gap: 2rem;
     }
 
     .leader {
-      max-width: 250px;
       text-align: center;
+      max-width: 200px;
     }
 
     .leader img {
       width: 100%;
-      max-width: 200px;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     .leader h3 {
-      margin-top: 1rem;
       font-size: 1.1rem;
-      color: #002868;
+      color: #1b365d;
+      margin: 0.5rem 0 0.2rem;
     }
 
     .leader p {
       font-size: 0.9rem;
-      color: #444;
-      margin-top: 0.4rem;
-      font-style: italic;
+      margin: 0;
     }
 
     .creators-section {
-      margin-top: 8rem;
+      background: #f9f9f9;
       padding: 4rem 2rem;
-      background-color: #fefefe;
-      border-top: 2px solid #ccc;
       text-align: center;
+      margin-top: 5rem;
     }
 
     .creators-section h2 {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Playfair Display', serif;
       font-size: 2.5rem;
+      margin-bottom: 1.5rem;
       color: #b22234;
-      margin-bottom: 2rem;
     }
 
     .creator-photo {
       width: 200px;
       height: 200px;
-      background-color: #ddd;
+      margin: 0 auto 1rem;
+      background-color: #ccc;
       border-radius: 100px;
-      margin: 0 auto 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      color: #666;
-      font-family: Georgia, serif;
+      color: white;
+      font-size: 1.2rem;
     }
 
     .creator-text {
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
-      font-family: Georgia, serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
-      line-height: 1.8;
-      color: #333;
+      line-height: 1.7;
     }
 
     footer {
-      background-color: #002868;
+      background-color: #1b365d;
       color: white;
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
-      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" />
     <h1>Power to the People 🗽</h1>
-    <nav>
-      <div class="dropdown">
-        <button class="dropbtn" aria-label="Options menu">&#8942;</button>
-        <div class="dropdown-content" role="menu" aria-label="Dropdown menu">
-          <a href="index.html" role="menuitem">Home</a>
-          <a href="house.html" role="menuitem">House</a>
-          <a href="senate.html" role="menuitem">Senate</a>
-          <a href="chat.html" role="menuitem">Chat Room</a>
-        </div>
+    <div class="dropdown">
+      <button>☰</button>
+      <div class="dropdown-content">
+        <a href="index.html">Home</a>
+        <a href="house.html">House</a>
+        <a href="senate.html">Senate</a>
+        <a href="chat.html">Chat Room</a>
       </div>
-    </nav>
-    <div class="scroll-arrow" id="scrollArrow">⬇️</div>
+    </div>
   </header>
 
   <main>
-    <div class="intro">
-      <p><strong>Welcome to Connect Inc.</strong> — a civic tech platform helping you stay informed on U.S. government activity, legislation, and leadership. Stay engaged and empowered.</p>
-    </div>
+    <section>
+      <h2 style="font-family: 'Playfair Display', serif; text-align: center;">Current Leadership</h2>
+      <div class="leaders">
+        <div class="leader">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Donald_Trump_official_portrait.jpg" alt="President Donald Trump"/>
+          <h3>President Donald Trump</h3>
+          <p>45th & 47th President of the United States.</p>
+        </div>
+        <div class="leader">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/JD_Vance_2023.jpg" alt="Vice President JD Vance"/>
+          <h3>Vice President JD Vance</h3>
+          <p>Serving as the 49th Vice President.</p>
+        </div>
+        <div class="leader">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Mike_Johnson_Speaker_of_the_United_States_House_of_Representatives.jpg" alt="Speaker Mike Johnson"/>
+          <h3>Speaker Mike Johnson</h3>
+          <p>Current Speaker of the House.</p>
+        </div>
+        <div class="leader">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/John_Roberts_official_SCOTUS_portrait.jpg" alt="Chief Justice John Roberts"/>
+          <h3>Chief Justice John Roberts</h3>
+          <p>Chief Justice of the U.S. Supreme Court.</p>
+        </div>
+      </div>
+    </section>
 
-    <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Current Administration</h2>
-    <div class="leaders">
-      <div class="leader">
-        <img src="https://www.whitehouse.gov/wp-content/uploads/2025/01/President-Donald-J-Trump.jpg" alt="President Donald J. Trump" />
-        <h3>President Donald J. Trump</h3>
-        <p>47th President of the United States since January 20, 2025.</p>
+    <section class="creators-section">
+      <h2>Creators</h2>
+      <div class="creator-photo">Photo Coming Soon</div>
+      <div class="creator-text">
+        <p>
+          Meet the Creators, Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for the citizens of The United States to come together and talk about these issues and make their voice heard in legislation.
+        </p>
+        <p>
+          The people have forgotten the fact that the congressmen and women in D.C. work for the people, not for their own interests. We want the everyday voter to connect with their elected official, publicly or anonymously, and give the power of this great country back to the PEOPLE!
+        </p>
       </div>
-      <div class="leader">
-        <img src="https://www.whitehouse.gov/wp-content/uploads/2025/01/Vice-President-JD-Vance.jpg" alt="Vice President JD Vance" />
-        <h3>Vice President JD Vance</h3>
-        <p>50th Vice President of the United States since January 20, 2025.</p>
-      </div>
-      <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Mike_Johnson_116th_Congress_2020.jpg" alt="Speaker Mike Johnson" />
-        <h3>Speaker Mike Johnson</h3>
-        <p>Current Speaker of the House of Representatives.</p>
-      </div>
-      <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/John_Roberts_2010.jpg" alt="Chief Justice John Roberts" />
-        <h3>Chief Justice John Roberts</h3>
-        <p>Chief Justice of the United States Supreme Court since 2005.</p>
-      </div>
-    </div>
+    </section>
   </main>
-
-  <!-- Creators Section -->
-  <section class="creators-section">
-    <h2>Creators</h2>
-    <div class="creator-photo">
-      Photo Coming Soon
-    </div>
-    <div class="creator-text">
-      <p>
-        Meet the Creators, Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for the citizens of The United States to come together and talk about these issues and make their voice heard in legislation.
-      </p>
-      <p>
-        The people have forgotten the fact that the congressmen and women in D.C. work for the people, not for their own interests. We want the everyday voter to connect with their elected official, publicly or anonymously, and give the power of this great country back to the PEOPLE!
-      </p>
-    </div>
-  </section>
 
   <footer>
     Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
 
-  <script>
-    window.addEventListener("scroll", () => {
-      const arrow = document.getElementById("scrollArrow");
-      if (window.scrollY > 100) {
-        arrow.classList.add("hidden");
-      } else {
-        arrow.classList.remove("hidden");
-      }
-    });
-  </script>
 </body>
 </html>
