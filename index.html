@@ -36,22 +36,39 @@
       letter-spacing: 1px;
     }
 
-    nav {
+    .menu-button {
       position: absolute;
       top: 20px;
       right: 20px;
-    }
-
-    nav a {
+      font-size: 1.8rem;
+      background: none;
+      border: none;
       color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-      font-size: 1rem;
+      cursor: pointer;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    .dropdown {
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: none;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #002868;
+      font-weight: bold;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
     }
 
     .scroll-arrow {
@@ -166,61 +183,6 @@
   <header>
     <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" />
     <h1>Power to the People 🗽</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="house.html">House</a>
-      <a href="senate.html">Senate</a>
-    </nav>
-    <div class="scroll-arrow" id="scrollArrow">⬇️</div>
-  </header>
 
-  <main>
-    <div class="intro">
-      <p><strong>Welcome to Connect Inc.</strong> — a civic tech platform helping you stay informed on U.S. government activity, legislation, and leadership. Stay engaged and empowered.</p>
-    </div>
-
-    <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Current Administration</h2>
-    <div class="leaders">
-      <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Joe_Biden_presidential_portrait.jpg" alt="President Joe Biden" />
-        <h3>President Joe Biden</h3>
-      </div>
-      <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Kamala_Harris_Vice_Presidential_Portrait.jpg" alt="Vice President Kamala Harris" />
-        <h3>Vice President Kamala Harris</h3>
-      </div>
-    </div>
-  </main>
-
-  <!-- Creators Section -->
-  <section class="creators-section">
-    <h2>Creators</h2>
-    <div class="creator-photo">
-      Photo Coming Soon
-    </div>
-    <div class="creator-text">
-      <p>
-        Meet the Creators, Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for the citizens of The United States to come together and talk about these issues and make their voice heard in legislation.
-      </p>
-      <p>
-        The people have forgotten the fact that the congressmen and women in D.C. work for the people, not for their own interests. We want the everyday voter to connect with their elected official, publicly or anonymously, and give the power of this great country back to the PEOPLE!
-      </p>
-    </div>
-  </section>
-
-  <footer>
-    Connect Inc. • Powered by Civic Engagement 🇺🇸
-  </footer>
-
-  <script>
-    window.addEventListener("scroll", () => {
-      const arrow = document.getElementById("scrollArrow");
-      if (window.scrollY > 100) {
-        arrow.classList.add("hidden");
-      } else {
-        arrow.classList.remove("hidden");
-      }
-    });
-  </script>
-</body>
-</html>
+    <button class="menu-button" id="menuButton" aria-label="Options menu">☰</button>
+    <div class="dropdown" id="dropdownMenu">
