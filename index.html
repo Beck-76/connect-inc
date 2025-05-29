@@ -231,10 +231,23 @@
       border: none;
       cursor: pointer;
       border-radius: 5px;
+      color: white;
+    }
+
+    .popup-content button:nth-child(2) {
+      background-color: #3b82f6; /* Democrat - Blue */
+    }
+
+    .popup-content button:nth-child(3) {
+      background-color: #ef4444; /* Republican - Red */
+    }
+
+    .popup-content button:nth-child(4) {
+      background-color: #6b7280; /* Independent - Gray */
     }
 
     .popup-content button:hover {
-      background-color: #eee;
+      opacity: 0.85;
     }
   </style>
 </head>
@@ -286,7 +299,6 @@
     </div>
   </main>
 
-  <!-- Creators Section -->
   <section class="creators-section">
     <h2>Creators</h2>
     <div class="creator-photo">Photo Coming Soon</div>
@@ -300,12 +312,17 @@
     Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
 
-  <!-- Scroll arrow logic -->
   <script>
     window.addEventListener("scroll", () => {
       const arrow = document.getElementById("scrollArrow");
       arrow.classList.toggle("hidden", window.scrollY > 100);
     });
+
+    function selectParty(letter) {
+      document.getElementById('partyLetter').textContent = letter;
+      document.getElementById('partyLetter').style.display = 'inline-block';
+      document.getElementById('partyPopup').style.display = 'none';
+    }
   </script>
 
   <!-- Political party popup -->
@@ -317,13 +334,5 @@
       <button onclick="selectParty('I')">Independent</button>
     </div>
   </div>
-
-  <script>
-    function selectParty(letter) {
-      document.getElementById('partyLetter').textContent = letter;
-      document.getElementById('partyLetter').style.display = 'inline-block';
-      document.getElementById('partyPopup').style.display = 'none';
-    }
-  </script>
 </body>
 </html>
