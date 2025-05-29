@@ -168,7 +168,7 @@
     <h2>Congressional Map</h2>
     <iframe
       class="congress-map"
-      src="https://www.c-span.org/congress/directory/"
+      src="https://www.senate.gov/general/contact_information/senators_cfm.cfm"
       title="Senate Congressional Map"
       aria-label="Senate Congressional Map"
       loading="lazy"
@@ -180,7 +180,7 @@
   </footer>
 
   <script>
-    // Dropdown ARIA toggle (optional for better accessibility)
+    // Dropdown ARIA toggle
     const dropbtn = document.querySelector('.dropbtn');
     const dropdownMenu = document.getElementById('dropdown-menu');
 
@@ -200,7 +200,7 @@
       }
     });
 
-    // Fetch recent bills from the congress.gov API
+    // Fetch recent bills from Congress.gov API (Senate chamber)
     document.addEventListener("DOMContentLoaded", async () => {
       const apiKey = 'y8qkZHP97Jchrz3MAH4z0EcWhmRrpXbN2vQvcbzM'; // Your API key here
       const url = 'https://api.congress.gov/v3/bill?congress=118&chamber=senate&format=json';
