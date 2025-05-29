@@ -2,56 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Connect Inc. - Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Power to the People 🗽 - Connect Inc.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom, #ffffff, #f0f0f0);
-      color: #333;
+      background: linear-gradient(to bottom, #ffffff, #f4f6f8);
+      color: #222;
     }
 
     header {
-      background: #002868;
+      background-color: #002868;
       color: white;
-      padding: 1.5rem;
-      text-align: center;
+      padding: 2rem 1rem 5rem;
       position: relative;
-      font-family: 'Bebas Neue', cursive;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    header img.flag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      height: 50px;
     }
 
     header h1 {
-      font-size: 3rem;
-      letter-spacing: 2px;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.8rem;
       margin: 0;
+      letter-spacing: 1px;
     }
 
-    .dropdown {
+    nav {
       position: absolute;
       top: 20px;
       right: 20px;
     }
 
-    .dropdown button {
-      background-color: #001f4d;
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
+    .dropdown {
+      position: relative;
+      display: inline-block;
       cursor: pointer;
-      font-size: 16px;
+    }
+
+    .dropbtn {
+      font-size: 1.5rem;
+      color: white;
+      user-select: none;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: white;
-      min-width: 150px;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 1;
       right: 0;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 6px;
+      z-index: 100;
+      text-align: left;
     }
 
     .dropdown-content a {
@@ -59,100 +75,196 @@
       padding: 12px 16px;
       text-decoration: none;
       display: block;
-      font-weight: bold;
+      font-weight: 700;
+      border-bottom: 1px solid #ddd;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
     }
 
     .dropdown-content a:hover {
-      background-color: #f1f1f1;
+      background-color: #b22234;
+      color: white;
     }
 
     .dropdown:hover .dropdown-content {
       display: block;
     }
 
-    main {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
+    .scroll-arrow {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: white;
+      animation: bounce 1.5s infinite;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
     }
 
-    .official {
-      flex: 1 1 300px;
-      max-width: 300px;
-      margin: 1rem;
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+      40% { transform: translate(-50%, -10px); }
+      60% { transform: translate(-50%, -5px); }
+    }
+
+    .scroll-arrow.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    main {
+      padding: 2rem;
       text-align: center;
     }
 
-    .official img {
+    .intro {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .leaders {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .leader {
+      max-width: 250px;
+    }
+
+    .leader img {
       width: 100%;
       max-width: 200px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
-    .official h3 {
+    .leader h3 {
       margin-top: 1rem;
+      font-size: 1.1rem;
       color: #002868;
     }
 
-    .official p {
-      font-size: 0.95rem;
-      line-height: 1.4;
+    .creators-section {
+      margin-top: 8rem;
+      padding: 4rem 2rem;
+      background-color: #fefefe;
+      border-top: 2px solid #ccc;
+      text-align: center;
+    }
+
+    .creators-section h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.5rem;
+      color: #b22234;
+      margin-bottom: 2rem;
+    }
+
+    .creator-photo {
+      width: 200px;
+      height: 200px;
+      background-color: #ddd;
+      border-radius: 100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #666;
+      font-family: Georgia, serif;
+    }
+
+    .creator-text {
+      max-width: 900px;
+      margin: 0 auto;
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
     }
 
     footer {
-      background: #002868;
+      background-color: #002868;
       color: white;
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
-      margin-top: 2rem;
-    }
-
-    @media (max-width: 768px) {
-      main {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .official {
-        max-width: 90%;
-      }
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Connect Inc.</h1>
-    <div class="dropdown">
-      <button>☰ Options</button>
-      <div class="dropdown-content">
-        <a href="index.html">Home</a>
-        <a href="house.html">House</a>
-        <a href="senate.html">Senate</a>
-        <a href="chat.html">Chat Room</a>
+    <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" />
+    <h1>Power to the People 🗽</h1>
+    <nav>
+      <div class="dropdown" aria-label="Menu options">
+        <button class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu">&#x2630;</button>
+        <div id="dropdown-menu" class="dropdown-content" role="menu" aria-hidden="true">
+          <a href="index.html" role="menuitem">Home</a>
+          <a href="house.html" role="menuitem">House</a>
+          <a href="senate.html" role="menuitem">Senate</a>
+          <a href="chat.html" role="menuitem">Chat Room</a>
+        </div>
       </div>
-    </div>
+    </nav>
+    <div class="scroll-arrow" id="scrollArrow">⬇️</div>
   </header>
 
   <main>
-    <section class="official">
-      <img src="https://example.com/ai-president-biden.jpg" alt="AI-generated image of President Joe Biden" />
-      <h3>President Joe Biden</h3>
-      <p>Joseph R. Biden Jr. is the 46th President of the United States. With decades of public service, he brings experience and leadership to the nation, focusing on unity and progress.</p>
-    </section>
+    <div class="intro">
+      <p><strong>Welcome to Connect Inc.</strong> — a civic tech platform helping you stay informed on U.S. government activity, legislation, and leadership. Stay engaged and empowered.</p>
+    </div>
 
-    <section class="official">
-      <img src="https://example.com/ai-vice-president-harris.jpg" alt="AI-generated image of Vice President Kamala Harris" />
-      <h3>Vice President Kamala Harris</h3>
-      <p>Kamala D. Harris is the 49th Vice President of the United States and the first woman, first Black American, and first South Asian American to hold the office, championing justice and equality.</p>
-    </section>
+    <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Current Administration</h2>
+    <div class="leaders">
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Joe_Biden_presidential_portrait.jpg" alt="President Joe Biden" />
+        <h3>President Joe Biden</h3>
+      </div>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Kamala_Harris_Vice_Presidential_Portrait.jpg" alt="Vice President Kamala Harris" />
+        <h3>Vice President Kamala Harris</h3>
+      </div>
+    </div>
   </main>
 
+  <section class="creators-section">
+    <h2>Creators</h2>
+    <div class="creator-photo">
+      Photo Coming Soon
+    </div>
+    <div class="creator-text">
+      <p>
+        Meet the Creators, Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for the citizens of The United States to come together and talk about these issues and make their voice heard in legislation.
+      </p>
+      <p>
+        The people have forgotten the fact that the congressmen and women in D.C. work for the people, not for their own interests. We want the everyday voter to connect with their elected official, publicly or anonymously, and give the power of this great country back to the PEOPLE!
+      </p>
+    </div>
+  </section>
+
   <footer>
-    Connect Inc. • Empowering Civic Engagement ✨
+    Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
+
+  <script>
+    window.addEventListener("scroll", () => {
+      const arrow = document.getElementById("scrollArrow");
+      if (window.scrollY > 100) {
+        arrow.classList.add("hidden");
+      } else {
+        arrow.classList.remove("hidden");
+      }
+    });
+  </script>
 </body>
 </html>
