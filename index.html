@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Power to the People 🗽</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>Connect Inc. – Power to the People 🗽</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom, #f9fafc, #ffffff);
-      color: #222;
+      background: #f9f9f9;
     }
 
     header {
       background-color: #002868;
       color: white;
-      padding: 2rem 1rem 6rem;
-      position: relative;
+      padding: 2rem 1rem 5rem;
       text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
     }
 
     header h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Bebas Neue', cursive;
       font-size: 3rem;
       margin: 0;
     }
@@ -31,16 +29,16 @@
     .dropdown {
       position: absolute;
       top: 20px;
-      right: 30px;
+      right: 20px;
     }
 
     .dropdown button {
       background-color: #002868;
       color: white;
       border: none;
-      font-size: 1.7rem;
+      padding: 10px;
+      font-size: 1rem;
       cursor: pointer;
-      user-select: none;
     }
 
     .dropdown-content {
@@ -48,110 +46,78 @@
       position: absolute;
       right: 0;
       background-color: white;
-      min-width: 160px;
+      min-width: 120px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      z-index: 10;
-      border-radius: 4px;
+      z-index: 1;
     }
 
     .dropdown-content a {
       color: #002868;
-      padding: 12px 16px;
+      padding: 10px;
       text-decoration: none;
       display: block;
-      font-weight: 600;
     }
 
     .dropdown-content a:hover {
-      background-color: #b22234;
-      color: white;
+      background-color: #ddd;
     }
 
     .dropdown:hover .dropdown-content {
       display: block;
     }
 
-    main {
-      max-width: 1000px;
-      margin: 2rem auto 4rem;
-      padding: 0 1rem;
-    }
-
     .leaders {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2.5rem;
-      margin-bottom: 4rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 2rem auto;
+      flex-wrap: wrap;
+      max-width: 1000px;
     }
 
     .leader {
-      background: #fefefe;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: center;
+      max-width: 250px;
     }
 
     .leader img {
-      width: 150px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-      margin-bottom: 1rem;
-    }
-
-    .leader h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      margin: 0.4rem 0 0.2rem;
-      color: #002868;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
     }
 
     .leader p {
       font-size: 0.9rem;
       color: #444;
-      margin: 0;
+    }
+
+    .arrow-down {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: -4rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    .arrow-down a {
+      text-decoration: none;
+      color: white;
     }
 
     .creators-section {
+      padding: 4rem 2rem;
       background-color: #fefefe;
-      border-top: 3px solid #b22234;
-      padding: 3rem 1rem;
-      max-width: 900px;
-      margin: 0 auto 4rem;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.07);
-      font-family: Georgia, serif;
-      color: #333;
       text-align: center;
     }
 
-    .creators-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      margin-bottom: 1.8rem;
-      color: #b22234;
-    }
-
     .creator-photo {
-      width: 200px;
-      height: 200px;
-      margin: 0 auto 1.5rem;
-      border-radius: 100px;
-      background-color: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      color: #666;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-    }
-
-    .creator-text p {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-      font-size: 1.1rem;
+      width: 180px;
+      height: 180px;
+      background: #ccc;
+      margin: auto;
+      border-radius: 50%;
+      line-height: 180px;
+      font-size: 1rem;
     }
 
     footer {
@@ -159,103 +125,61 @@
       color: white;
       text-align: center;
       padding: 1rem;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-    }
-
-    .scroll-arrow {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2rem;
-      color: #b22234;
-      cursor: pointer;
-      animation: bounce 1.5s infinite;
-      z-index: 100;
-      transition: opacity 0.3s ease;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-      40% { transform: translateX(-50%) translateY(-10px); }
-      60% { transform: translateX(-50%) translateY(-5px); }
-    }
-
-    .scroll-arrow.hidden {
-      opacity: 0;
-      pointer-events: none;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Power to the People 🗽</h1>
+    <div class="dropdown">
+      <button>☰ Menu</button>
+      <div class="dropdown-content">
+        <a href="index.html">Home</a>
+        <a href="house.html">House</a>
+        <a href="senate.html">Senate</a>
+        <a href="chat.html">Chat</a>
+      </div>
+    </div>
+  </header>
 
-<header>
-  <h1>Power to the People 🗽</h1>
-  <div class="dropdown">
-    <button>☰</button>
-    <div class="dropdown-content">
-      <a href="index.html">Home</a>
-      <a href="house.html">House</a>
-      <a href="senate.html">Senate</a>
-      <a href="chat.html">Chat Room</a>
-    </div>
-  </div>
-</header>
-
-<main>
-  <div class="leaders">
-    <div class="leader">
-      <img src="https://images.generated.photos/kY5rZCqvN9z7Rks1HWpnnXXi9El-6aVCoOxu8uZxtkI/rs:fit:512:512/czM6Ly9p/bWFnZXMv/Z2VuZXJhdGVk/L3Bob3RvLXRp/bWUtMTY4NDUy/NDE3MC0wNjAw/LmpwZw.jpg" alt="President Joe Biden">
-      <h3>President Joe Biden</h3>
-      <p>The 46th President of the United States, focused on unity and progress.</p>
-    </div>
-    <div class="leader">
-      <img src="https://images.generated.photos/rAxwPu64lQRk_DFef0o-M9oCZavZ6T46aj5hW3Wh0MI/rs:fit:512:512/czM6Ly9pbWFnZXMvcG9ydHJhaXQv/NjE3MjU0LmpwZw.jpg" alt="Vice President Kamala Harris">
-      <h3>Vice President Kamala Harris</h3>
-      <p>The first female Vice President, championing justice and equality.</p>
-    </div>
-    <div class="leader">
-      <img src="https://images.generated.photos/gI5Ah0OvHkR7ZKyzbKNUxTYrmpldl4qlfTLRdz4yUZs/rs:fit:512:512/czM6Ly9pbWFnZXMvcG9ydHJhaXQvNjA4MjM4LmpwZw.jpg" alt="Speaker Mike Johnson">
-      <h3>Speaker Mike Johnson</h3>
-      <p>Leading the House with constitutional conservatism and reform.</p>
-    </div>
-    <div class="leader">
-      <img src="https://images.generated.photos/X-jcsTg0db0u0hUJn8wV7fju3ZwCuJ2DzXlPSVmN1ME/rs:fit:512:512/czM6Ly9pbWFnZXMvcG9ydHJhaXQvNTEwMDI2LmpwZw.jpg" alt="Chief Justice John Roberts">
-      <h3>Chief Justice John Roberts</h3>
-      <p>Presiding over the Supreme Court with dedication to the Constitution.</p>
-    </div>
+  <div class="arrow-down">
+    <a href="#creators">⬇️</a>
   </div>
 
-  <section class="creators-section">
-    <h2>Creators</h2>
-    <div class="creator-photo">
-      Photo Coming Soon
+  <main>
+    <h2 style="text-align:center; color:#b22234;">Current Administration</h2>
+    <div class="leaders">
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Donald_Trump_official_portrait.jpg" alt="President Donald Trump">
+        <h3>President Donald Trump</h3>
+        <p>45th President of the United States, currently serving a second term.</p>
+      </div>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/J._D._Vance_118th_Congress_portrait.jpg" alt="Vice President JD Vance">
+        <h3>Vice President JD Vance</h3>
+        <p>Vice President under Donald Trump, author and advocate for working Americans.</p>
+      </div>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Mike_Johnson_118th_Congress.jpg" alt="Speaker Mike Johnson">
+        <h3>Speaker Mike Johnson</h3>
+        <p>Speaker of the U.S. House of Representatives, representing Louisiana's 4th district.</p>
+      </div>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/John_Roberts_2010.jpg" alt="Chief Justice John Roberts">
+        <h3>Chief Justice John Roberts</h3>
+        <p>Chief Justice of the United States Supreme Court, appointed in 2005.</p>
+      </div>
     </div>
-    <div class="creator-text">
-      <p>Elijah Beck — Civic Tech Enthusiast and Developer</p>
-      <p>Connect Inc. — Dedicated to empowering citizens through technology</p>
+
+    <div class="creators-section" id="creators">
+      <h2>Creators</h2>
+      <div class="creator-photo">Photo Coming Soon</div>
+      <p><strong>Samuel Milner</strong> and <strong>Elijah Beck</strong> have followed politics since a young age and seek to heal our divided nation. This platform is for Americans to reconnect with democracy.</p>
     </div>
-  </section>
-</main>
+  </main>
 
-<div class="scroll-arrow" id="scrollArrow">⬇️</div>
-
-<footer>
-  Connect Inc. • Powered by Civic Engagement 🇺🇸
-</footer>
-
-<script>
-  // Hide scroll arrow on scroll down
-  const scrollArrow = document.getElementById('scrollArrow');
-  window.addEventListener('scroll', () => {
-    if(window.scrollY > 50){
-      scrollArrow.classList.add('hidden');
-    } else {
-      scrollArrow.classList.remove('hidden');
-    }
-  });
-</script>
-
+  <footer>
+    Connect Inc. • Powered by Civic Engagement 🇺🇸
+  </footer>
 </body>
 </html>
