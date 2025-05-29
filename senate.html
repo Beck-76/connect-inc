@@ -2,65 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Senate - Connect Inc.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>U.S. Senate – Connect Inc.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom, #ffffff, #f0f0f0);
-      color: #333;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+      color: #222;
     }
 
     header {
-      background: #002868;
+      background-color: #002868;
       color: white;
-      padding: 1.5rem;
+      padding: 2rem 1rem 4rem;
       text-align: center;
       position: relative;
-      font-family: 'Bebas Neue', cursive;
     }
 
-    header img {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      height: 50px;
-    }
-
-    header h1 {
+    h1 {
+      font-family: 'Playfair Display', serif;
       font-size: 3rem;
-      letter-spacing: 2px;
       margin: 0;
     }
 
     .dropdown {
       position: absolute;
       top: 20px;
-      right: 20px;
+      right: 30px;
     }
 
     .dropdown button {
-      background-color: #001f4d;
+      background-color: #002868;
       color: white;
       border: none;
-      padding: 10px;
-      border-radius: 5px;
+      font-size: 1.5rem;
       cursor: pointer;
-      font-size: 16px;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: white;
-      min-width: 150px;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 1;
       right: 0;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
     }
 
     .dropdown-content a {
@@ -68,65 +56,58 @@
       padding: 12px 16px;
       text-decoration: none;
       display: block;
-      font-weight: bold;
     }
 
     .dropdown-content a:hover {
-      background-color: #f1f1f1;
+      background-color: #ddd;
     }
 
     .dropdown:hover .dropdown-content {
       display: block;
     }
 
-    .content {
+    main {
       padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: row;
       gap: 2rem;
     }
 
     .left-section {
-      flex: 1 1 300px;
+      flex: 1;
       max-width: 300px;
     }
 
-    .right-section {
-      flex: 2 1 600px;
-    }
-
-    .official {
-      text-align: center;
-    }
-
-    .official img {
+    .left-section img {
       width: 100%;
-      max-width: 200px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
-    .official h3 {
+    .left-section h3 {
       margin-top: 1rem;
+      font-size: 1.2rem;
       color: #002868;
     }
 
-    .bill-box {
-      background: #ffffff;
-      border: 1px solid #ccc;
-      border-left: 5px solid #002868;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s;
-      cursor: pointer;
+    .left-section p {
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
 
-    .bill-box:hover {
-      transform: scale(1.02);
-      background-color: #f9f9f9;
+    .right-section {
+      flex: 3;
+    }
+
+    .right-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #b22234;
+      margin-top: 0;
+    }
+
+    .bill-list ul {
+      padding-left: 1.2rem;
     }
 
     .contact-section {
@@ -136,73 +117,34 @@
     .contact-section a {
       display: inline-block;
       margin-top: 1rem;
+      padding: 0.7rem 1.2rem;
       background-color: #002868;
       color: white;
-      padding: 10px 20px;
       text-decoration: none;
-      border-radius: 5px;
       font-weight: bold;
+      border-radius: 4px;
     }
 
     .contact-section a:hover {
-      background-color: #00194a;
+      background-color: #001b4f;
     }
 
     footer {
-      background: #002868;
+      background-color: #002868;
       color: white;
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
+      margin-top: 3rem;
     }
   </style>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-      const apiKey = 'y8qkZHP97Jchrz3MAH4z0EcWhmRrpXbN2vQvcbzM';
-      const url = 'https://api.congress.gov/v3/bill?congress=118&chamber=senate&format=json';
-
-      try {
-        const res = await fetch(url, {
-          headers: { 'X-API-Key': apiKey }
-        });
-
-        if (!res.ok) throw new Error('API request failed');
-
-        const data = await res.json();
-        const bills = data.bills || [];
-        const container = document.getElementById("billList");
-        container.innerHTML = '';
-
-        if (bills.length === 0) {
-          container.innerHTML = '<p>No recent bills available.</p>';
-          return;
-        }
-
-        bills.slice(0, 5).forEach(bill => {
-          const box = document.createElement("div");
-          box.className = 'bill-box';
-          box.onclick = () => window.open(bill.url || '#', '_blank');
-          box.innerHTML = `
-            <strong>${bill.title || 'Untitled Bill'}</strong><br>
-            <small>Introduced: ${bill.introducedDate || 'N/A'}</small><br>
-            <p>${bill.summary || 'No summary available.'}</p>
-          `;
-          container.appendChild(box);
-        });
-      } catch (error) {
-        console.error('Error fetching bills:', error);
-        document.getElementById("billList").innerHTML = '<p>Error loading bills.</p>';
-      }
-    });
-  </script>
 </head>
 <body>
+
   <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="US Flag" />
     <h1>United States Senate</h1>
     <div class="dropdown">
-      <button>☰ Options</button>
+      <button>☰</button>
       <div class="dropdown-content">
         <a href="index.html">Home</a>
         <a href="house.html">House</a>
@@ -212,30 +154,35 @@
     </div>
   </header>
 
-  <main class="content">
+  <main>
     <section class="left-section">
-      <div class="official">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/J.D._Vance_118th_Congress.jpg" alt="JD Vance" />
-        <h3>JD Vance</h3>
-        <p>JD Vance serves as the President of the Senate. A U.S. Senator from Ohio, he presides over Senate sessions in the absence of the Vice President and helps shape legislative priorities in the chamber.</p>
-      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/JD_Vance_2023.jpg" alt="JD Vance">
+      <h3>Vice President JD Vance</h3>
+      <p>JD Vance serves as the 49th Vice President of the United States and is the President of the Senate. As a former U.S. Senator and bestselling author of *Hillbilly Elegy*, Vance brings a strong voice on issues affecting working-class Americans and plays a crucial role in tie-breaking Senate votes.</p>
     </section>
 
     <section class="right-section">
-      <h2 style="color: #b22234;">Recent Senate Bills</h2>
-      <div id="billList">
-        <p>Loading recent bills...</p>
+      <h2>Current Senate Bills</h2>
+      <div class="bill-list">
+        <ul>
+          <li>S.123 – Affordable Clean Energy Expansion Act</li>
+          <li>S.456 – Veterans Healthcare Modernization Act</li>
+          <li>S.789 – Federal Data Privacy Protection Act</li>
+          <li>S.1011 – American Infrastructure Renewal Act</li>
+        </ul>
       </div>
 
       <div class="contact-section">
         <h2>Contact Your Senator</h2>
-        <a href="https://www.senate.gov/senators/senators-contact.htm" target="_blank">Visit the Official Senate Contact Page</a>
+        <p>You can contact your U.S. Senator directly via the official U.S. Senate website below.</p>
+        <a href="https://www.senate.gov/senators/senators-contact.htm" target="_blank">Visit Contact Page</a>
       </div>
     </section>
   </main>
 
   <footer>
-    Connect Inc. • Powered by Democracy ✨
+    Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
+
 </body>
 </html>
