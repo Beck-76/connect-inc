@@ -16,7 +16,7 @@
     header {
       background-color: #002868;
       color: white;
-      padding: 2rem 1rem 6rem;
+      padding: 2rem 1rem 5rem;
       position: relative;
       text-align: center;
       overflow: hidden;
@@ -56,14 +56,14 @@
 
     .scroll-arrow {
       position: absolute;
-      bottom: 20px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: white;
       animation: bounce 1.5s infinite;
       cursor: pointer;
-      z-index: 10;
+      transition: opacity 0.3s ease;
     }
 
     @keyframes bounce {
@@ -73,7 +73,8 @@
     }
 
     .scroll-arrow.hidden {
-      display: none;
+      opacity: 0;
+      pointer-events: none;
     }
 
     main {
