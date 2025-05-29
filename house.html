@@ -33,76 +33,61 @@
 
     header h1 {
       font-size: 3rem;
+      margin: 0;
       letter-spacing: 2px;
-      margin: 0;
     }
 
-    /* Top-right menu */
-    nav.menu {
+    .dropdown {
       position: absolute;
-      top: 15px;
-      right: 15px;
+      top: 20px;
+      right: 20px;
+      display: inline-block;
     }
 
-    nav.menu ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 1rem;
-    }
-
-    nav.menu ul li a {
+    .dropbtn {
+      background: none;
+      border: none;
       color: white;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 0.3rem 0.6rem;
-      border-radius: 5px;
-      transition: background-color 0.2s ease;
-    }
-
-    nav.menu ul li a:hover,
-    nav.menu ul li a:focus {
-      background-color: rgba(255, 255, 255, 0.3);
-      outline: none;
-    }
-
-    .content {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-      flex-grow: 1;
-    }
-
-    .content h2 {
-      font-size: 2rem;
-      color: #002868;
-      margin-bottom: 1rem;
-    }
-
-    .bill-box {
-      background: #ffffff;
-      border: 1px solid #ccc;
-      border-left: 5px solid #b22234;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s;
+      font-size: 1.8rem;
       cursor: pointer;
+      padding: 0;
       user-select: none;
     }
 
-    .bill-box:hover {
-      transform: scale(1.02);
-      background-color: #f9f9f9;
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #7f0000;
+      min-width: 140px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 6px;
     }
 
-    iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-      margin-top: 2rem;
-      border-radius: 8px;
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-weight: 600;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f44336;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+      display: block;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     footer {
@@ -111,76 +96,32 @@
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
+      margin-top: auto;
     }
   </style>
-  <script>
-    const apiKey = 'y8qkZHP97Jchrz3MAH4z0EcWhmRrpXbN2vQvcbzM';
-    const url = 'https://api.congress.gov/v3/bill?congress=118&chamber=house&format=json';
-
-    async function loadBills() {
-      try {
-        const res = await fetch(url, {
-          headers: { 'X-API-Key': apiKey }
-        });
-        if (!res.ok) throw new Error('API request failed');
-        const data = await res.json();
-        const bills = data.bills.slice(0, 5);
-
-        const container = document.getElementById("billList");
-        container.innerHTML = '';
-        bills.forEach(bill => {
-          const box = document.createElement("div");
-          box.className = 'bill-box';
-          box.onclick = () => window.open(bill.url, '_blank');
-          box.tabIndex = 0;
-          box.setAttribute('role', 'button');
-          box.setAttribute('aria-label', `Open details for bill: ${bill.title}`);
-          box.onkeypress = (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              window.open(bill.url, '_blank');
-            }
-          };
-          box.innerHTML = `
-            <strong>${bill.title}</strong><br>
-            <small>Introduced: ${bill.introducedDate}</small><br>
-            <p>${bill.summary || 'No summary available.'}</p>
-          `;
-          container.appendChild(box);
-        });
-      } catch (error) {
-        console.error('Error fetching bills:', error);
-        document.getElementById("billList").innerHTML = '<p>Error loading bills.</p>';
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", loadBills);
-  </script>
 </head>
 <body>
   <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="US Flag" />
-    <h1>United States House of Representatives</h1>
-    <nav class="menu" aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="house.html" aria-current="page">House</a></li>
-        <li><a href="senate.html">Senate</a></li>
-      </ul>
-    </nav>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" />
+    <h1>House of Representatives</h1>
+    <div class="dropdown" tabindex="0">
+      <button class="dropbtn" aria-label="Navigation Menu">☰</button>
+      <div class="dropdown-content" role="menu">
+        <a href="index.html" role="menuitem">Home</a>
+        <a href="house.html" role="menuitem">House</a>
+        <a href="senate.html" role="menuitem">Senate</a>
+        <a href="chat.html" role="menuitem">Chat Room</a>
+      </div>
+    </div>
   </header>
 
-  <main class="content" role="main">
-    <h2>New Bills in the House</h2>
-    <div id="billList">
-      <p>Loading recent bills...</p>
-    </div>
-
-    <h2>Congressional Map</h2>
-    <iframe src="https://www.c-span.org/congress/directory/">Congressional House Map</iframe>
+  <main>
+    <h2>Welcome to the House Page</h2>
+    <p>This is where you can explore the members and legislation of the House of Representatives.</p>
   </main>
 
   <footer>
-    Connect Inc. • Powered by Democracy ✨
+    Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
 </body>
 </html>
