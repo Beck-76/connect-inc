@@ -1,49 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chat Room - Connect Inc.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>Connect Inc. – Power to the People 🗽</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+      background: #f9f9f9;
     }
 
     header {
-      background-color: rgba(0, 40, 104, 0.95);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background-color: #002868;
+      color: white;
+      padding: 2rem 1rem 5rem;
+      text-align: center;
       position: relative;
     }
 
     header h1 {
       font-family: 'Bebas Neue', cursive;
-      font-size: 2rem;
+      font-size: 3rem;
       margin: 0;
-      color: #fff;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      color: #f0f0f0;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .dropdown {
-      position: relative;
-      display: inline-block;
+      position: absolute;
+      top: 20px;
+      right: 20px;
     }
 
-    .dropbtn {
-      background-color: #fff;
-      color: #002868;
-      padding: 10px 16px;
-      font-size: 1rem;
+    .dropdown button {
+      background-color: #002868;
+      color: white;
       border: none;
+      padding: 10px;
+      font-size: 1rem;
       cursor: pointer;
-      font-weight: bold;
-      border-radius: 5px;
     }
 
     .dropdown-content {
@@ -51,17 +56,16 @@
       position: absolute;
       right: 0;
       background-color: white;
-      min-width: 160px;
+      min-width: 120px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       z-index: 1;
     }
 
     .dropdown-content a {
       color: #002868;
-      padding: 12px 16px;
+      padding: 10px;
       text-decoration: none;
       display: block;
-      font-weight: bold;
     }
 
     .dropdown-content a:hover {
@@ -72,76 +76,74 @@
       display: block;
     }
 
-    main {
-      padding: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      margin-top: 2rem;
+    .leaders {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 2rem auto;
+      flex-wrap: wrap;
+      max-width: 1000px;
     }
 
-    h2 {
-      font-family: 'Bebas Neue', cursive;
+    .leader {
+      text-align: center;
+      max-width: 250px;
+    }
+
+    .leader img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    .leader p {
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    .arrow-down {
+      text-align: center;
       font-size: 2rem;
-      color: #fff;
-      margin-bottom: 1rem;
+      margin-top: -4rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    .arrow-down a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .creators-section {
+      padding: 4rem 2rem;
+      background-color: #fefefe;
       text-align: center;
     }
 
-    .chat-box {
-      border: 2px solid #fff;
-      height: 400px;
-      overflow-y: auto;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-
-    .chat-message {
-      margin-bottom: 10px;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-    }
-
-    .input-area {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .input-area input {
-      flex: 1;
-      padding: 0.75rem;
+    .creator-photo {
+      width: 180px;
+      height: 180px;
+      background: #ccc;
+      margin: auto;
+      border-radius: 50%;
+      line-height: 180px;
       font-size: 1rem;
-      border-radius: 5px;
-      border: none;
-    }
-
-    .input-area button {
-      padding: 0.75rem 1.2rem;
-      background-color: #002868;
-      color: #fff;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
     }
 
     footer {
+      background-color: #002868;
+      color: white;
       text-align: center;
       padding: 1rem;
-      margin-top: 2rem;
-      color: #fff;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Connect Inc. 🗽</h1>
+    <h1>Power to the People 🗽</h1>
+    <p class="quote">“The strength of a democracy lies in the ability of its citizens to question, engage, and actively participate in shaping its future.” – Barack Obama</p>
     <div class="dropdown">
-      <button class="dropbtn">☰ Menu</button>
+      <button>☰ Menu</button>
       <div class="dropdown-content">
         <a href="index.html">Home</a>
         <a href="house.html">House</a>
@@ -151,42 +153,44 @@
     </div>
   </header>
 
+  <div class="arrow-down">
+    <a href="#creators">⬇️</a>
+  </div>
+
   <main>
-    <h2>Chat Room</h2>
-    <div class="chat-box" id="chatBox">
-      <!-- Messages will appear here -->
+    <h2 style="text-align:center; color:#b22234;">Current Administration</h2>
+    <div class="leaders">
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Donald_Trump_official_portrait.jpg" alt="President Donald Trump">
+        <h3>President Donald Trump</h3>
+        <p>45th President of the United States, currently serving a second term.</p>
+      </div>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/J._D._Vance_118th_Congress_portrait.jpg" alt="Vice President JD Vance">
+        <h3>Vice President JD Vance</h3>
+        <p>Vice President under Donald Trump, author and advocate for working Americans.</p>
+      </div>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Mike_Johnson_118th_Congress.jpg" alt="Speaker Mike Johnson">
+        <h3>Speaker Mike Johnson</h3>
+        <p>Speaker of the U.S. House of Representatives, representing Louisiana's 4th district.</p>
+      </div>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/John_Roberts_2010.jpg" alt="Chief Justice John Roberts">
+        <h3>Chief Justice John Roberts</h3>
+        <p>Chief Justice of the United States Supreme Court, appointed in 2005.</p>
+      </div>
     </div>
-    <div class="input-area">
-      <input type="text" id="messageInput" placeholder="Type your message..." />
-      <button onclick="sendMessage()">Send</button>
+
+    <div class="creators-section" id="creators">
+      <h2>Creators</h2>
+      <div class="creator-photo">Photo Coming Soon</div>
+      <p><strong>Samuel Milner</strong> and <strong>Elijah Beck</strong> have followed politics since a young age and seek to heal our divided nation. This platform is for Americans to reconnect with democracy.</p>
     </div>
   </main>
 
   <footer>
-    Speak freely. Respect all voices. 🇺🇸
+    Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
-
-  <script>
-    const chatBox = document.getElementById('chatBox');
-    const messageInput = document.getElementById('messageInput');
-
-    function sendMessage() {
-      const message = messageInput.value.trim();
-      if (message !== '') {
-        const messageEl = document.createElement('div');
-        messageEl.className = 'chat-message';
-        messageEl.textContent = message;
-        chatBox.appendChild(messageEl);
-        messageInput.value = '';
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }
-    }
-
-    messageInput.addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
-  </script>
 </body>
 </html>
