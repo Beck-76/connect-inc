@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Power to the People 🗽 - Connect Inc.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Power to the People 🗽</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -36,38 +36,32 @@
       letter-spacing: 1px;
     }
 
-    nav {
+    .dropdown {
       position: absolute;
       top: 20px;
       right: 20px;
     }
 
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-    }
-
-    .dropbtn {
-      font-size: 1.5rem;
-      color: white;
-      user-select: none;
-      background: none;
+    .dropdown button {
+      background: white;
+      color: #002868;
       border: none;
-      padding: 0;
-      margin: 0;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
       right: 0;
-      background-color: #f9f9f9;
+      top: 40px;
+      background-color: white;
       min-width: 160px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 6px;
-      z-index: 100;
-      text-align: left;
+      z-index: 1;
     }
 
     .dropdown-content a {
@@ -75,18 +69,10 @@
       padding: 12px 16px;
       text-decoration: none;
       display: block;
-      font-weight: 700;
-      border-bottom: 1px solid #ddd;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    .dropdown-content a:last-child {
-      border-bottom: none;
     }
 
     .dropdown-content a:hover {
-      background-color: #b22234;
-      color: white;
+      background-color: #f1f1f1;
     }
 
     .dropdown:hover .dropdown-content {
@@ -205,17 +191,17 @@
   <header>
     <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" />
     <h1>Power to the People 🗽</h1>
-    <nav>
-      <div class="dropdown" aria-label="Menu options">
-        <button class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu">&#x2630;</button>
-        <div id="dropdown-menu" class="dropdown-content" role="menu" aria-hidden="true">
-          <a href="index.html" role="menuitem">Home</a>
-          <a href="house.html" role="menuitem">House</a>
-          <a href="senate.html" role="menuitem">Senate</a>
-          <a href="chat.html" role="menuitem">Chat Room</a>
-        </div>
+
+    <div class="dropdown">
+      <button>☰ Options</button>
+      <div class="dropdown-content">
+        <a href="index.html">Home</a>
+        <a href="house.html">House</a>
+        <a href="senate.html">Senate</a>
+        <a href="chat.html">Chat Room</a>
       </div>
-    </nav>
+    </div>
+
     <div class="scroll-arrow" id="scrollArrow">⬇️</div>
   </header>
 
@@ -227,21 +213,20 @@
     <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Current Administration</h2>
     <div class="leaders">
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Joe_Biden_presidential_portrait.jpg" alt="President Joe Biden" />
+        <img src="https://i.imgur.com/BB3ZS3S.jpg" alt="President Joe Biden AI portrait" />
         <h3>President Joe Biden</h3>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Kamala_Harris_Vice_Presidential_Portrait.jpg" alt="Vice President Kamala Harris" />
+        <img src="https://i.imgur.com/Lxljrf3.jpg" alt="Vice President Kamala Harris AI portrait" />
         <h3>Vice President Kamala Harris</h3>
       </div>
     </div>
   </main>
 
+  <!-- Creators Section -->
   <section class="creators-section">
     <h2>Creators</h2>
-    <div class="creator-photo">
-      Photo Coming Soon
-    </div>
+    <div class="creator-photo">Photo Coming Soon</div>
     <div class="creator-text">
       <p>
         Meet the Creators, Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for the citizens of The United States to come together and talk about these issues and make their voice heard in legislation.
