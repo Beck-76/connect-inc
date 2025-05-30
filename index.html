@@ -196,6 +196,7 @@
       padding: 1rem;
     }
 
+    /* Popups */
     .popup-overlay {
       position: fixed;
       top: 0;
@@ -341,39 +342,77 @@
     <div class="popup">
       <span class="close-btn" onclick="closeSignup()">×</span>
       <h2>Create an Account</h2>
-      <input type="text" placeholder="Name">
-      <input type="email" placeholder="Email">
-      <label><input type="checkbox"> Receive updates by email</label>
-      <button class="Republican" onclick="closeSignup()">Submit</button>
+      <input type="text" id="nameInput" placeholder="Name">
+      <input type="email" id="emailInput" placeholder="Email">
+      <label><input type="checkbox" id="updatesCheckbox"> Receive updates by email</label>
+      <button class="Republican" onclick="submitSignup()">Submit</button>
     </div>
   </div>
 
   <script>
+    // Show/hide party popup & save choice to localStorage
     function selectParty(letter) {
       document.getElementById("partyLetter").textContent = letter;
+      localStorage.setItem('partyLetter', letter);
       document.getElementById("partyPopup").style.display = "none";
       document.getElementById("signupPopup").style.display = "flex";
-      localStorage.setItem("partyLetter", letter);
+      loadSignupData();
     }
 
+    // Close signup popup
     function closeSignup() {
       document.getElementById("signupPopup").style.display = "none";
     }
 
-    window.onload = function () {
-      const savedParty = localStorage.getItem("partyLetter");
+    // Submit signup: save inputs to localStorage & close popup
+    function submitSignup() {
+      const name = document.getElementById('nameInput').value.trim();
+      const email = document.getElementById('emailInput').value.trim();
+      const updates = document.getElementById('updatesCheckbox').checked;
+
+      localStorage.setItem('signupName', name);
+      localStorage.setItem('signupEmail', email);
+      localStorage.setItem('signupUpdates', updates);
+
+      closeSignup();
+    }
+
+    // Load saved signup data if any
+    function loadSignupData() {
+      const savedName = localStorage.getItem('signupName') || '';
+      const savedEmail = localStorage.getItem('signupEmail') || '';
+      const savedUpdates = localStorage.getItem('signupUpdates') === 'true';
+
+      document.getElementById('nameInput').value = savedName;
+      document.getElementById('emailInput').value = savedEmail;
+      document.getElementById('updatesCheckbox').checked = savedUpdates;
+    }
+
+    // Load saved party and show/hide popups accordingly on page load
+    window.addEventListener("load", () => {
+      const savedParty = localStorage.getItem('partyLetter');
       if (savedParty) {
         document.getElementById("partyLetter").textContent = savedParty;
         document.getElementById("partyPopup").style.display = "none";
-      }
-    };
-
-    window.addEventListener("scroll", () => {
-      const arrow = document.getElementById("scrollArrow");
-      if (window.scrollY > 100) {
-        arrow.classList.add("hidden");
+        // Show signup popup if user hasn't signed up yet (check if name or email missing)
+        const savedName = localStorage.getItem('signupName');
+        const savedEmail = localStorage.getItem('signupEmail');
+        if (!savedName || !savedEmail) {
+          document.getElementById("signupPopup").style.display = "flex";
+          loadSignupData();
+        }
       } else {
-        arrow.classList.remove("hidden");
+        document.getElementById("partyPopup").style.display = "flex";
+      }
+    });
+
+    // Scroll arrow fade out on scroll
+    const scrollArrow = document.getElementById('scrollArrow');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        scrollArrow.classList.add('hidden');
+      } else {
+        scrollArrow.classList.remove('hidden');
       }
     });
   </script>
