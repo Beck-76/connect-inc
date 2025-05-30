@@ -238,6 +238,7 @@
     .popup .Democrat { background-color: #1877f2; }
     .popup .Republican { background-color: #b22234; }
     .popup .Independent { background-color: #555; }
+    .popup .PreferNot { background-color: gray; }
 
     .popup input[type="text"], .popup input[type="email"] {
       width: 100%;
@@ -333,6 +334,7 @@
       <button class="Democrat" onclick="selectParty('D')">Democrat</button>
       <button class="Republican" onclick="selectParty('R')">Republican</button>
       <button class="Independent" onclick="selectParty('I')">Independent</button>
+      <button class="PreferNot" onclick="selectParty('-')">Prefer not to say</button>
     </div>
   </div>
 
@@ -343,7 +345,7 @@
       <input type="text" placeholder="Name">
       <input type="email" placeholder="Email">
       <label><input type="checkbox"> Receive updates by email</label>
-      <button onclick="closeSignup()" style="background-color:#002868; color:white; margin-top: 1rem; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+      <button class="Republican" onclick="closeSignup()">Submit</button>
     </div>
   </div>
 
