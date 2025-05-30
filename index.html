@@ -196,7 +196,6 @@
       padding: 1rem;
     }
 
-    /* Popups */
     .popup-overlay {
       position: fixed;
       top: 0;
@@ -240,8 +239,7 @@
     .popup .Independent { background-color: #555; }
     .popup .PreferNot { background-color: gray; }
 
-    .popup input[type="text"],
-    .popup input[type="email"] {
+    .popup input[type="text"], .popup input[type="email"] {
       width: 100%;
       padding: 10px;
       margin: 0.5rem 0;
@@ -355,11 +353,20 @@
       document.getElementById("partyLetter").textContent = letter;
       document.getElementById("partyPopup").style.display = "none";
       document.getElementById("signupPopup").style.display = "flex";
+      localStorage.setItem("partyLetter", letter);
     }
 
     function closeSignup() {
       document.getElementById("signupPopup").style.display = "none";
     }
+
+    window.onload = function () {
+      const savedParty = localStorage.getItem("partyLetter");
+      if (savedParty) {
+        document.getElementById("partyLetter").textContent = savedParty;
+        document.getElementById("partyPopup").style.display = "none";
+      }
+    };
 
     window.addEventListener("scroll", () => {
       const arrow = document.getElementById("scrollArrow");
