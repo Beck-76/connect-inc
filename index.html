@@ -175,10 +175,14 @@
       background-color: #ddd;
       border-radius: 50%;
       margin: 0 auto 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
+      overflow: hidden;
+    }
+
+    .creator-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
     .creator-text {
@@ -342,7 +346,10 @@
 
   <section class="creators-section">
     <h2>Creators</h2>
-    <div class="creator-photo">Photo Coming Soon</div>
+    <div class="creator-photo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Portrait_Placeholder.png/200px-Portrait_Placeholder.png" 
+           alt="Creator Photo" />
+    </div>
     <div class="creator-text">
       <p>Meet the Creators: Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for citizens to come together and make their voice heard.</p>
       <p>The people have forgotten that the Congress works for the people, not for their own interests. We want voters to connect with their elected officials and return the power of this great country to the PEOPLE!</p>
@@ -353,6 +360,7 @@
     Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
 
+  <!-- Popups -->
   <div class="popup-overlay" id="partyPopup" style="display:none;">
     <div class="popup">
       <h2>What Political Party are you?</h2>
@@ -374,8 +382,8 @@
     </div>
   </div>
 
+  <!-- Script -->
   <script>
-    // Show popup on load
     window.addEventListener('load', () => {
       const storedParty = localStorage.getItem('party');
       if (storedParty) {
