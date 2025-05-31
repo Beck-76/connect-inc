@@ -128,23 +128,6 @@
       text-align: center;
     }
 
-    .register-vote {
-      display: inline-block;
-      margin: 2rem auto 1rem;
-      padding: 0.75rem 1.5rem;
-      background-color: #002868;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-    }
-
-    .register-vote:hover {
-      background-color: #b22234;
-    }
-
     .leaders {
       display: flex;
       justify-content: center;
@@ -213,6 +196,27 @@
       padding: 1rem;
     }
 
+    .register-link {
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+
+    .register-link a {
+      display: inline-block;
+      background-color: #3c3b6e;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .register-link a:hover {
+      background-color: #2a295c;
+    }
+
+    /* Popups */
     .popup-overlay {
       position: fixed;
       top: 0;
@@ -301,65 +305,135 @@
   </header>
 
   <main>
-    <a class="register-vote" href="https://www.vote.gov" target="_blank">Register to Vote Federally</a>
-
-    <div style="margin: 2rem auto;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Great_Seal_of_the_United_States_%28obverse%29.svg" alt="US Seal" style="width: 150px;" />
+    <div class="register-link">
+      <a href="https://www.fvap.gov/" target="_blank">Register to Vote Federally</a>
     </div>
 
-    <section class="leaders">
+    <div style="text-align:center; margin-top: 2rem;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Great_Seal_of_the_United_States_%28obverse%29.svg" 
+           alt="Great Seal of the United States" 
+           style="max-width: 150px; height: auto;" />
+    </div>
+
+    <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Current Leadership</h2>
+    <div class="leaders">
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg" alt="President Donald J. Trump" />
-        <h3>President Donald J. Trump</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Donald_Trump_official_portrait_%28cropped%29.jpg" alt="President Donald Trump" />
+        <h3>President Donald Trump</h3>
         <small>47th President of the United States</small>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/J._D._Vance_117th_Congress_portrait.jpg" alt="Vice President JD Vance" />
-        <h3>Vice President JD Vance</h3>
-        <small>50th Vice President of the United States</small>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Kamala_Harris_Vice_Presidential_Portrait.jpg" alt="Vice President Kamala Harris" />
+        <h3>Vice President Kamala Harris</h3>
+        <small>49th Vice President of the United States</small>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Speaker_Mike_Johnson_official_photo.jpg" alt="Speaker Mike Johnson" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Speaker_Mike_Johnson_Portrait.jpg" alt="Speaker Mike Johnson" />
         <h3>Speaker Mike Johnson</h3>
-        <small>56th Speaker of the House</small>
+        <small>Speaker of the House</small>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Official_roberts_CJ.jpg" alt="Chief Justice John Roberts" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/John_Roberts_official_SCOTUS_portrait.jpg" alt="Chief Justice John Roberts" />
         <h3>Chief Justice John Roberts</h3>
-        <small>17th Chief Justice of the United States</small>
+        <small>Chief Justice of the Supreme Court</small>
       </div>
-    </section>
-
-    <section class="creators-section">
-      <h2>The Creators</h2>
-      <div class="creator-photo">Your Photo</div>
-      <p class="creator-text">Connect Inc. was built with a vision to empower civic engagement. Our mission is to make government information accessible, transparent, and interactive for all Americans.</p>
-    </section>
+    </div>
   </main>
 
+  <section class="creators-section">
+    <h2>Creators</h2>
+    <div class="creator-photo">Photo Coming Soon</div>
+    <div class="creator-text">
+      <p>Meet the Creators: Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for citizens to come together and make their voice heard.</p>
+      <p>The people have forgotten that the Congress works for the people, not for their own interests. We want voters to connect with their elected officials and return the power of this great country to the PEOPLE!</p>
+    </div>
+  </section>
+
   <footer>
-    &copy; 2025 Connect Inc. All rights reserved.
+    Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
 
+  <div class="popup-overlay" id="partyPopup" style="display:none;">
+    <div class="popup">
+      <h2>What Political Party are you?</h2>
+      <button class="Democrat" onclick="selectParty('D')">Democrat</button>
+      <button class="Republican" onclick="selectParty('R')">Republican</button>
+      <button class="Independent" onclick="selectParty('I')">Independent</button>
+      <button class="PreferNot" onclick="selectParty('-')">Prefer not to say</button>
+    </div>
+  </div>
+
+  <div class="popup-overlay" id="signupPopup" style="display:none;">
+    <div class="popup">
+      <span class="close-btn" onclick="closeSignup()">×</span>
+      <h2 id="signupHeader">Create an Account</h2>
+      <input type="text" placeholder="Name" id="nameInput">
+      <input type="email" placeholder="Email" id="emailInput">
+      <label><input type="checkbox" id="updatesCheckbox"> Receive updates by email</label>
+      <button class="Republican" onclick="submitSignup()">Submit</button>
+    </div>
+  </div>
+
   <script>
-    let party = localStorage.getItem("party");
-    if (!party) {
-      openPartyPopup();
-    } else {
-      document.getElementById("partyLetter").textContent = party.charAt(0);
+    // Show popup on load
+    window.addEventListener('load', () => {
+      const storedParty = localStorage.getItem('party');
+      if (storedParty) {
+        document.getElementById("partyLetter").textContent = storedParty;
+        if (localStorage.getItem('signupName') || localStorage.getItem('signupEmail')) {
+          document.getElementById("signupPopup").style.display = "flex";
+          document.getElementById("signupHeader").textContent = "Sign In";
+          loadSignupData();
+        } else {
+          document.getElementById("signupPopup").style.display = "flex";
+        }
+      } else {
+        document.getElementById("partyPopup").style.display = "flex";
+      }
+    });
+
+    function selectParty(letter) {
+      document.getElementById("partyLetter").textContent = letter;
+      localStorage.setItem('party', letter);
+      document.getElementById("partyPopup").style.display = "none";
+      document.getElementById("signupPopup").style.display = "flex";
     }
 
     function openPartyPopup() {
-      // Implement your popup logic here
-      alert("Party selection popup goes here.");
+      document.getElementById("partyPopup").style.display = "flex";
     }
 
-    const scrollArrow = document.getElementById('scrollArrow');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        scrollArrow.classList.add('hidden');
+    function closeSignup() {
+      document.getElementById("signupPopup").style.display = "none";
+    }
+
+    function submitSignup() {
+      const name = document.getElementById("nameInput").value.trim();
+      const email = document.getElementById("emailInput").value.trim();
+      const updates = document.getElementById("updatesCheckbox").checked;
+      if (name && email) {
+        localStorage.setItem('signupName', name);
+        localStorage.setItem('signupEmail', email);
+        localStorage.setItem('signupUpdates', updates ? "yes" : "no");
+        alert("Thank you!");
+        closeSignup();
       } else {
-        scrollArrow.classList.remove('hidden');
+        alert("Please enter both name and email.");
+      }
+    }
+
+    function loadSignupData() {
+      document.getElementById("nameInput").value = localStorage.getItem('signupName') || '';
+      document.getElementById("emailInput").value = localStorage.getItem('signupEmail') || '';
+      document.getElementById("updatesCheckbox").checked = localStorage.getItem('signupUpdates') === "yes";
+    }
+
+    window.addEventListener('scroll', () => {
+      const arrow = document.getElementById('scrollArrow');
+      if (window.scrollY > 30) {
+        arrow.classList.add('hidden');
+      } else {
+        arrow.classList.remove('hidden');
       }
     });
   </script>
