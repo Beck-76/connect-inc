@@ -135,14 +135,8 @@
       gap: 2rem;
     }
 
-    /* Added subtle frames around current leaders */
     .leader {
       width: 200px;
-      border: 2px solid #002868;
-      border-radius: 10px;
-      padding: 10px;
-      box-sizing: border-box;
-      background: white;
     }
 
     .leader img {
@@ -320,135 +314,136 @@
     </div>
 
     <div style="text-align:center; margin-top: 2rem;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Great_Seal_of_the_United_States_%28obverse%29.svg" alt="United States Seal" style="width:150px;"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Great_Seal_of_the_United_States_%28obverse%29.svg" 
+           alt="Great Seal of the United States" 
+           style="max-width: 150px; height: auto;" />
     </div>
 
-    <h2 style="margin-top: 3rem; color: #002868;">Current Leadership</h2>
-    <div class="leaders" id="leadershipSection">
-      <div class="leader" id="president">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg" alt="President Donald Trump" />
-        <h3>Donald Trump</h3>
-        <small>President of the United States</small>
+    <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Current Leadership</h2>
+    <div class="leaders">
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Donald_Trump_official_portrait_%28cropped%29.jpg" alt="President Donald Trump" />
+        <h3>President Donald Trump</h3>
+        <small>45th and 47th President of the United States</small>
       </div>
-      <div class="leader" id="vice-president">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/JD_Vance_Official_Portrait_2023.jpg" alt="Vice President JD Vance" />
-        <h3>JD Vance</h3>
-        <small>Vice President of the United States</small>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Kamala_Harris_Vice_Presidential_Portrait.jpg" alt="Vice President Kamala Harris" />
+        <h3>Vice President JD Vance</h3>
+        <small>50th Vice President of the United States</small>
       </div>
-      <div class="leader" id="speaker">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Mike_Johnson_Official_Portrait.jpg" alt="Speaker Mike Johnson" />
-        <h3>Mike Johnson</h3>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Speaker_Mike_Johnson_Portrait.jpg" alt="Speaker Mike Johnson" />
+        <h3>Speaker Mike Johnson</h3>
         <small>Speaker of the House</small>
       </div>
-      <div class="leader" id="chief-justice">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/John_Roberts_Official_SCOTUS_Portrait.jpg" alt="Chief Justice John Roberts" />
-        <h3>John Roberts</h3>
-        <small>Chief Justice of the United States</small>
+      <div class="leader">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/John_Roberts_official_SCOTUS_portrait.jpg" alt="Chief Justice John Roberts" />
+        <h3>Chief Justice John Roberts</h3>
+        <small>Chief Justice of the Supreme Court</small>
       </div>
     </div>
-
-    <section class="creators-section" aria-label="Creators Section">
-      <h2>Creators</h2>
-      <div class="creator-photo">
-        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Elijah Beck" />
-      </div>
-      <div class="creator-text">
-        Elijah Beck is a civic tech developer passionate about empowering citizens with knowledge and tools to engage meaningfully with government.
-      </div>
-    </section>
   </main>
 
+  <section class="creators-section">
+    <h2>Creators</h2>
+    <div class="creator-photo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Portrait_Placeholder.png/200px-Portrait_Placeholder.png" 
+           alt="Creator Photo" />
+    </div>
+    <div class="creator-text">
+      <p>Meet the Creators: Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for citizens to come together and make their voice heard.</p>
+      <p>The people have forgotten that the Congress works for the people, not for their own interests. We want voters to connect with their elected officials and return the power of this great country to the PEOPLE!</p>
+    </div>
+  </section>
+
   <footer>
-    &copy; 2025 Connect Inc. | All Rights Reserved
+    Connect Inc. • Powered by Civic Engagement 🇺🇸
   </footer>
 
-  <!-- Party selection popup -->
-  <div id="partyPopup" class="popup-overlay" style="display:none;">
-    <div class="popup" role="dialog" aria-modal="true" aria-labelledby="partyTitle">
-      <span class="close-btn" onclick="closePartyPopup()" aria-label="Close popup">&times;</span>
-      <h2 id="partyTitle">Select Your Political Party</h2>
-      <button class="Democrat" onclick="setParty('D')">Democrat</button>
-      <button class="Republican" onclick="setParty('R')">Republican</button>
-      <button class="Independent" onclick="setParty('I')">Independent</button>
-      <button class="PreferNot" onclick="setParty('N')">Prefer Not to Say</button>
+  <!-- Popups -->
+  <div class="popup-overlay" id="partyPopup" style="display:none;">
+    <div class="popup">
+      <h2>What Political Party are you?</h2>
+      <button class="Democrat" onclick="selectParty('D')">Democrat</button>
+      <button class="Republican" onclick="selectParty('R')">Republican</button>
+      <button class="Independent" onclick="selectParty('I')">Independent</button>
+      <button class="PreferNot" onclick="selectParty('-')">Prefer not to say</button>
     </div>
   </div>
 
-  <!-- Account creation popup -->
-  <div id="accountPopup" class="popup-overlay" style="display:none;">
-    <div class="popup" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
-      <span class="close-btn" onclick="closeAccountPopup()" aria-label="Close popup">&times;</span>
-      <h2 id="accountTitle">Create an Account</h2>
-      <form id="accountForm" onsubmit="return saveAccount(event)">
-        <input type="text" id="userName" name="userName" placeholder="Full Name" required />
-        <input type="email" id="userEmail" name="userEmail" placeholder="Email Address" required />
-        <label><input type="checkbox" id="optIn" name="optIn" /> I want to receive updates and news</label>
-        <button type="submit" style="background:#002868;">Submit</button>
-      </form>
+  <div class="popup-overlay" id="signupPopup" style="display:none;">
+    <div class="popup">
+      <span class="close-btn" onclick="closeSignup()">×</span>
+      <h2 id="signupHeader">Create an Account</h2>
+      <input type="text" placeholder="Name" id="nameInput">
+      <input type="email" placeholder="Email" id="emailInput">
+      <label><input type="checkbox" id="updatesCheckbox"> Receive updates by email</label>
+      <button class="Republican" onclick="submitSignup()">Submit</button>
     </div>
   </div>
 
+  <!-- Script -->
   <script>
-    // Scroll arrow hide on scroll
-    const scrollArrow = document.getElementById('scrollArrow');
-    window.addEventListener('scroll', () => {
-      if(window.scrollY > 50){
-        scrollArrow.classList.add('hidden');
+    window.addEventListener('load', () => {
+      const storedParty = localStorage.getItem('party');
+      if (storedParty) {
+        document.getElementById("partyLetter").textContent = storedParty;
+        if (localStorage.getItem('signupName') || localStorage.getItem('signupEmail')) {
+          document.getElementById("signupPopup").style.display = "flex";
+          document.getElementById("signupHeader").textContent = "Sign In";
+          loadSignupData();
+        } else {
+          document.getElementById("signupPopup").style.display = "flex";
+        }
       } else {
-        scrollArrow.classList.remove('hidden');
+        document.getElementById("partyPopup").style.display = "flex";
       }
     });
 
-    // Party popup controls
+    function selectParty(letter) {
+      document.getElementById("partyLetter").textContent = letter;
+      localStorage.setItem('party', letter);
+      document.getElementById("partyPopup").style.display = "none";
+      document.getElementById("signupPopup").style.display = "flex";
+    }
+
     function openPartyPopup() {
-      document.getElementById('partyPopup').style.display = 'flex';
-    }
-    function closePartyPopup() {
-      document.getElementById('partyPopup').style.display = 'none';
-    }
-    function setParty(letter) {
-      localStorage.setItem('partyLetter', letter);
-      updatePartyDisplay();
-      closePartyPopup();
-      openAccountPopup();
-    }
-    function updatePartyDisplay() {
-      const letter = localStorage.getItem('partyLetter');
-      const partyDiv = document.getElementById('partyLetter');
-      partyDiv.textContent = letter ? letter : '';
+      document.getElementById("partyPopup").style.display = "flex";
     }
 
-    // Account popup controls
-    function openAccountPopup() {
-      if(!localStorage.getItem('userName')){
-        document.getElementById('accountPopup').style.display = 'flex';
-      }
-    }
-    function closeAccountPopup() {
-      document.getElementById('accountPopup').style.display = 'none';
-    }
-    function saveAccount(e) {
-      e.preventDefault();
-      const name = document.getElementById('userName').value;
-      const email = document.getElementById('userEmail').value;
-      const optIn = document.getElementById('optIn').checked;
-      localStorage.setItem('userName', name);
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('optIn', optIn);
-      alert('Thank you for creating an account!');
-      closeAccountPopup();
-      return false;
+    function closeSignup() {
+      document.getElementById("signupPopup").style.display = "none";
     }
 
-    // On load
-    window.onload = function(){
-      updatePartyDisplay();
-      if(!localStorage.getItem('partyLetter')) {
-        openPartyPopup();
+    function submitSignup() {
+      const name = document.getElementById("nameInput").value.trim();
+      const email = document.getElementById("emailInput").value.trim();
+      const updates = document.getElementById("updatesCheckbox").checked;
+      if (name && email) {
+        localStorage.setItem('signupName', name);
+        localStorage.setItem('signupEmail', email);
+        localStorage.setItem('signupUpdates', updates ? "yes" : "no");
+        alert("Thank you!");
+        closeSignup();
       } else {
-        openAccountPopup();
+        alert("Please enter both name and email.");
       }
     }
+
+    function loadSignupData() {
+      document.getElementById("nameInput").value = localStorage.getItem('signupName') || '';
+      document.getElementById("emailInput").value = localStorage.getItem('signupEmail') || '';
+      document.getElementById("updatesCheckbox").checked = localStorage.getItem('signupUpdates') === "yes";
+    }
+
+    window.addEventListener('scroll', () => {
+      const arrow = document.getElementById('scrollArrow');
+      if (window.scrollY > 30) {
+        arrow.classList.add('hidden');
+      } else {
+        arrow.classList.remove('hidden');
+      }
+    });
   </script>
 </body>
-</html>
+</html> new code, got it?
