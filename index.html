@@ -123,6 +123,25 @@
       60% { transform: translate(-50%, -5px); }
     }
 
+    .register-link {
+      margin: 2rem auto -1rem;
+      text-align: center;
+    }
+
+    .register-link a {
+      background-color: #002868;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .register-link a:hover {
+      background-color: #001e50;
+    }
+
     main {
       padding: 2rem;
       text-align: center;
@@ -284,6 +303,10 @@
     <div class="scroll-arrow" id="scrollArrow">⬇️</div>
   </header>
 
+  <div class="register-link">
+    <a href="https://www.nass.org/Can-I-Vote" target="_blank">Register to Vote Federally</a>
+  </div>
+
   <main>
     <div style="text-align:center; margin-top: 2rem;">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Great_Seal_of_the_United_States_%28obverse%29.svg" 
@@ -351,12 +374,11 @@
   </div>
 
   <script>
-    // Show popup on load or load stored data
     window.addEventListener('load', () => {
       const storedParty = localStorage.getItem('party');
-      if(storedParty) {
+      if (storedParty) {
         document.getElementById("partyLetter").textContent = storedParty;
-        if(localStorage.getItem('signupName') || localStorage.getItem('signupEmail')) {
+        if (localStorage.getItem('signupName') || localStorage.getItem('signupEmail')) {
           document.getElementById("signupPopup").style.display = "flex";
           loadSignupData();
         }
@@ -384,7 +406,7 @@
       const name = document.getElementById("nameInput").value.trim();
       const email = document.getElementById("emailInput").value.trim();
       const updates = document.getElementById("updatesCheckbox").checked;
-      if(name && email) {
+      if (name && email) {
         localStorage.setItem('signupName', name);
         localStorage.setItem('signupEmail', email);
         localStorage.setItem('signupUpdates', updates ? "yes" : "no");
@@ -404,10 +426,9 @@
       document.getElementById("updatesCheckbox").checked = updates;
     }
 
-    // Scroll arrow fade out on scroll
     window.addEventListener('scroll', () => {
       const arrow = document.getElementById('scrollArrow');
-      if(window.scrollY > 30) {
+      if (window.scrollY > 30) {
         arrow.classList.add('hidden');
       } else {
         arrow.classList.remove('hidden');
