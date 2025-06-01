@@ -236,6 +236,9 @@
       <button onclick="quickMessage('Who is the President?')">🇺🇸 President</button>
       <button onclick="quickMessage('How do I vote?')">🗳️ Voting Info</button>
       <button onclick="quickMessage('Tell me a fact')">📜 Civics Fact</button>
+      <button onclick="quickMessage('What is the Bill of Rights?')">📜 Bill of Rights</button>
+      <button onclick="quickMessage('What are the three branches of government?')">🏛️ Branches of Govt</button>
+      <button onclick="quickMessage('How many Supreme Court Justices are there?')">⚖️ Supreme Court</button>
     </div>
     <div class="input-area">
       <input type="text" id="messageInput" placeholder="Type your message..." />
@@ -271,7 +274,13 @@
       "There are 435 voting members in the House of Representatives.",
       "A U.S. Senator serves a 6-year term.",
       "The First Amendment protects freedom of speech and religion.",
-      "George Washington was the first President of the United States."
+      "George Washington was the first President of the United States.",
+      "The Bill of Rights includes the first 10 amendments to the Constitution.",
+      "The three branches of government are the Legislative, Executive, and Judicial.",
+      "The Supreme Court has 9 Justices.",
+      "Citizens must be 18 years old to vote in federal elections.",
+      "The President can serve a maximum of two 4-year terms.",
+      "The Speaker of the House is the third in line for the presidency."
     ];
 
     if (!userName) {
@@ -326,28 +335,91 @@
     }
 
     function getBotResponse(message) {
-      const lower = message.toLowerCase();
-      if (lower.includes("president")) return `Hi ${userName}! 🇺🇸 The President is Donald J. Trump.`;
-      if (lower.includes("speaker")) return "📢 The Speaker of the House is Mike Johnson.";
-      if (lower.includes("vote")) return "🗳️ You can register to vote at vote.gov.";
-      if (lower.includes("fact")) return "📜 " + civicsFacts[Math.floor(Math.random() * civicsFacts.length)];
-      if (lower.includes("i just voted")) return "🎉 🇺🇸 Thank you for voting — your voice matters!";
-      return `Hi ${userName}! 🤖 I'm CivBot — ask me about U.S. government, voting, or civics.`;
+      const msg = message.toLowerCase().trim();
+
+      // Expanded CivBot knowledge base
+      if (msg.includes('president')) {
+        return "The current President of the United States is Donald J. Trump, inaugurated on January 20, 2025.";
+      }
+      if (msg.includes('vice president')) {
+        return "The Vice President is Kamala Harris, serving as the 49th Vice President.";
+      }
+      if (msg.includes('speaker of the house')) {
+        return "Mike Johnson is the current Speaker of the House of Representatives.";
+      }
+      if (msg.includes('chief justice')) {
+        return "John Roberts is the Chief Justice of the U.S. Supreme Court.";
+      }
+      if (msg.includes('supreme court')) {
+        return "The Supreme Court consists of 9 Justices who serve lifetime appointments.";
+      }
+      if (msg.includes('bill of rights')) {
+        return "The Bill of Rights comprises the first 10 amendments to the U.S. Constitution, guaranteeing freedoms like speech, religion, and assembly.";
+      }
+      if (msg.includes('three branches') || msg.includes('branches of government')) {
+        return "The U.S. government has three branches: Legislative (makes laws), Executive (enforces laws), and Judicial (interprets laws).";
+      }
+      if (msg.includes('how do i vote') || msg.includes('voting')) {
+        return "To vote in federal elections, you must register in your state, be a U.S. citizen, and be at least 18 years old on Election Day.";
+      }
+      if (msg.includes('fact')) {
+        return civicsFacts[Math.floor(Math.random() * civicsFacts.length)];
+      }
+      if (msg.includes('who are you') || msg.includes('your name')) {
+        return "I'm CivBot, your friendly civic tech assistant here to help with questions about the U.S. government and voting.";
+      }
+      if (msg.includes('how many senators')) {
+        return "There are 100 U.S. Senators, two from each state.";
+      }
+      if (msg.includes('terms of president') || msg.includes('president term')) {
+        return "The President can serve a maximum of two four-year terms, totaling eight years.";
+      }
+      if (msg.includes('line of succession')) {
+        return "The line of succession after the President is the Vice President, then the Speaker of the House, followed by the President pro tempore of the Senate.";
+      }
+      if (msg.includes('constitution')) {
+        return "The U.S. Constitution is the supreme law of the land, ratified in 1788, establishing the framework of the federal government.";
+      }
+      if (msg.includes('who can vote')) {
+        return "Citizens 18 and older can vote in federal elections, provided they meet their state's registration requirements.";
+      }
+      if (msg.includes('term of senator')) {
+        return "U.S. Senators serve six-year terms, with elections staggered every two years.";
+      }
+      if (msg.includes('how a bill becomes a law')) {
+        return "A bill is proposed, then must pass both the House and Senate and be signed by the President to become law.";
+      }
+      if (msg.includes('emergency powers')) {
+        return "The President has certain emergency powers during crises, but they are limited by law and Congress oversight.";
+      }
+      if (msg.includes('impeachment')) {
+        return "Impeachment is the process by which the House can charge a federal official with misconduct, and the Senate can then remove them from office.";
+      }
+      if (msg.includes('citizenship')) {
+        return "Citizenship can be obtained by birth in the U.S., through parents, or by naturalization.";
+      }
+      // Default fallback
+      return "Sorry, I don't have info on that yet. Try asking about U.S. government, voting, or civics!";
     }
 
     function sendMessage() {
       const message = messageInput.value.trim();
-      if (message !== '') {
-        addMessage(message);
-        messageInput.value = '';
-        showTyping();
-        setTimeout(() => {
-          hideTyping();
-          const botReply = getBotResponse(message);
-          addMessage(botReply, true);
-        }, 1000);
-      }
+      if (!message) return;
+
+      addMessage(message, false);
+      messageInput.value = '';
+
+      showTyping();
+      setTimeout(() => {
+        const response = getBotResponse(message);
+        addMessage(response, true);
+        hideTyping();
+      }, 1000);
     }
+
+    messageInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
 
     function quickMessage(text) {
       messageInput.value = text;
@@ -358,12 +430,6 @@
       localStorage.removeItem('chatUserName');
       location.reload();
     }
-
-    messageInput.addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
   </script>
 </body>
 </html>
