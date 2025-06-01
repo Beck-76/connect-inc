@@ -173,13 +173,44 @@
     function sendMessage() {
       const message = messageInput.value.trim();
       if (message !== '') {
-        const messageEl = document.createElement('div');
-        messageEl.className = 'chat-message';
-        messageEl.textContent = message;
-        chatBox.appendChild(messageEl);
+        addMessage('You', message);
         messageInput.value = '';
         chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Simulate bot reply after a delay
+        setTimeout(() => {
+          botReply(message);
+        }, 1000);
       }
+    }
+
+    function addMessage(sender, text) {
+      const messageEl = document.createElement('div');
+      messageEl.className = 'chat-message';
+      messageEl.innerHTML = `<strong>${sender}:</strong> ${text}`;
+      chatBox.appendChild(messageEl);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function botReply(userMessage) {
+      let reply;
+
+      // Basic keyword response logic
+      const msg = userMessage.toLowerCase();
+
+      if (msg.includes('hello') || msg.includes('hi')) {
+        reply = "Hi there! Welcome to Connect Inc.'s Chat Room.";
+      } else if (msg.includes('help')) {
+        reply = "How can I assist you today? You can ask about Congress, voting, or site navigation.";
+      } else if (msg.includes('thanks') || msg.includes('thank you')) {
+        reply = "You're very welcome!";
+      } else if (msg.includes('who are you') || msg.includes('your name')) {
+        reply = "I'm CivBot 🤖 – your civic chat assistant!";
+      } else {
+        reply = "CivBot here 👋 – I'm still learning! Try asking about Congress or how to get involved civically.";
+      }
+
+      addMessage('CivBot 🤖', reply);
     }
 
     messageInput.addEventListener('keypress', function (e) {
