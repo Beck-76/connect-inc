@@ -177,10 +177,10 @@
         messageInput.value = '';
         chatBox.scrollTop = chatBox.scrollHeight;
 
-        // Simulate bot reply after a delay
+        // Simulate bot reply after delay
         setTimeout(() => {
           botReply(message);
-        }, 1000);
+        }, 900);
       }
     }
 
@@ -193,24 +193,29 @@
     }
 
     function botReply(userMessage) {
-      let reply;
-
-      // Basic keyword response logic
       const msg = userMessage.toLowerCase();
+      let reply = "";
 
-      if (msg.includes('hello') || msg.includes('hi')) {
-        reply = "Hi there! Welcome to Connect Inc.'s Chat Room.";
-      } else if (msg.includes('help')) {
-        reply = "How can I assist you today? You can ask about Congress, voting, or site navigation.";
-      } else if (msg.includes('thanks') || msg.includes('thank you')) {
-        reply = "You're very welcome!";
-      } else if (msg.includes('who are you') || msg.includes('your name')) {
-        reply = "I'm CivBot 🤖 – your civic chat assistant!";
+      // Enhanced responses with patriotic flair
+      if (msg.includes("hello") || msg.includes("hi")) {
+        reply = "Hello, fellow citizen! 🇺🇸 How can I assist you in your civic journey today?";
+      } else if (msg.includes("how do i contact") || msg.includes("reach my senator")) {
+        reply = "You can contact your senator through the Senate page—just click 'Contact Your Senator'! 🇺🇸";
+      } else if (msg.includes("house") || msg.includes("representative")) {
+        reply = "Representatives serve in the House to voice the will of the people. 🏛️ Want to view current House bills?";
+      } else if (msg.includes("vote") || msg.includes("register")) {
+        reply = "Fantastic! Every vote counts. Use the 'Register to Vote Federally' link on our homepage to get started. 🗳️";
+      } else if (msg.includes("who are you")) {
+        reply = "I'm CivBot 🤖, your patriotic assistant here to help you navigate Congress, voting, and civic resources.";
+      } else if (msg.includes("thank you") || msg.includes("thanks")) {
+        reply = "You're welcome, citizen! 🇺🇸 United we stand!";
+      } else if (msg.includes("president") || msg.includes("trump")) {
+        reply = "Donald J. Trump is the current President. You can find more on the homepage under 'Current Leadership'. 🇺🇸";
       } else {
-        reply = "CivBot here 👋 – I'm still learning! Try asking about Congress or how to get involved civically.";
+        reply = "Liberty and learning go hand in hand. 🗽 Ask me about contacting leaders, voting, or U.S. governance!";
       }
 
-      addMessage('CivBot 🤖', reply);
+      addMessage("CivBot 🤖", reply);
     }
 
     messageInput.addEventListener('keypress', function (e) {
