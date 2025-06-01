@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chat Room - Connect Inc.</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
@@ -13,28 +13,23 @@
       background-size: cover;
       color: #fff;
     }
-
     header {
       background-color: rgba(0, 40, 104, 0.95);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
     }
-
     header h1 {
       font-family: 'Bebas Neue', cursive;
       font-size: 2rem;
       margin: 0;
       color: #fff;
     }
-
     .dropdown {
       position: relative;
       display: inline-block;
     }
-
     .dropbtn {
       background-color: #fff;
       color: #002868;
@@ -45,7 +40,6 @@
       font-weight: bold;
       border-radius: 5px;
     }
-
     .dropdown-content {
       display: none;
       position: absolute;
@@ -55,7 +49,6 @@
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       z-index: 1;
     }
-
     .dropdown-content a {
       color: #002868;
       padding: 12px 16px;
@@ -63,15 +56,12 @@
       display: block;
       font-weight: bold;
     }
-
     .dropdown-content a:hover {
       background-color: #ddd;
     }
-
     .dropdown:hover .dropdown-content {
       display: block;
     }
-
     main {
       padding: 2rem;
       max-width: 800px;
@@ -80,7 +70,6 @@
       border-radius: 10px;
       margin-top: 2rem;
     }
-
     h2 {
       font-family: 'Bebas Neue', cursive;
       font-size: 2rem;
@@ -88,7 +77,6 @@
       margin-bottom: 1rem;
       text-align: center;
     }
-
     .chat-box {
       border: 2px solid #fff;
       height: 400px;
@@ -98,19 +86,25 @@
       border-radius: 8px;
       margin-bottom: 1rem;
     }
-
     .chat-message {
       margin-bottom: 10px;
       background: rgba(255, 255, 255, 0.2);
       padding: 0.5rem 1rem;
       border-radius: 5px;
     }
-
+    .timestamp {
+      font-size: 0.75rem;
+      color: #ccc;
+      margin-left: 10px;
+    }
+    .bot-message {
+      background: rgba(0, 40, 104, 0.5);
+    }
     .input-area {
       display: flex;
       gap: 0.5rem;
+      margin-bottom: 1rem;
     }
-
     .input-area input {
       flex: 1;
       padding: 0.75rem;
@@ -118,7 +112,6 @@
       border-radius: 5px;
       border: none;
     }
-
     .input-area button {
       padding: 0.75rem 1.2rem;
       background-color: #002868;
@@ -128,7 +121,27 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .suggestions button {
+      background-color: #fff;
+      color: #002868;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .typing-indicator {
+      font-style: italic;
+      color: #ccc;
+      margin-bottom: 1rem;
+    }
     footer {
       text-align: center;
       padding: 1rem;
@@ -153,8 +166,12 @@
 
   <main>
     <h2>Chat Room</h2>
-    <div class="chat-box" id="chatBox">
-      <!-- Messages will appear here -->
+    <div class="chat-box" id="chatBox"></div>
+    <div class="typing-indicator" id="typingIndicator" style="display:none;">CivBot is typing...</div>
+    <div class="suggestions">
+      <button onclick="quickMessage('Who is the President?')">🇺🇸 President</button>
+      <button onclick="quickMessage('How do I vote?')">🗳️ Voting Info</button>
+      <button onclick="quickMessage('Tell me a fact')">📜 Civics Fact</button>
     </div>
     <div class="input-area">
       <input type="text" id="messageInput" placeholder="Type your message..." />
@@ -169,53 +186,60 @@
   <script>
     const chatBox = document.getElementById('chatBox');
     const messageInput = document.getElementById('messageInput');
+    const typingIndicator = document.getElementById('typingIndicator');
 
-    function sendMessage() {
-      const message = messageInput.value.trim();
-      if (message !== '') {
-        addMessage('You', message);
-        messageInput.value = '';
-        chatBox.scrollTop = chatBox.scrollHeight;
+    const civicsFacts = [
+      "The U.S. Constitution was signed in 1787.",
+      "There are 435 voting members in the House of Representatives.",
+      "A U.S. Senator serves a 6-year term.",
+      "The First Amendment protects freedom of speech and religion.",
+      "George Washington was the first President of the United States."
+    ];
 
-        // Simulate bot reply after delay
-        setTimeout(() => {
-          botReply(message);
-        }, 900);
-      }
-    }
-
-    function addMessage(sender, text) {
+    function addMessage(text, isBot = false) {
       const messageEl = document.createElement('div');
-      messageEl.className = 'chat-message';
-      messageEl.innerHTML = `<strong>${sender}:</strong> ${text}`;
+      messageEl.className = 'chat-message' + (isBot ? ' bot-message' : '');
+      const timestamp = new Date().toLocaleTimeString();
+      messageEl.innerHTML = `${text} <span class="timestamp">${timestamp}</span>`;
       chatBox.appendChild(messageEl);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    function botReply(userMessage) {
-      const msg = userMessage.toLowerCase();
-      let reply = "";
+    function showTyping() {
+      typingIndicator.style.display = 'block';
+    }
 
-      // Enhanced responses with patriotic flair
-      if (msg.includes("hello") || msg.includes("hi")) {
-        reply = "Hello, fellow citizen! 🇺🇸 How can I assist you in your civic journey today?";
-      } else if (msg.includes("how do i contact") || msg.includes("reach my senator")) {
-        reply = "You can contact your senator through the Senate page—just click 'Contact Your Senator'! 🇺🇸";
-      } else if (msg.includes("house") || msg.includes("representative")) {
-        reply = "Representatives serve in the House to voice the will of the people. 🏛️ Want to view current House bills?";
-      } else if (msg.includes("vote") || msg.includes("register")) {
-        reply = "Fantastic! Every vote counts. Use the 'Register to Vote Federally' link on our homepage to get started. 🗳️";
-      } else if (msg.includes("who are you")) {
-        reply = "I'm CivBot 🤖, your patriotic assistant here to help you navigate Congress, voting, and civic resources.";
-      } else if (msg.includes("thank you") || msg.includes("thanks")) {
-        reply = "You're welcome, citizen! 🇺🇸 United we stand!";
-      } else if (msg.includes("president") || msg.includes("trump")) {
-        reply = "Donald J. Trump is the current President. You can find more on the homepage under 'Current Leadership'. 🇺🇸";
-      } else {
-        reply = "Liberty and learning go hand in hand. 🗽 Ask me about contacting leaders, voting, or U.S. governance!";
+    function hideTyping() {
+      typingIndicator.style.display = 'none';
+    }
+
+    function getBotResponse(message) {
+      const lower = message.toLowerCase();
+      if (lower.includes("president")) return "🇺🇸 The President is Donald J. Trump.";
+      if (lower.includes("speaker")) return "📢 The Speaker of the House is Mike Johnson.";
+      if (lower.includes("vote")) return "🗳️ You can register to vote at vote.gov.";
+      if (lower.includes("fact")) return "📜 " + civicsFacts[Math.floor(Math.random() * civicsFacts.length)];
+      if (lower.includes("i just voted")) return "🎉 🇺🇸 Thank you for voting — your voice matters!";
+      return "🤖 I'm CivBot! Ask me about U.S. government, voting, or civics.";
+    }
+
+    function sendMessage() {
+      const message = messageInput.value.trim();
+      if (message !== '') {
+        addMessage(message);
+        messageInput.value = '';
+        showTyping();
+        setTimeout(() => {
+          hideTyping();
+          const botReply = getBotResponse(message);
+          addMessage(botReply, true);
+        }, 1000);
       }
+    }
 
-      addMessage("CivBot 🤖", reply);
+    function quickMessage(text) {
+      messageInput.value = text;
+      sendMessage();
     }
 
     messageInput.addEventListener('keypress', function (e) {
