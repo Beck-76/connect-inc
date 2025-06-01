@@ -145,65 +145,108 @@
     .welcome-banner {
       text-align: center;
       font-size: 1.2rem;
+      font-weight: bold;
       margin-bottom: 1rem;
+      color: #fff;
     }
-    .logout-button {
-      background: none;
+    .logout-btn {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: #fff;
+      color: #002868;
       border: none;
-      color: #ccc;
-      text-decoration: underline;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-weight: bold;
       cursor: pointer;
-      font-size: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      color: #fff;
+    }
+
+    /* Modal Styling */
+    #loginModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .modal-content {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      text-align: center;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .modal-content h3 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2rem;
+      color: #002868;
       margin-bottom: 1rem;
     }
 
-    /* Modal Styles */
-    .modal {
-      position: fixed;
-      z-index: 9999;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-content {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
+    .modal-content label {
+      display: block;
+      margin: 0.75rem 0 0.25rem;
+      font-weight: bold;
       color: #002868;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
     }
+
     .modal-content input {
       width: 100%;
-      padding: 0.75rem;
-      margin: 0.5rem 0;
+      padding: 0.6rem;
       font-size: 1rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      border-radius: 8px;
+      border: 2px solid #002868;
+      margin-bottom: 1rem;
+      background-color: #fff;
     }
+
     .modal-content button {
       background-color: #002868;
-      color: #fff;
-      font-weight: bold;
+      color: white;
       padding: 0.75rem 1.5rem;
       border: none;
-      border-radius: 5px;
-      margin-top: 1rem;
+      border-radius: 8px;
+      font-weight: bold;
       cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-content button:hover {
+      background-color: #0040b0;
     }
   </style>
 </head>
 <body>
-  <div class="modal" id="loginModal">
+
+  <!-- Login Modal -->
+  <div id="loginModal">
     <div class="modal-content">
-      <h2>Enter Chat</h2>
-      <input type="text" id="usernameInput" placeholder="Your Name (required)" required />
-      <input type="email" id="emailInput" placeholder="Email (optional)" />
-      <button onclick="enterChat()">Enter Chat</button>
+      <h3>Welcome to Connect Chat 🇺🇸</h3>
+      <form id="loginForm">
+        <label for="username">Your Name <span style="color: red">*</span></label>
+        <input type="text" id="username" required placeholder="Enter your name" />
+        <label for="email">Email (optional)</label>
+        <input type="email" id="email" placeholder="you@example.com" />
+        <button type="submit">Enter Chat</button>
+      </form>
     </div>
   </div>
 
@@ -223,7 +266,6 @@
   <main>
     <h2>Chat Room</h2>
     <div class="welcome-banner" id="welcomeBanner"></div>
-    <button class="logout-button" onclick="logout()">Logout</button>
     <div class="chat-box" id="chatBox"></div>
     <div class="typing-indicator" id="typingIndicator" style="display:none;">CivBot is typing...</div>
     <div class="suggestions">
@@ -237,17 +279,47 @@
     </div>
   </main>
 
+  <button class="logout-btn" onclick="logout()">Logout</button>
+
   <footer>
     Speak freely. Respect all voices. 🇺🇸
   </footer>
 
   <script>
+    const loginModal = document.getElementById('loginModal');
+    const loginForm = document.getElementById('loginForm');
+    const usernameInput = document.getElementById('username');
+    const welcomeBanner = document.getElementById('welcomeBanner');
+
+    const name = localStorage.getItem('chatName');
+    const email = localStorage.getItem('chatEmail');
+
+    if (!name) {
+      loginModal.style.display = 'flex';
+    } else {
+      welcomeBanner.textContent = `Welcome ${name}!`;
+    }
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = usernameInput.value.trim();
+      const email = document.getElementById('email').value.trim();
+      if (username) {
+        localStorage.setItem('chatName', username);
+        if (email) localStorage.setItem('chatEmail', email);
+        loginModal.style.display = 'none';
+        welcomeBanner.textContent = `Welcome ${username}!`;
+      }
+    });
+
+    function logout() {
+      localStorage.clear();
+      location.reload();
+    }
+
     const chatBox = document.getElementById('chatBox');
     const messageInput = document.getElementById('messageInput');
     const typingIndicator = document.getElementById('typingIndicator');
-    const loginModal = document.getElementById('loginModal');
-    const usernameInput = document.getElementById('usernameInput');
-    const welcomeBanner = document.getElementById('welcomeBanner');
 
     const civicsFacts = [
       "The U.S. Constitution was signed in 1787.",
@@ -257,37 +329,11 @@
       "George Washington was the first President of the United States."
     ];
 
-    let username = localStorage.getItem('chatUsername') || '';
-
-    if (!username) {
-      loginModal.style.display = 'flex';
-    } else {
-      welcomeBanner.textContent = `Welcome ${username}!`;
-    }
-
-    function enterChat() {
-      const name = usernameInput.value.trim();
-      if (name === '') {
-        alert("Please enter your name to continue.");
-        return;
-      }
-      localStorage.setItem('chatUsername', name);
-      username = name;
-      welcomeBanner.textContent = `Welcome ${username}!`;
-      loginModal.style.display = 'none';
-    }
-
-    function logout() {
-      localStorage.removeItem('chatUsername');
-      location.reload();
-    }
-
     function addMessage(text, isBot = false) {
       const messageEl = document.createElement('div');
       messageEl.className = 'chat-message' + (isBot ? ' bot-message' : '');
       const timestamp = new Date().toLocaleTimeString();
-      const namePrefix = isBot ? '' : `🧑 ${username}: `;
-      messageEl.innerHTML = `${namePrefix}${text} <span class="timestamp">${timestamp}</span>`;
+      messageEl.innerHTML = `${text} <span class="timestamp">${timestamp}</span>`;
       chatBox.appendChild(messageEl);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
@@ -302,18 +348,20 @@
 
     function getBotResponse(message) {
       const lower = message.toLowerCase();
+      const user = localStorage.getItem('chatName') || 'citizen';
       if (lower.includes("president")) return `🇺🇸 The President is Donald J. Trump.`;
-      if (lower.includes("speaker")) return "📢 The Speaker of the House is Mike Johnson.";
-      if (lower.includes("vote")) return "🗳️ You can register to vote at vote.gov.";
+      if (lower.includes("speaker")) return `📢 The Speaker of the House is Mike Johnson.`;
+      if (lower.includes("vote")) return `🗳️ You can register to vote at vote.gov.`;
       if (lower.includes("fact")) return "📜 " + civicsFacts[Math.floor(Math.random() * civicsFacts.length)];
       if (lower.includes("i just voted")) return "🎉 🇺🇸 Thank you for voting — your voice matters!";
-      return `🤖 Hi ${username}! I'm CivBot. Ask me about U.S. government, voting, or civics.`;
+      return `🤖 Hi ${user}! I'm CivBot. Ask me about U.S. government, voting, or civics.`;
     }
 
     function sendMessage() {
       const message = messageInput.value.trim();
+      const user = localStorage.getItem('chatName') || 'User';
       if (message !== '') {
-        addMessage(message);
+        addMessage(`🧑 ${user}: ${message}`);
         messageInput.value = '';
         showTyping();
         setTimeout(() => {
