@@ -88,17 +88,27 @@
     }
     .chat-message {
       margin-bottom: 10px;
-      background: rgba(255, 255, 255, 0.2);
       padding: 0.5rem 1rem;
       border-radius: 5px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .chat-message.user {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .chat-message.bot {
+      background: rgba(0, 40, 104, 0.5);
+    }
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
     }
     .timestamp {
       font-size: 0.75rem;
       color: #ccc;
-      margin-left: 10px;
-    }
-    .bot-message {
-      background: rgba(0, 40, 104, 0.5);
+      margin-left: auto;
     }
     .input-area {
       display: flex;
@@ -142,25 +152,6 @@
       color: #ccc;
       margin-bottom: 1rem;
     }
-    .welcome-banner {
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-      color: #fff;
-    }
-    .logout-btn {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      background: #fff;
-      color: #002868;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
     footer {
       text-align: center;
       padding: 1rem;
@@ -168,88 +159,60 @@
       color: #fff;
     }
 
-    /* Modal Styling */
-    #loginModal {
+    /* Modal styles */
+    .modal {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.75);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
       display: flex;
-      justify-content: center;
       align-items: center;
-      z-index: 9999;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease-in-out;
     }
-
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
     .modal-content {
-      background-color: rgba(255, 255, 255, 0.95);
+      background: #fff;
+      color: #000;
       padding: 2rem;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      border-radius: 10px;
       text-align: center;
-      font-family: 'Roboto', sans-serif;
+      width: 300px;
+      border: 4px solid;
+      border-image: linear-gradient(to right, red, blue) 1;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
-
-    .modal-content h3 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 2rem;
-      color: #002868;
-      margin-bottom: 1rem;
-    }
-
-    .modal-content label {
-      display: block;
-      margin: 0.75rem 0 0.25rem;
-      font-weight: bold;
-      color: #002868;
-    }
-
     .modal-content input {
-      width: 100%;
-      padding: 0.6rem;
+      width: 90%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
       font-size: 1rem;
-      border-radius: 8px;
-      border: 2px solid #002868;
-      margin-bottom: 1rem;
-      background-color: #fff;
     }
-
     .modal-content button {
-      background-color: #002868;
+      background: #002868;
       color: white;
-      padding: 0.75rem 1.5rem;
+      padding: 0.5rem 1rem;
       border: none;
-      border-radius: 8px;
       font-weight: bold;
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
+      margin-top: 1rem;
     }
-
-    .modal-content button:hover {
-      background-color: #0040b0;
+    .welcome-banner {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      background-color: rgba(255,255,255,0.2);
+      padding: 0.5rem;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-
-  <!-- Login Modal -->
-  <div id="loginModal">
-    <div class="modal-content">
-      <h3>Welcome to Connect Chat 🇺🇸</h3>
-      <form id="loginForm">
-        <label for="username">Your Name <span style="color: red">*</span></label>
-        <input type="text" id="username" required placeholder="Enter your name" />
-        <label for="email">Email (optional)</label>
-        <input type="email" id="email" placeholder="you@example.com" />
-        <button type="submit">Enter Chat</button>
-      </form>
-    </div>
-  </div>
-
   <header>
     <h1>Connect Inc. 🗽</h1>
     <div class="dropdown">
@@ -265,77 +228,135 @@
 
   <main>
     <h2>Chat Room</h2>
-    <div class="welcome-banner" id="welcomeBanner"></div>
+    <div id="welcomeBanner" class="welcome-banner" style="display: none;"></div>
     <div class="chat-box" id="chatBox"></div>
     <div class="typing-indicator" id="typingIndicator" style="display:none;">CivBot is typing...</div>
     <div class="suggestions">
       <button onclick="quickMessage('Who is the President?')">🇺🇸 President</button>
       <button onclick="quickMessage('How do I vote?')">🗳️ Voting Info</button>
       <button onclick="quickMessage('Tell me a fact')">📜 Civics Fact</button>
+      <button onclick="quickMessage('What is the Bill of Rights?')">📜 Bill of Rights</button>
+      <button onclick="quickMessage('What are the three branches of government?')">🏛️ Branches of Govt</button>
+      <button onclick="quickMessage('How many Supreme Court Justices are there?')">⚖️ Supreme Court</button>
     </div>
     <div class="input-area">
       <input type="text" id="messageInput" placeholder="Type your message..." />
       <button onclick="sendMessage()">Send</button>
+      <button onclick="logout()">Logout</button>
     </div>
   </main>
-
-  <button class="logout-btn" onclick="logout()">Logout</button>
 
   <footer>
     Speak freely. Respect all voices. 🇺🇸
   </footer>
 
+  <!-- Sign In Modal -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <h3>Welcome to the Chat Room 🇺🇸</h3>
+      <input type="text" id="userNameInput" placeholder="Your Name (required)" />
+      <input type="email" id="userEmailInput" placeholder="Your Email (optional)" />
+      <button onclick="enterChat()">Enter Chat</button>
+    </div>
+  </div>
+
   <script>
-    const loginModal = document.getElementById('loginModal');
-    const loginForm = document.getElementById('loginForm');
-    const usernameInput = document.getElementById('username');
-    const welcomeBanner = document.getElementById('welcomeBanner');
-
-    const name = localStorage.getItem('chatName');
-    const email = localStorage.getItem('chatEmail');
-
-    if (!name) {
-      loginModal.style.display = 'flex';
-    } else {
-      welcomeBanner.textContent = `Welcome ${name}!`;
-    }
-
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const username = usernameInput.value.trim();
-      const email = document.getElementById('email').value.trim();
-      if (username) {
-        localStorage.setItem('chatName', username);
-        if (email) localStorage.setItem('chatEmail', email);
-        loginModal.style.display = 'none';
-        welcomeBanner.textContent = `Welcome ${username}!`;
-      }
-    });
-
-    function logout() {
-      localStorage.clear();
-      location.reload();
-    }
-
     const chatBox = document.getElementById('chatBox');
     const messageInput = document.getElementById('messageInput');
     const typingIndicator = document.getElementById('typingIndicator');
+    const loginModal = document.getElementById('loginModal');
+    const welcomeBanner = document.getElementById('welcomeBanner');
+    let userName = localStorage.getItem('chatUserName') || null;
 
     const civicsFacts = [
       "The U.S. Constitution was signed in 1787.",
       "There are 435 voting members in the House of Representatives.",
       "A U.S. Senator serves a 6-year term.",
       "The First Amendment protects freedom of speech and religion.",
-      "George Washington was the first President of the United States."
+      "George Washington was the first President of the United States.",
+      "The Bill of Rights includes the first 10 amendments to the Constitution.",
+      "The three branches of government are the Legislative, Executive, and Judicial.",
+      "The Supreme Court has 9 Justices.",
+      "Citizens must be 18 years old to vote in federal elections.",
+      "The President can serve a maximum of two 4-year terms.",
+      "The Speaker of the House is the third in line for the presidency."
     ];
+
+    if (!userName) {
+      loginModal.style.display = 'flex';
+    } else {
+      showWelcome(userName);
+    }
+
+    function enterChat() {
+      const name = document.getElementById('userNameInput').value.trim();
+      if (!name) {
+        alert('Please enter your name to continue.');
+        return;
+      }
+      localStorage.setItem('chatUserName', name);
+      userName = name;
+      loginModal.style.display = 'none';
+      showWelcome(name);
+    }
+
+    function showWelcome(name) {
+      welcomeBanner.innerText = `Welcome, ${name}!`;
+      welcomeBanner.style.display = 'block';
+    }
 
     function addMessage(text, isBot = false) {
       const messageEl = document.createElement('div');
-      messageEl.className = 'chat-message' + (isBot ? ' bot-message' : '');
+      messageEl.className = 'chat-message ' + (isBot ? 'bot' : 'user');
+
+      const avatar = document.createElement('img');
+      avatar.className = 'avatar';
+      avatar.src = isBot
+        ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Robot_icon.svg/1024px-Robot_icon.svg.png'
+        : 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png';
+
+      const messageText = document.createElement('div');
       const timestamp = new Date().toLocaleTimeString();
-      messageEl.innerHTML = `${text} <span class="timestamp">${timestamp}</span>`;
+      messageText.innerHTML = (isBot
+        ? `🤖 CivBot: ${text}`
+        : `🧑 ${userName}: ${text}`) + `<span class="timestamp">${timestamp}</span>`;
+
+      messageEl.appendChild(avatar);
+      messageEl.appendChild(messageText);
       chatBox.appendChild(messageEl);
       chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+      const message = messageInput.value.trim();
+      if (!message) return;
+      addMessage(message, false);
+      messageInput.value = '';
+      showTyping();
+      setTimeout(() => {
+        const response = getBotResponse(message);
+        addMessage(response, true);
+        hideTyping();
+      }, 1000);
+    }
+
+    function quickMessage(msg) {
+      messageInput.value = msg;
+      sendMessage();
+    }
+
+    function getBotResponse(message) {
+      const msg = message.toLowerCase().trim();
+      if (msg.includes('president')) return "The current President of the United States is Donald J. Trump, inaugurated on January 20, 2025.";
+      if (msg.includes('vice president')) return "The Vice President is Kamala Harris, serving as the 49th Vice President.";
+      if (msg.includes('speaker of the house')) return "Mike Johnson is the current Speaker of the House of Representatives.";
+      if (msg.includes('chief justice')) return "John Roberts is the Chief Justice of the U.S. Supreme Court.";
+      if (msg.includes('supreme court')) return "The Supreme Court consists of 9 Justices appointed for life by the President and confirmed by the Senate.";
+      if (msg.includes('bill of rights')) return "The Bill of Rights is the first 10 amendments to the U.S. Constitution, guaranteeing individual freedoms.";
+      if (msg.includes('branches of government')) return "The three branches are Legislative (makes laws), Executive (enforces laws), and Judicial (interprets laws).";
+      if (msg.includes('vote')) return "You can learn how to vote at vote.gov. Make sure you're registered!";
+      if (msg.includes('fact')) return civicsFacts[Math.floor(Math.random() * civicsFacts.length)];
+      return "I'm here to help with U.S. civics! Try asking about the President, voting, or the Constitution.";
     }
 
     function showTyping() {
@@ -346,42 +367,10 @@
       typingIndicator.style.display = 'none';
     }
 
-    function getBotResponse(message) {
-      const lower = message.toLowerCase();
-      const user = localStorage.getItem('chatName') || 'citizen';
-      if (lower.includes("president")) return `🇺🇸 The President is Donald J. Trump.`;
-      if (lower.includes("speaker")) return `📢 The Speaker of the House is Mike Johnson.`;
-      if (lower.includes("vote")) return `🗳️ You can register to vote at vote.gov.`;
-      if (lower.includes("fact")) return "📜 " + civicsFacts[Math.floor(Math.random() * civicsFacts.length)];
-      if (lower.includes("i just voted")) return "🎉 🇺🇸 Thank you for voting — your voice matters!";
-      return `🤖 Hi ${user}! I'm CivBot. Ask me about U.S. government, voting, or civics.`;
+    function logout() {
+      localStorage.removeItem('chatUserName');
+      location.reload();
     }
-
-    function sendMessage() {
-      const message = messageInput.value.trim();
-      const user = localStorage.getItem('chatName') || 'User';
-      if (message !== '') {
-        addMessage(`🧑 ${user}: ${message}`);
-        messageInput.value = '';
-        showTyping();
-        setTimeout(() => {
-          hideTyping();
-          const botReply = getBotResponse(message);
-          addMessage(botReply, true);
-        }, 1000);
-      }
-    }
-
-    function quickMessage(text) {
-      messageInput.value = text;
-      sendMessage();
-    }
-
-    messageInput.addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
   </script>
 </body>
 </html>
