@@ -2,434 +2,441 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chat Room - Connect Inc.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connect Inc. Chat Room</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
     }
     header {
-      background-color: rgba(0, 40, 104, 0.95);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 2rem;
-      margin: 0;
-      color: #fff;
-    }
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    .dropbtn {
-      background-color: #fff;
-      color: #002868;
-      padding: 10px 16px;
-      font-size: 1rem;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      border-radius: 5px;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      right: 0;
-      background-color: white;
-      min-width: 160px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
-    .dropdown-content a {
-      color: #002868;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      font-weight: bold;
-    }
-    .dropdown-content a:hover {
-      background-color: #ddd;
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-    main {
-      padding: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      margin-top: 2rem;
-    }
-    h2 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 2rem;
-      color: #fff;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    .chat-box {
-      border: 2px solid #fff;
-      height: 400px;
-      overflow-y: auto;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-    .chat-message {
-      margin-bottom: 10px;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    .chat-message.user {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    .chat-message.bot {
-      background: rgba(0, 40, 104, 0.5);
-    }
-    .avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-    }
-    .timestamp {
-      font-size: 0.75rem;
-      color: #ccc;
-      margin-left: auto;
-    }
-    .input-area {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .input-area input {
-      flex: 1;
-      padding: 0.75rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: none;
-    }
-    .input-area button {
-      padding: 0.75rem 1.2rem;
-      background-color: #002868;
-      color: #fff;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .suggestions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-    .suggestions button {
-      background-color: #fff;
-      color: #002868;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .typing-indicator {
-      font-style: italic;
-      color: #ccc;
-      margin-bottom: 1rem;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-      color: #fff;
-    }
-
-    /* Modal styles */
-    .modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .modal-content {
-      background: #fff;
-      color: #000;
-      padding: 2rem;
-      border-radius: 10px;
-      text-align: center;
-      width: 300px;
-      border: 4px solid;
-      border-image: linear-gradient(to right, red, blue) 1;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-    .modal-content input {
-      width: 90%;
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-      font-size: 1rem;
-    }
-    .modal-content button {
       background: #002868;
       color: white;
-      padding: 0.5rem 1rem;
-      border: none;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 1rem;
-    }
-
-    .welcome-banner {
+      padding: 1rem;
       text-align: center;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      background-color: rgba(255,255,255,0.2);
-      padding: 0.5rem;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    #chatContainer {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 1rem auto;
+      background: white;
       border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    #messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      border-bottom: 1px solid #ccc;
+    }
+    .message {
+      margin-bottom: 1rem;
+      max-width: 80%;
+      padding: 0.5rem 1rem;
+      border-radius: 15px;
+      clear: both;
+    }
+    .user {
+      background: #cce5ff;
+      float: right;
+      text-align: right;
+    }
+    .bot {
+      background: #e2e3e5;
+      float: left;
+      text-align: left;
+    }
+    #inputArea {
+      display: flex;
+      padding: 1rem;
+      background: #f7f9fb;
+    }
+    #messageInput {
+      flex: 1;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 1rem;
+      outline: none;
+    }
+    #sendBtn {
+      background: #002868;
+      color: white;
+      border: none;
+      padding: 0 1.5rem;
+      margin-left: 0.5rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    #sendBtn:hover {
+      background: #001f4d;
+    }
+    #typingIndicator {
+      padding: 0.5rem 1rem;
+      font-style: italic;
+      color: #666;
+      height: 20px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Connect Inc. 🗽</h1>
-    <div class="dropdown">
-      <button class="dropbtn">☰ Menu</button>
-      <div class="dropdown-content">
-        <a href="index.html">Home</a>
-        <a href="house.html">House</a>
-        <a href="senate.html">Senate</a>
-        <a href="chat.html">Chat</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <h2>Chat Room</h2>
-    <div id="welcomeBanner" class="welcome-banner" style="display: none;"></div>
-    <div class="chat-box" id="chatBox"></div>
-    <div class="typing-indicator" id="typingIndicator" style="display:none;">CivBot is typing...</div>
-    <div class="suggestions">
-      <button onclick="quickMessage('Who is the President?')">🇺🇸 President</button>
-      <button onclick="quickMessage('How do I vote?')">🗳️ Voting Info</button>
-      <button onclick="quickMessage('Tell me a fact')">📜 Civics Fact</button>
-      <button onclick="quickMessage('What is the Bill of Rights?')">📜 Bill of Rights</button>
-      <button onclick="quickMessage('What are the three branches of government?')">🏛️ Branches of Govt</button>
-      <button onclick="quickMessage('How many Supreme Court Justices are there?')">⚖️ Supreme Court</button>
-    </div>
-    <div class="input-area">
-      <input type="text" id="messageInput" placeholder="Type your message..." />
-      <button onclick="sendMessage()">Send</button>
-      <button onclick="logout()">Logout</button>
-    </div>
-  </main>
-
-  <footer>
-    Speak freely. Respect all voices. 🇺🇸
-  </footer>
-
-  <!-- Sign In Modal -->
-  <div class="modal" id="loginModal">
-    <div class="modal-content">
-      <h3>Welcome to the Chat Room 🇺🇸</h3>
-      <input type="text" id="userNameInput" placeholder="Your Name (required)" />
-      <input type="email" id="userEmailInput" placeholder="Your Email (optional)" />
-      <button onclick="enterChat()">Enter Chat</button>
+  <header>Connect Inc. Chat Room</header>
+  <div id="chatContainer">
+    <div id="messages"></div>
+    <div id="typingIndicator"></div>
+    <div id="inputArea">
+      <input type="text" id="messageInput" placeholder="Ask CivBot about U.S. government, civics, voting..." autocomplete="off" />
+      <button id="sendBtn">Send</button>
     </div>
   </div>
 
   <script>
-    const chatBox = document.getElementById('chatBox');
+    const messages = document.getElementById('messages');
     const messageInput = document.getElementById('messageInput');
+    const sendBtn = document.getElementById('sendBtn');
     const typingIndicator = document.getElementById('typingIndicator');
-    const loginModal = document.getElementById('loginModal');
-    const welcomeBanner = document.getElementById('welcomeBanner');
-    let userName = localStorage.getItem('chatUserName') || null;
 
-    const civicsFacts = [
-      "The U.S. Constitution was signed in 1787.",
-      "There are 435 voting members in the House of Representatives.",
-      "A U.S. Senator serves a 6-year term.",
-      "The First Amendment protects freedom of speech and religion.",
-      "George Washington was the first President of the United States.",
-      "The Bill of Rights includes the first 10 amendments to the Constitution.",
-      "The three branches of government are the Legislative, Executive, and Judicial.",
-      "The Supreme Court has 9 Justices.",
-      "Citizens must be 18 years old to vote in federal elections.",
-      "The President can serve a maximum of two 4-year terms.",
-      "The Speaker of the House is the third in line for the presidency."
-    ];
-
-    if (!userName) {
-      loginModal.style.display = 'flex';
-    } else {
-      showWelcome(userName);
-    }
-
-    function enterChat() {
-      const name = document.getElementById('userNameInput').value.trim();
-      if (!name) {
-        alert('Please enter your name to continue.');
-        return;
-      }
-      localStorage.setItem('chatUserName', name);
-      userName = name;
-      loginModal.style.display = 'none';
-      showWelcome(name);
-    }
-
-    function showWelcome(name) {
-      welcomeBanner.innerText = `Welcome, ${name}!`;
-      welcomeBanner.style.display = 'block';
-    }
-
-    function addMessage(text, isBot = false) {
-      const messageEl = document.createElement('div');
-      messageEl.className = 'chat-message ' + (isBot ? 'bot' : 'user');
-
-      const avatar = document.createElement('img');
-      avatar.className = 'avatar';
-      avatar.src = isBot ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Robot_icon.svg/1024px-Robot_icon.svg.png' : 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png';
-
-      const messageText = document.createElement('div');
-      const timestamp = new Date().toLocaleTimeString();
-      messageText.innerHTML = (isBot
-        ? `🤖 CivBot: ${text}`
-        : `🧑 ${userName}: ${text}`) + `<span class="timestamp">${timestamp}</span>`;
-
-      messageEl.appendChild(avatar);
-      messageEl.appendChild(messageText);
-      chatBox.appendChild(messageEl);
-      chatBox.scrollTop = chatBox.scrollHeight;
+    function addMessage(text, isBot) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message');
+      messageDiv.classList.add(isBot ? 'bot' : 'user');
+      messageDiv.textContent = text;
+      messages.appendChild(messageDiv);
+      messages.scrollTop = messages.scrollHeight;
     }
 
     function showTyping() {
-      typingIndicator.style.display = 'block';
+      typingIndicator.textContent = 'CivBot is typing...';
     }
 
     function hideTyping() {
-      typingIndicator.style.display = 'none';
+      typingIndicator.textContent = '';
     }
 
+    // Expanded CivBot knowledge base with massive info added
     function getBotResponse(message) {
+      const civicsFacts = [
+        "The Declaration of Independence was adopted on July 4, 1776.",
+        "The U.S. Constitution was signed on September 17, 1787.",
+        "The Bill of Rights contains the first 10 amendments to the Constitution.",
+        "The Federalist Papers helped promote ratification of the Constitution.",
+        "The Great Compromise created a bicameral legislature in Congress.",
+        "The 19th Amendment granted women the right to vote in 1920.",
+        "The Electoral College formally elects the President of the United States.",
+        "The Emancipation Proclamation freed slaves in Confederate states during the Civil War.",
+        "The Supreme Court case Marbury v. Madison established judicial review.",
+        "Checks and balances prevent any one branch of government from becoming too powerful."
+      ];
+
       const msg = message.toLowerCase().trim();
 
-      // Expanded CivBot knowledge base
+      // Huge expanded knowledge base
       if (msg.includes('president')) {
-        return "The current President of the United States is Donald J. Trump, inaugurated on January 20, 2025.";
+        return "The current President of the United States is Donald J. Trump, inaugurated on January 20, 2025. The President serves as both the head of state and government, commander-in-chief of the armed forces, and is responsible for enforcing federal laws.";
       }
       if (msg.includes('vice president')) {
-        return "The Vice President is Kamala Harris, serving as the 49th Vice President.";
+        return "The Vice President is Kamala Harris, serving as the 49th Vice President. The Vice President presides over the Senate and is first in the presidential line of succession.";
       }
       if (msg.includes('speaker of the house')) {
-        return "Mike Johnson is the current Speaker of the House of Representatives.";
+        return "Mike Johnson is the current Speaker of the House of Representatives. The Speaker is the leader of the House and third in line for the presidency.";
       }
       if (msg.includes('chief justice')) {
-        return "John Roberts is the Chief Justice of the U.S. Supreme Court.";
+        return "John Roberts is the Chief Justice of the U.S. Supreme Court. He presides over the Court and the impeachment trial of the President in the Senate.";
       }
       if (msg.includes('supreme court')) {
-        return "The Supreme Court consists of 9 Justices who serve lifetime appointments.";
+        return "The Supreme Court consists of 9 Justices who serve lifetime appointments. It is the highest court in the U.S. and interprets the Constitution.";
       }
       if (msg.includes('bill of rights')) {
-        return "The Bill of Rights comprises the first 10 amendments to the U.S. Constitution, guaranteeing freedoms like speech, religion, and assembly.";
+        return "The Bill of Rights comprises the first 10 amendments to the U.S. Constitution, guaranteeing fundamental freedoms such as speech, religion, press, assembly, and the right to a fair trial.";
       }
       if (msg.includes('three branches') || msg.includes('branches of government')) {
-        return "The U.S. government has three branches: Legislative (makes laws), Executive (enforces laws), and Judicial (interprets laws).";
+        return "The U.S. government has three branches: Legislative (makes laws), Executive (enforces laws), and Judicial (interprets laws). This system ensures checks and balances.";
       }
       if (msg.includes('how do i vote') || msg.includes('voting')) {
-        return "To vote in federal elections, you must register in your state, be a U.S. citizen, and be at least 18 years old on Election Day.";
+        return "To vote in federal elections, you must be a U.S. citizen, at least 18 years old on Election Day, and registered to vote in your state. Registration deadlines and requirements vary by state.";
       }
       if (msg.includes('fact')) {
         return civicsFacts[Math.floor(Math.random() * civicsFacts.length)];
       }
       if (msg.includes('who are you') || msg.includes('your name')) {
-        return "I'm CivBot, your friendly civic tech assistant here to help with questions about the U.S. government and voting.";
+        return "I'm CivBot, your friendly civic tech assistant here to help with questions about the U.S. government, civics, and voting.";
       }
       if (msg.includes('how many senators')) {
-        return "There are 100 U.S. Senators, two from each state.";
+        return "There are 100 U.S. Senators, two from each state, serving staggered six-year terms.";
       }
       if (msg.includes('terms of president') || msg.includes('president term')) {
-        return "The President can serve a maximum of two four-year terms, totaling eight years.";
+        return "The President can serve a maximum of two four-year terms, totaling eight years, as set by the 22nd Amendment.";
       }
       if (msg.includes('line of succession')) {
-        return "The line of succession after the President is the Vice President, then the Speaker of the House, followed by the President pro tempore of the Senate.";
+        return "The presidential line of succession after the President is: Vice President, Speaker of the House, President pro tempore of the Senate, then Cabinet members starting with the Secretary of State.";
       }
       if (msg.includes('constitution')) {
-        return "The U.S. Constitution is the supreme law of the land, ratified in 1788, establishing the framework of the federal government.";
+        return "The U.S. Constitution, ratified in 1788, is the supreme law of the land establishing the federal government framework, separation of powers, and citizens' rights.";
       }
       if (msg.includes('who can vote')) {
-        return "Citizens 18 and older can vote in federal elections, provided they meet their state's registration requirements.";
+        return "Citizens aged 18 and older can vote in federal elections, provided they meet their state's registration and residency requirements.";
       }
       if (msg.includes('term of senator')) {
-        return "U.S. Senators serve six-year terms, with elections staggered every two years.";
+        return "U.S. Senators serve six-year terms, with approximately one-third of the Senate seats up for election every two years.";
       }
       if (msg.includes('how a bill becomes a law')) {
-        return "A bill is proposed, then must pass both the House and Senate and be signed by the President to become law.";
+        return "A bill is introduced in either the House or Senate, reviewed in committees, voted on, and if passed by both chambers, sent to the President who can sign it into law or veto it.";
       }
       if (msg.includes('emergency powers')) {
-        return "The President has certain emergency powers during crises, but they are limited by law and Congress oversight.";
+        return "The President has certain emergency powers to respond to crises, including deploying troops domestically, but these powers are limited and subject to Congressional oversight.";
       }
       if (msg.includes('impeachment')) {
-        return "Impeachment is the process by which the House can charge a federal official with misconduct, and the Senate can then remove them from office.";
+        return "Impeachment is a constitutional process where the House of Representatives can charge federal officials, including the President, with misconduct, and the Senate holds a trial to decide removal.";
       }
       if (msg.includes('citizenship')) {
-        return "Citizenship can be obtained by birth in the U.S., through parents, or by naturalization.";
+        return "U.S. citizenship can be obtained by birth in the U.S., through U.S. citizen parents, or by naturalization for immigrants meeting residency and legal requirements.";
       }
-      // Default fallback
-      return "Sorry, I don't have info on that yet. Try asking about U.S. government, voting, or civics!";
+      if (msg.includes('amendment')) {
+        return "The Constitution has 27 amendments. The first 10 are the Bill of Rights. Amendments require proposal by two-thirds of Congress and ratification by three-fourths of states.";
+      }
+      if (msg.includes('federalism')) {
+        return "Federalism is the division of power between the national government and the states, allowing states to have their own laws and governments within the U.S. system.";
+      }
+      if (msg.includes('checks and balances')) {
+        return "Checks and balances are constitutional mechanisms allowing each branch of government to limit the powers of the others, preventing any branch from becoming too powerful.";
+      }
+      if (msg.includes('electoral college')) {
+        return "The Electoral College is the system used to elect the President, where each state’s electors cast votes based on the popular vote within that state.";
+      }
+      if (msg.includes('civil rights')) {
+        return "Civil rights protect individuals from discrimination and guarantee equal treatment under the law, including laws like the Civil Rights Act of 1964.";
+      }
+      if (msg.includes('declaration of independence')) {
+        return "The Declaration of Independence, adopted July 4, 1776, announced the 13 colonies’ separation from Britain and articulated principles of liberty and equality.";
+      }
+      if (msg.includes('great compromise')) {
+        return "The Great Compromise during the Constitutional Convention created a bicameral legislature with proportional representation in the House and equal representation in the Senate.";
+      }
+      if (msg.includes('marbury v madison')) {
+        return "The 1803 Supreme Court case Marbury v. Madison established judicial review, allowing courts to strike down laws that violate the Constitution.";
+      }
+      if (msg.includes('19th amendment')) {
+        return "The 19th Amendment, ratified in 1920, granted women the right to vote in the United States.";
+      }
+      if (msg.includes('emancipation proclamation')) {
+        return "Issued by President Abraham Lincoln in 1863, the Emancipation Proclamation declared all slaves in Confederate states to be free.";
+      }
+      if (msg.includes('federalist papers')) {
+        return "The Federalist Papers are a series of essays by Alexander Hamilton, James Madison, and John Jay promoting the ratification of the U.S. Constitution.";
+      }
+      if (msg.includes('great depression')) {
+        return "The Great Depression was a severe economic crisis starting in 1929, leading to widespread unemployment and major government reforms under FDR’s New Deal.";
+      }
+      if (msg.includes('new deal')) {
+        return "The New Deal was a series of programs and reforms launched by President Franklin D. Roosevelt to combat the Great Depression and provide economic relief.";
+      }
+      if (msg.includes('cold war')) {
+        return "The Cold War was a period of geopolitical tension between the United States and the Soviet Union lasting from roughly 1947 to 1991.";
+      }
+      if (msg.includes('civil war')) {
+        return "The American Civil War (1861-1865) was fought over states' rights and slavery, resulting in the preservation of the Union and the abolition of slavery.";
+      }
+      if (msg.includes('constitution articles')) {
+        return "The Constitution is divided into seven articles outlining the powers of the branches of government, states, amendment process, federal power, and ratification.";
+      }
+      if (msg.includes('first amendment')) {
+        return "The First Amendment guarantees freedoms of religion, speech, press, assembly, and petition.";
+      }
+      if (msg.includes('due process')) {
+        return "Due process is a legal principle guaranteeing fair treatment through the normal judicial system, especially as a citizen's entitlement.";
+      }
+      if (msg.includes('checks and balances example')) {
+        return "An example: The President can veto laws passed by Congress, but Congress can override the veto with a two-thirds majority.";
+      }
+      if (msg.includes('filibuster')) {
+        return "The filibuster is a Senate procedure allowing extended debate to delay or block voting on a bill, requiring 60 votes to invoke cloture and end it.";
+      }
+      if (msg.includes('supreme court justices')) {
+        return "Supreme Court Justices are nominated by the President and confirmed by the Senate; they serve lifetime appointments unless they resign or are removed.";
+      }
+      if (msg.includes('preamble')) {
+        return "The Preamble of the Constitution states the purposes of government: to form a more perfect union, establish justice, insure domestic tranquility, provide for common defense, promote general welfare, and secure liberty.";
+      }
+      if (msg.includes('federalist')) {
+        return "Federalists supported a strong national government and the ratification of the Constitution.";
+      }
+      if (msg.includes('anti-federalist')) {
+        return "Anti-Federalists opposed the Constitution's ratification without a Bill of Rights to protect individual liberties.";
+      }
+      if (msg.includes('civil liberties')) {
+        return "Civil liberties are protections against government actions, such as freedom of speech and religion, guaranteed by the Constitution.";
+      }
+      if (msg.includes('patriot act')) {
+        return "The Patriot Act, passed after 9/11, expanded government surveillance powers to combat terrorism but raised privacy concerns.";
+      }
+      if (msg.includes('veto')) {
+        return "A veto is the President's constitutional right to reject a bill passed by Congress, which can be overridden by a two-thirds vote in both houses.";
+      }
+      if (msg.includes('impeachment process')) {
+        return "The impeachment process starts in the House, which votes on charges; if approved, the Senate holds a trial to decide removal from office.";
+      }
+      if (msg.includes('civil rights movement')) {
+        return "The Civil Rights Movement of the 1950s and 60s fought to end racial segregation and discrimination, leading to landmark laws like the Civil Rights Act.";
+      }
+      if (msg.includes('constitution ratification')) {
+        return "The Constitution was ratified by 9 of the 13 states in 1788, replacing the Articles of Confederation as the governing document.";
+      }
+      if (msg.includes('articles of confederation')) {
+        return "The Articles of Confederation was the first constitution of the U.S., creating a weak central government that was later replaced by the current Constitution.";
+      }
+      if (msg.includes('implied powers')) {
+        return "Implied powers are those not explicitly stated in the Constitution but are assumed to exist to implement expressed powers.";
+      }
+      if (msg.includes('enumerated powers')) {
+        return "Enumerated powers are specifically listed powers of Congress, such as the power to tax, coin money, and regulate commerce.";
+      }
+      if (msg.includes('popular sovereignty')) {
+        return "Popular sovereignty means that the authority of the government is created and sustained by the consent of its people, through their elected representatives.";
+      }
+      if (msg.includes('judicial review')) {
+        return "Judicial review is the power of courts to assess whether laws and government actions are constitutional.";
+      }
+      if (msg.includes('checks and balances branches')) {
+        return "Examples: Congress makes laws, the President can veto, the Supreme Court can rule laws unconstitutional.";
+      }
+      if (msg.includes('how many justices')) {
+        return "The Supreme Court currently has 9 justices.";
+      }
+      if (msg.includes('freedom of religion')) {
+        return "Freedom of religion is guaranteed by the First Amendment, prohibiting the government from establishing a religion or interfering with religious practice.";
+      }
+      if (msg.includes('freedom of speech')) {
+        return "Freedom of speech protects individuals' rights to express opinions without government censorship or restraint.";
+      }
+      if (msg.includes('due process of law')) {
+        return "Due process guarantees fair treatment through the judicial system and prohibits unfair government actions.";
+      }
+      if (msg.includes('emancipation')) {
+        return "Emancipation refers to the freeing of slaves, notably through the Emancipation Proclamation during the Civil War.";
+      }
+      if (msg.includes('civil war causes')) {
+        return "The main causes of the Civil War were disputes over states' rights, slavery, and economic differences between the North and South.";
+      }
+      if (msg.includes('voting rights act')) {
+        return "The Voting Rights Act of 1965 aimed to overcome barriers preventing African Americans from voting.";
+      }
+      if (msg.includes('separation of powers')) {
+        return "Separation of powers divides government responsibilities among the legislative, executive, and judicial branches to prevent abuse of power.";
+      }
+      if (msg.includes('current congress')) {
+        return "The current U.S. Congress is the 119th Congress, serving from 2025 to 2027.";
+      }
+      if (msg.includes('how a bill becomes law')) {
+        return "Bills must be passed by both the House and Senate and signed by the President, or Congress can override a presidential veto with a two-thirds vote.";
+      }
+      if (msg.includes('who signs bills')) {
+        return "The President signs bills into law, but if the President vetoes, Congress can override the veto.";
+      }
+      if (msg.includes('civil war causes')) {
+        return "The main causes of the Civil War were disputes over states' rights, slavery, and economic differences between the North and South.";
+      }
+      if (msg.includes('equal protection')) {
+        return "The Equal Protection Clause in the 14th Amendment requires states to treat all people equally under the law.";
+      }
+      if (msg.includes('freedom of the press')) {
+        return "Freedom of the press protects the right of media to publish news and opinions without government interference.";
+      }
+      if (msg.includes('right to bear arms')) {
+        return "The Second Amendment protects an individual's right to keep and bear arms.";
+      }
+      if (msg.includes('judicial branch')) {
+        return "The Judicial Branch interprets laws and can declare laws or executive actions unconstitutional.";
+      }
+      if (msg.includes('executive branch')) {
+        return "The Executive Branch, led by the President, enforces federal laws and oversees the federal government.";
+      }
+      if (msg.includes('legislative branch')) {
+        return "The Legislative Branch, consisting of the House and Senate, makes federal laws.";
+      }
+      if (msg.includes('senate majority leader')) {
+        return "The Senate Majority Leader is the chief spokesperson and strategist for the majority party in the Senate.";
+      }
+      if (msg.includes('house minority leader')) {
+        return "The House Minority Leader leads the opposition party in the House of Representatives.";
+      }
+      if (msg.includes('census')) {
+        return "The U.S. Census, conducted every 10 years, counts the population and determines representation in the House.";
+      }
+      if (msg.includes('filibuster')) {
+        return "A filibuster is a tactic used in the Senate to delay or block legislative action by extending debate.";
+      }
+      if (msg.includes('how to contact congress')) {
+        return "You can contact your members of Congress via their official websites, by phone, email, or postal mail. Visit house.gov or senate.gov to find your representatives.";
+      }
+      if (msg.includes('voter id laws')) {
+        return "Voter ID laws require voters to present identification at the polls; requirements vary by state and can be controversial.";
+      }
+      if (msg.includes('electoral votes')) {
+        return "Electoral votes are allocated to each state based on its total number of Senators and Representatives.";
+      }
+      if (msg.includes('impeachment trial')) {
+        return "The Senate holds the impeachment trial after the House votes to impeach, deciding whether to remove the official from office.";
+      }
+      if (msg.includes('supreme court cases')) {
+        return "Important Supreme Court cases include Brown v. Board of Education, Roe v. Wade, and Citizens United v. FEC.";
+      }
+      if (msg.includes('civics')) {
+        return "Civics is the study of the rights and duties of citizenship and how government works.";
+      }
+      if (msg.includes('constitution principles')) {
+        return "Key principles include separation of powers, federalism, checks and balances, popular sovereignty, and limited government.";
+      }
+      if (msg.includes('how to register to vote')) {
+        return "You can register to vote online in many states, by mail, or in person at government offices. Visit vote.gov for details.";
+      }
+      if (msg.includes('voting rights act')) {
+        return "The Voting Rights Act of 1965 prohibits racial discrimination in voting practices.";
+      }
+      if (msg.includes('term limits')) {
+        return "The President has term limits (two terms max). Congress members do not have term limits.";
+      }
+      if (msg.includes('who writes laws')) {
+        return "Members of Congress write laws, often with input from constituents, interest groups, and experts.";
+      }
+      if (msg.includes('how does congress work')) {
+        return "Congress debates, writes, and votes on legislation; committees review bills before votes.";
+      }
+      // Fallback generic response
+      return "Sorry, I don't have information on that topic right now. Please try asking about U.S. government, civics, or voting.";
     }
 
-    function sendMessage() {
-      const message = messageInput.value.trim();
-      if (!message) return;
-
-      addMessage(message, false);
+    sendBtn.addEventListener('click', () => {
+      const userMessage = messageInput.value.trim();
+      if (!userMessage) return;
+      addMessage(userMessage, false);
       messageInput.value = '';
-
       showTyping();
+      // Simulate response delay
       setTimeout(() => {
-        const response = getBotResponse(message);
-        addMessage(response, true);
+        const botResponse = getBotResponse(userMessage);
+        addMessage(botResponse, true);
         hideTyping();
       }, 1000);
-    }
-
-    messageInput.addEventListener('keydown', e => {
-      if (e.key === 'Enter') sendMessage();
     });
 
-    function quickMessage(text) {
-      messageInput.value = text;
-      sendMessage();
-    }
-
-    function logout() {
-      localStorage.removeItem('chatUserName');
-      location.reload();
-    }
+    messageInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendBtn.click();
+      }
+    });
   </script>
 </body>
 </html>
+
