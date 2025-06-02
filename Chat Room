@@ -45,6 +45,7 @@
       padding: 0.5rem 1rem;
       border-radius: 15px;
       clear: both;
+      word-wrap: break-word;
     }
     .user {
       background: #cce5ff;
@@ -79,6 +80,7 @@
       cursor: pointer;
       font-weight: bold;
       font-size: 1rem;
+      transition: background-color 0.3s ease;
     }
     #sendBtn:hover {
       background: #001f4d;
@@ -88,6 +90,7 @@
       font-style: italic;
       color: #666;
       height: 20px;
+      clear: both;
     }
   </style>
 </head>
@@ -125,7 +128,7 @@
       typingIndicator.textContent = '';
     }
 
-    // Expanded CivBot knowledge base with massive info added
+    // CivBot knowledge base - expanded
     function getBotResponse(message) {
       const civicsFacts = [
         "The Declaration of Independence was adopted on July 4, 1776.",
@@ -142,7 +145,6 @@
 
       const msg = message.toLowerCase().trim();
 
-      // Huge expanded knowledge base
       if (msg.includes('president')) {
         return "The current President of the United States is Donald J. Trump, inaugurated on January 20, 2025. The President serves as both the head of state and government, commander-in-chief of the armed forces, and is responsible for enforcing federal laws.";
       }
@@ -198,151 +200,7 @@
         return "The President has certain emergency powers to respond to crises, including deploying troops domestically, but these powers are limited and subject to Congressional oversight.";
       }
       if (msg.includes('impeachment')) {
-        return "Impeachment is a constitutional process where the House of Representatives can charge federal officials, including the President, with misconduct, and the Senate holds a trial to decide removal.";
-      }
-      if (msg.includes('citizenship')) {
-        return "U.S. citizenship can be obtained by birth in the U.S., through U.S. citizen parents, or by naturalization for immigrants meeting residency and legal requirements.";
-      }
-      if (msg.includes('amendment')) {
-        return "The Constitution has 27 amendments. The first 10 are the Bill of Rights. Amendments require proposal by two-thirds of Congress and ratification by three-fourths of states.";
-      }
-      if (msg.includes('federalism')) {
-        return "Federalism is the division of power between the national government and the states, allowing states to have their own laws and governments within the U.S. system.";
-      }
-      if (msg.includes('checks and balances')) {
-        return "Checks and balances are constitutional mechanisms allowing each branch of government to limit the powers of the others, preventing any branch from becoming too powerful.";
-      }
-      if (msg.includes('electoral college')) {
-        return "The Electoral College is the system used to elect the President, where each state’s electors cast votes based on the popular vote within that state.";
-      }
-      if (msg.includes('civil rights')) {
-        return "Civil rights protect individuals from discrimination and guarantee equal treatment under the law, including laws like the Civil Rights Act of 1964.";
-      }
-      if (msg.includes('declaration of independence')) {
-        return "The Declaration of Independence, adopted July 4, 1776, announced the 13 colonies’ separation from Britain and articulated principles of liberty and equality.";
-      }
-      if (msg.includes('great compromise')) {
-        return "The Great Compromise during the Constitutional Convention created a bicameral legislature with proportional representation in the House and equal representation in the Senate.";
-      }
-      if (msg.includes('marbury v madison')) {
-        return "The 1803 Supreme Court case Marbury v. Madison established judicial review, allowing courts to strike down laws that violate the Constitution.";
-      }
-      if (msg.includes('19th amendment')) {
-        return "The 19th Amendment, ratified in 1920, granted women the right to vote in the United States.";
-      }
-      if (msg.includes('emancipation proclamation')) {
-        return "Issued by President Abraham Lincoln in 1863, the Emancipation Proclamation declared all slaves in Confederate states to be free.";
-      }
-      if (msg.includes('federalist papers')) {
-        return "The Federalist Papers are a series of essays by Alexander Hamilton, James Madison, and John Jay promoting the ratification of the U.S. Constitution.";
-      }
-      if (msg.includes('great depression')) {
-        return "The Great Depression was a severe economic crisis starting in 1929, leading to widespread unemployment and major government reforms under FDR’s New Deal.";
-      }
-      if (msg.includes('new deal')) {
-        return "The New Deal was a series of programs and reforms launched by President Franklin D. Roosevelt to combat the Great Depression and provide economic relief.";
-      }
-      if (msg.includes('cold war')) {
-        return "The Cold War was a period of geopolitical tension between the United States and the Soviet Union lasting from roughly 1947 to 1991.";
-      }
-      if (msg.includes('civil war')) {
-        return "The American Civil War (1861-1865) was fought over states' rights and slavery, resulting in the preservation of the Union and the abolition of slavery.";
-      }
-      if (msg.includes('constitution articles')) {
-        return "The Constitution is divided into seven articles outlining the powers of the branches of government, states, amendment process, federal power, and ratification.";
-      }
-      if (msg.includes('first amendment')) {
-        return "The First Amendment guarantees freedoms of religion, speech, press, assembly, and petition.";
-      }
-      if (msg.includes('due process')) {
-        return "Due process is a legal principle guaranteeing fair treatment through the normal judicial system, especially as a citizen's entitlement.";
-      }
-      if (msg.includes('checks and balances example')) {
-        return "An example: The President can veto laws passed by Congress, but Congress can override the veto with a two-thirds majority.";
-      }
-      if (msg.includes('filibuster')) {
-        return "The filibuster is a Senate procedure allowing extended debate to delay or block voting on a bill, requiring 60 votes to invoke cloture and end it.";
-      }
-      if (msg.includes('supreme court justices')) {
-        return "Supreme Court Justices are nominated by the President and confirmed by the Senate; they serve lifetime appointments unless they resign or are removed.";
-      }
-      if (msg.includes('preamble')) {
-        return "The Preamble of the Constitution states the purposes of government: to form a more perfect union, establish justice, insure domestic tranquility, provide for common defense, promote general welfare, and secure liberty.";
-      }
-      if (msg.includes('federalist')) {
-        return "Federalists supported a strong national government and the ratification of the Constitution.";
-      }
-      if (msg.includes('anti-federalist')) {
-        return "Anti-Federalists opposed the Constitution's ratification without a Bill of Rights to protect individual liberties.";
-      }
-      if (msg.includes('civil liberties')) {
-        return "Civil liberties are protections against government actions, such as freedom of speech and religion, guaranteed by the Constitution.";
-      }
-      if (msg.includes('patriot act')) {
-        return "The Patriot Act, passed after 9/11, expanded government surveillance powers to combat terrorism but raised privacy concerns.";
-      }
-      if (msg.includes('veto')) {
-        return "A veto is the President's constitutional right to reject a bill passed by Congress, which can be overridden by a two-thirds vote in both houses.";
-      }
-      if (msg.includes('impeachment process')) {
-        return "The impeachment process starts in the House, which votes on charges; if approved, the Senate holds a trial to decide removal from office.";
-      }
-      if (msg.includes('civil rights movement')) {
-        return "The Civil Rights Movement of the 1950s and 60s fought to end racial segregation and discrimination, leading to landmark laws like the Civil Rights Act.";
-      }
-      if (msg.includes('constitution ratification')) {
-        return "The Constitution was ratified by 9 of the 13 states in 1788, replacing the Articles of Confederation as the governing document.";
-      }
-      if (msg.includes('articles of confederation')) {
-        return "The Articles of Confederation was the first constitution of the U.S., creating a weak central government that was later replaced by the current Constitution.";
-      }
-      if (msg.includes('implied powers')) {
-        return "Implied powers are those not explicitly stated in the Constitution but are assumed to exist to implement expressed powers.";
-      }
-      if (msg.includes('enumerated powers')) {
-        return "Enumerated powers are specifically listed powers of Congress, such as the power to tax, coin money, and regulate commerce.";
-      }
-      if (msg.includes('popular sovereignty')) {
-        return "Popular sovereignty means that the authority of the government is created and sustained by the consent of its people, through their elected representatives.";
-      }
-      if (msg.includes('judicial review')) {
-        return "Judicial review is the power of courts to assess whether laws and government actions are constitutional.";
-      }
-      if (msg.includes('checks and balances branches')) {
-        return "Examples: Congress makes laws, the President can veto, the Supreme Court can rule laws unconstitutional.";
-      }
-      if (msg.includes('how many justices')) {
-        return "The Supreme Court currently has 9 justices.";
-      }
-      if (msg.includes('freedom of religion')) {
-        return "Freedom of religion is guaranteed by the First Amendment, prohibiting the government from establishing a religion or interfering with religious practice.";
-      }
-      if (msg.includes('freedom of speech')) {
-        return "Freedom of speech protects individuals' rights to express opinions without government censorship or restraint.";
-      }
-      if (msg.includes('due process of law')) {
-        return "Due process guarantees fair treatment through the judicial system and prohibits unfair government actions.";
-      }
-      if (msg.includes('emancipation')) {
-        return "Emancipation refers to the freeing of slaves, notably through the Emancipation Proclamation during the Civil War.";
-      }
-      if (msg.includes('civil war causes')) {
-        return "The main causes of the Civil War were disputes over states' rights, slavery, and economic differences between the North and South.";
-      }
-      if (msg.includes('voting rights act')) {
-        return "The Voting Rights Act of 1965 aimed to overcome barriers preventing African Americans from voting.";
-      }
-      if (msg.includes('separation of powers')) {
-        return "Separation of powers divides government responsibilities among the legislative, executive, and judicial branches to prevent abuse of power.";
-      }
-      if (msg.includes('current congress')) {
-        return "The current U.S. Congress is the 119th Congress, serving from 2025 to 2027.";
-      }
-      if (msg.includes('how a bill becomes law')) {
-        return "Bills must be passed by both the House and Senate and signed by the President, or Congress can override a presidential veto with a two-thirds vote.";
-      }
-      if (msg.includes('who signs bills')) {
-        return "The President signs bills into law, but if the President vetoes, Congress can override the veto.";
+        return "Impeachment is a constitutional process where the House of Representatives can charge a federal official with misconduct, and the Senate holds a trial to decide removal from office.";
       }
       if (msg.includes('civil war causes')) {
         return "The main causes of the Civil War were disputes over states' rights, slavery, and economic differences between the North and South.";
@@ -413,7 +271,8 @@
       if (msg.includes('how does congress work')) {
         return "Congress debates, writes, and votes on legislation; committees review bills before votes.";
       }
-      // Fallback generic response
+
+      // If no recognized topic found, reply with fallback
       return "Sorry, I don't have information on that topic right now. Please try asking about U.S. government, civics, or voting.";
     }
 
@@ -423,7 +282,6 @@
       addMessage(userMessage, false);
       messageInput.value = '';
       showTyping();
-      // Simulate response delay
       setTimeout(() => {
         const botResponse = getBotResponse(userMessage);
         addMessage(botResponse, true);
@@ -439,4 +297,3 @@
   </script>
 </body>
 </html>
-
