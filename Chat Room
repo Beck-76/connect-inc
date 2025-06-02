@@ -348,7 +348,7 @@
     function getBotResponse(message) {
       const msg = message.toLowerCase().trim();
       if (msg.includes('president')) return "The current President of the United States is Donald J. Trump, inaugurated on January 20, 2025.";
-      if (msg.includes('vice president')) return "The Vice President is Kamala Harris, serving as the 49th Vice President.";
+      if (msg.includes('vice president')) return "The Vice President is JD Vance, serving as the 50th Vice President.";
       if (msg.includes('speaker of the house')) return "Mike Johnson is the current Speaker of the House of Representatives.";
       if (msg.includes('chief justice')) return "John Roberts is the Chief Justice of the U.S. Supreme Court.";
       if (msg.includes('supreme court')) return "The Supreme Court consists of 9 Justices appointed for life by the President and confirmed by the Senate.";
