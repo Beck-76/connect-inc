@@ -69,8 +69,15 @@
     main {
       padding: 2rem;
       display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .top-section {
+      display: flex;
       flex-direction: row;
       gap: 2rem;
+      flex-wrap: wrap;
     }
 
     .left-section {
@@ -95,23 +102,113 @@
       line-height: 1.5;
     }
 
-    .right-section {
-      flex: 3;
+    .voice-section {
+      flex: 2;
+      padding: 1rem;
+      background: linear-gradient(to bottom, #ffffff, #f1f4f9);
+      border: 2px solid #b22234;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .right-section h2 {
+    .voice-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: #002868;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .voice-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .voice-content textarea {
+      width: 90%;
+      height: 150px;
+      padding: 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      resize: none;
+      background-color: #f5f5f5;
+      color: #333;
+      font-family: 'Roboto', sans-serif;
+      margin-bottom: 1.5rem;
+      box-sizing: border-box;
+    }
+
+    .vote-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .yea-button,
+    .nay-button {
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .yea-button {
+      background-color: #28a745;
+    }
+
+    .yea-button:hover {
+      background-color: #218838;
+    }
+
+    .nay-button {
+      background-color: #dc3545;
+    }
+
+    .nay-button:hover {
+      background-color: #c82333;
+    }
+
+    .schedule-section {
+      margin-top: 2rem;
+    }
+
+    .schedule-section h2 {
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
       color: #b22234;
       margin-top: 0;
     }
 
-    .bill-list ul {
-      padding-left: 1.2rem;
+    .schedule-section textarea {
+      width: 100%;
+      height: 120px;
+      padding: 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
     }
 
     .contact-section {
       margin-top: 2rem;
+    }
+
+    .contact-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #b22234;
     }
 
     .contact-section a {
@@ -129,20 +226,6 @@
       background-color: #001b4f;
     }
 
-    .schedule-section {
-      margin-top: 2rem;
-    }
-
-    .schedule-section textarea {
-      width: 100%;
-      height: 120px;
-      padding: 1rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      resize: vertical;
-    }
-
     footer {
       background-color: #002868;
       color: white;
@@ -151,11 +234,22 @@
       font-size: 0.9rem;
       margin-top: 3rem;
     }
+
+    .us-flag {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 60px;
+      height: auto;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
 
   <header>
+    <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" class="us-flag">
     <h1>ConnectUSA Senate</h1>
     <div class="dropdown">
       <button>☰</button>
@@ -169,26 +263,28 @@
   </header>
 
   <main>
-    <section class="left-section">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/JD_Vance_2023.jpg" alt="JD Vance">
-      <h3>Vice President JD Vance</h3>
-      <p>JD Vance serves as the 49th Vice President of the United States and is the President of the Senate. As a former U.S. Senator and bestselling author of <em>Hillbilly Elegy</em>, Vance brings a strong voice on issues affecting working-class Americans and plays a crucial role in tie-breaking Senate votes.</p>
-    </section>
+    <div class="top-section">
+      <section class="left-section">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/JD_Vance_2023.jpg" alt="JD Vance">
+        <h3>Vice President JD Vance</h3>
+        <p>JD Vance serves as the 50th Vice President of the United States and is the President of the Senate. As a former U.S. Senator and bestselling author of <em>Hillbilly Elegy</em>, Vance brings a strong voice on issues affecting working-class Americans and plays a crucial role in tie-breaking Senate votes.</p>
+      </section>
 
-    <section class="right-section">
-      <h2>Current Senate Bills</h2>
-      <div class="bill-list">
-        <ul>
-          <li>S.123 – Affordable Clean Energy Expansion Act</li>
-          <li>S.456 – Veterans Healthcare Modernization Act</li>
-          <li>S.789 – Federal Data Privacy Protection Act</li>
-          <li>S.1011 – American Infrastructure Renewal Act</li>
-        </ul>
-      </div>
+      <section class="voice-section">
+        <h2>Make your voice heard!</h2>
+        <div class="voice-content">
+          <textarea readonly>Vote on this to let your congressperson know what you think.</textarea>
+          <div class="vote-buttons">
+            <button class="yea-button">Yea</button>
+            <button class="nay-button">Nay</button>
+          </div>
+        </div>
+      </section>
+    </div>
 
-      <div class="schedule-section">
-        <h2>Senate Schedule for Today</h2>
-        <textarea>Wednesday, Jun 04, 2025
+    <div class="schedule-section">
+      <h2>Senate Schedule for Today</h2>
+      <textarea readonly>Wednesday, Jun 04, 2025
 10:15 AM – SH-216	Judiciary
 Hearings to examine pending nominations.
 Wednesday, Jun 04, 2025
@@ -200,15 +296,14 @@ Hearings to examine the nominations of Cheryl Mason, of North Carolina, to be In
 Wednesday, Jun 04, 2025
 4:15 PM – SH-216	Aging
 Hearings to examine the aging farm workforce, focusing on America's vanishing family farms.
-	</textarea>
-      </div>
+      </textarea>
+    </div>
 
-      <div class="contact-section">
-        <h2>Contact Your Senator</h2>
-        <p>You can contact your U.S. Senator directly via the official U.S. Senate website below.</p>
-        <a href="https://www.senate.gov/senators/senators-contact.htm" target="_blank">Visit Contact Page</a>
-      </div>
-    </section>
+    <div class="contact-section">
+      <h2>Contact Your Senator</h2>
+      <p>You can contact your U.S. Senator directly via the official U.S. Senate website below.</p>
+      <a href="https://www.senate.gov/senators/senators-contact.htm" target="_blank">Visit Contact Page</a>
+    </div>
   </main>
 
   <footer>
