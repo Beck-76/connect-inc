@@ -5,18 +5,334 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Power to the People 🗽 - Connect Inc.</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="flag.webp" type="image/webp" />
+  <style>
+.contact-section {
+  margin-top: 2rem;
+  background-color: #f0f4f8;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.contact-section h2 {
+  color: #b22234;
+  margin-top: 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.contact-section p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #222;
+}
+
+.contact-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #002868;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #001b4f;
+}
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #f4f6f8);
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(to right, #b22234, white, #3c3b6e);
+      color: black;
+      padding: 2rem 1rem 5rem;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    header img.flag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      height: 50px;
+    }
+
+    header h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.8rem;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+      color: black;
+    }
+
+    .nav-wrapper {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #partyLetter {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: white;
+      background: #002868;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: #002868;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 140px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      right: 0;
+    }
+
+    .dropdown-content a {
+      color: #002868;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #eee;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .scroll-arrow {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: black;
+      animation: bounce 1.5s infinite;
+      transition: opacity 0.3s ease;
+    }
+
+    .scroll-arrow.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+      40% { transform: translate(-50%, -10px); }
+      60% { transform: translate(-50%, -5px); }
+    }
+
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .leaders {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .leader {
+      width: 200px;
+    }
+
+    .leader img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .leader h3 {
+      margin: 0.5rem 0 0.2rem;
+      font-size: 1.1rem;
+      color: #002868;
+    }
+
+    .leader small {
+      font-size: 0.85rem;
+      display: block;
+      color: #444;
+    }
+
+    .creators-section {
+      margin-top: 4rem;
+      padding: 3rem 2rem;
+      background-color: #fefefe;
+      border-top: 2px solid #ccc;
+    }
+
+    .creators-section h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2rem;
+      color: #b22234;
+    }
+
+    .creator-photo {
+      width: 150px;
+      height: 150px;
+      background-color: #ddd;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      overflow: hidden;
+    }
+
+    .creator-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .creator-text {
+      max-width: 800px;
+      margin: 0 auto;
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      background-color: #002868;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .register-link {
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+
+    .register-link a {
+      display: inline-block;
+      background-color: #3c3b6e;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .register-link a:hover {
+      background-color: #2a295c;
+    }
+
+    /* Popups */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    .popup h2 {
+      color: #002868;
+      margin-bottom: 1rem;
+    }
+
+    .popup button {
+      margin: 0.5rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    .popup .Democrat { background-color: #1877f2; }
+    .popup .Republican { background-color: #b22234; }
+    .popup .Independent { background-color: #555; }
+    .popup .PreferNot { background-color: gray; }
+
+    .popup input[type="text"], .popup input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .popup label {
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    .popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
-  <header role="banner">
-    <img class="flag" src="flag.webp" alt="U.S. Flag" loading="lazy" />
+  <header>
+    <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="U.S. Flag" />
     <h1>Power to the People 🗽</h1>
-    <div class="quote">“The strength of a democracy lies in the active participation of its citizens.”</div>
-    <nav class="nav-wrapper" role="navigation" aria-label="Main navigation">
+    <div class="quote">“The strength of a democracy lies in the ability of its citizens to question, engage, and actively participate in shaping its future.”<br>— Barack Obama</div>
+    <div class="nav-wrapper">
       <div id="partyLetter"></div>
       <div class="dropdown">
-        <button class="dropbtn">☰ Menu</button>
+        <button class="dropbtn">☰ Options</button>
         <div class="dropdown-content">
           <a href="index.html">Home</a>
           <a href="house.html">House</a>
@@ -25,74 +341,70 @@
           <a href="#" onclick="openPartyPopup()">Change Party</a>
         </div>
       </div>
-    </nav>
+    </div>
     <div class="scroll-arrow" id="scrollArrow">⬇️</div>
   </header>
 
-  <main role="main">
+  <main>
     <div class="register-link">
-      <a href="https://www.fvap.gov/" target="_blank" rel="noopener noreferrer">Register to Vote Federally</a>
+      <a href="https://www.fvap.gov/" target="_blank">Register to Vote Federally</a>
     </div>
 
-    <div class="seal-container">
-      <img src="great_seal.webp" alt="Great Seal of the United States" loading="lazy" />
+    <div style="text-align:center; margin-top: 2rem;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Great_Seal_of_the_United_States_%28obverse%29.svg" 
+           alt="Great Seal of the United States" 
+           style="max-width: 150px; height: auto;" />
     </div>
 
-    <h2 class="section-title">Current Leadership</h2>
+    <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Current Leadership</h2>
     <div class="leaders">
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Donald_Trump_official_portrait_%28cropped%29.jpg" alt="Official portrait of President Donald Trump" loading="lazy" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Donald_Trump_official_portrait_%28cropped%29.jpg" alt="President Donald Trump" />
         <h3>President Donald Trump</h3>
         <small>45th and 47th President of the United States</small>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/JD_Vance_2023.jpg" alt="Official portrait of Vice President JD Vance" loading="lazy" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Kamala_Harris_Vice_Presidential_Portrait.jpg" alt="Vice President Kamala Harris" />
         <h3>Vice President JD Vance</h3>
         <small>50th Vice President of the United States</small>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Speaker_Mike_Johnson_Portrait.jpg" alt="Official portrait of Speaker Mike Johnson" loading="lazy" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Speaker_Mike_Johnson_Portrait.jpg" alt="Speaker Mike Johnson" />
         <h3>Speaker Mike Johnson</h3>
         <small>Speaker of the House</small>
       </div>
       <div class="leader">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/John_Roberts_official_SCOTUS_portrait.jpg" alt="Official portrait of Chief Justice John Roberts" loading="lazy" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/John_Roberts_official_SCOTUS_portrait.jpg" alt="Chief Justice John Roberts" />
         <h3>Chief Justice John Roberts</h3>
         <small>Chief Justice of the Supreme Court</small>
       </div>
     </div>
-
-    <section class="contact-section">
-      <h2>Contact the White House</h2>
-      <p>Visit the official White House website to share your thoughts, request assistance, or send a message to the President or administration.</p>
-      <a href="https://www.whitehouse.gov/contact/" target="_blank" rel="noopener noreferrer" class="contact-button">Visit Contact Page</a>
-    </section>
-
-    <section class="section" id="our-vision">
-      <h2 class="section-title">Our Vision</h2>
-      <p>Our vision is to empower the citizens of this great nation. The officials in Washington work for you and me. It's time those in Washington listen to the people rather than their own interests. The power is yours, you just have to take it back.</p>
-    </section>
   </main>
+ </div>
 
+<div class="contact-section">
+  <h2>Contact the White House</h2>
+  <p>Visit the official White House website to share your thoughts, request assistance, or send a message to the President or administration.</p>
+  <a href="https://www.whitehouse.gov/contact/" target="_blank">Visit Contact Page</a>
+</div>
+
+<section class="section" id="our-vision" style="padding: 2rem; max-width: 800px; margin: 2rem auto; text-align: center;">
+  <h2 style="font-family: 'Bebas Neue', cursive; color: #b22234;">Our Vision</h2>
+  <p style="font-family: Georgia, serif; font-size: 1.1rem; line-height: 1.6; color: #222;">
+    Our vision is to rempower the citizens of this great nation. The officals in Washington work for you and me. It's time those in Washington listen to the people rather than their own interests. The power is yours, you just have to take it back.
+  </p>
+</section>
+
+</main>
   <section class="creators-section">
-    <h2 class="section-title">Creators</h2>
-    <div class="creators-container">
-      <div class="creator">
-        <div class="creator-photo">
-          <img src="https://via.placeholder.com/150" alt="Creator Samuel Milner" loading="lazy" />
-        </div>
-        <div class="creator-text">
-          <p>Samuel Milner has followed politics since a young age and sees the divide in our country growing. His goal is to create a platform for citizens to connect with elected officials.</p>
-        </div>
-      </div>
-      <div class="creator">
-        <div class="creator-photo">
-          <img src="https://via.placeholder.com/150" alt="Creator Elijah Beck" loading="lazy" />
-        </div>
-        <div class="creator-text">
-          <p>Elijah Beck aims to empower voters to engage directly with Congress, reminding them that officials work for the people.</p>
-        </div>
-      </div>
+    <h2>Creators</h2>
+    <div class="creator-photo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Portrait_Placeholder.png/200px-Portrait_Placeholder.png" 
+           alt="Creator Photo" />
+    </div>
+    <div class="creator-text">
+      <p>Meet the Creators: Samuel Milner and Elijah Beck have followed politics since a young age and see the divide in our great country growing more than ever. Our goal is to create an area for citizens to come together and make their voice heard.</p>
+      <p>The people have forgotten that the Congress works for the people, not for their own interests. We want voters to connect with their elected officials and return the power of this great country to the PEOPLE!</p>
     </div>
   </section>
 
@@ -102,27 +414,88 @@
 
   <!-- Popups -->
   <div class="popup-overlay" id="partyPopup" style="display:none;">
-    <div class="popup" role="dialog" aria-labelledby="partyPopupTitle">
-      <h2 id="partyPopupTitle">What Political Party are you?</h2>
+    <div class="popup">
+      <h2>What Political Party are you?</h2>
       <button class="Democrat" onclick="selectParty('D')">Democrat</button>
       <button class="Republican" onclick="selectParty('R')">Republican</button>
       <button class="Independent" onclick="selectParty('I')">Independent</button>
       <button class="PreferNot" onclick="selectParty('-')">Prefer not to say</button>
-      <button class="PreferNot" onclick="selectParty('-')">Skip</button>
     </div>
   </div>
 
   <div class="popup-overlay" id="signupPopup" style="display:none;">
-    <div class="popup" role="dialog" aria-labelledby="signupHeader">
-      <span class="close-btn" onclick="closeSignup()" aria-label="Close signup popup">×</span>
+    <div class="popup">
+      <span class="close-btn" onclick="closeSignup()">×</span>
       <h2 id="signupHeader">Create an Account</h2>
-      <input type="text" placeholder="Name" id="nameInput" aria-required="true" />
-      <input type="email" placeholder="Email" id="emailInput" aria-required="true" />
+      <input type="text" placeholder="Name" id="nameInput">
+      <input type="email" placeholder="Email" id="emailInput">
       <label><input type="checkbox" id="updatesCheckbox"> Receive updates by email</label>
       <button class="Republican" onclick="submitSignup()">Submit</button>
     </div>
   </div>
 
-  <script src="scripts.js"></script>
+  <!-- Script -->
+  <script>
+    window.addEventListener('load', () => {
+      const storedParty = localStorage.getItem('party');
+      if (storedParty) {
+        document.getElementById("partyLetter").textContent = storedParty;
+        if (localStorage.getItem('signupName') || localStorage.getItem('signupEmail')) {
+          document.getElementById("signupPopup").style.display = "flex";
+          document.getElementById("signupHeader").textContent = "Sign In";
+          loadSignupData();
+        } else {
+          document.getElementById("signupPopup").style.display = "flex";
+        }
+      } else {
+        document.getElementById("partyPopup").style.display = "flex";
+      }
+    });
+
+    function selectParty(letter) {
+      document.getElementById("partyLetter").textContent = letter;
+      localStorage.setItem('party', letter);
+      document.getElementById("partyPopup").style.display = "none";
+      document.getElementById("signupPopup").style.display = "flex";
+    }
+
+    function openPartyPopup() {
+      document.getElementById("partyPopup").style.display = "flex";
+    }
+
+    function closeSignup() {
+      document.getElementById("signupPopup").style.display = "none";
+    }
+
+    function submitSignup() {
+      const name = document.getElementById("nameInput").value.trim();
+      const email = document.getElementById("emailInput").value.trim();
+      const updates = document.getElementById("updatesCheckbox").checked;
+      if (name && email) {
+        localStorage.setItem('signupName', name);
+        localStorage.setItem('signupEmail', email);
+        localStorage.setItem('signupUpdates', updates ? "yes" : "no");
+        alert("Thank you!");
+        closeSignup();
+      } else {
+        alert("Please enter both name and email.");
+      }
+    }
+
+    function loadSignupData() {
+      document.getElementById("nameInput").value = localStorage.getItem('signupName') || '';
+      document.getElementById("emailInput").value = localStorage.getItem('signupEmail') || '';
+      document.getElementById("updatesCheckbox").checked = localStorage.getItem('signupUpdates') === "yes";
+    }
+
+    window.addEventListener('scroll', () => {
+      const arrow = document.getElementById('scrollArrow');
+      if (window.scrollY > 30) {
+        arrow.classList.add('hidden');
+      } else {
+        arrow.classList.remove('hidden');
+      }
+    });
+  </script>
 </body>
-</html>
+</html> 
